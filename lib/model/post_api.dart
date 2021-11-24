@@ -1,8 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:test_virtue/model/api_content.dart';
-import 'package:test_virtue/model/api_guid.dart';
-import 'package:test_virtue/model/api_title.dart';
 
 part 'post_api.freezed.dart';
 part 'post_api.g.dart';
