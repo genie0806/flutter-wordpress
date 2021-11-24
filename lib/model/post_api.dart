@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:test_virtue/model/api_content.dart';
 import 'package:test_virtue/model/api_guid.dart';
+import 'package:test_virtue/model/api_title.dart';
 
 part 'post_api.freezed.dart';
 part 'post_api.g.dart';
@@ -19,7 +20,7 @@ class PostApi with _$PostApi {
       String? type,
       String? link,
       Guid? guid,
-      Guid? title,
+      Title? title,
       Content? content,
       Content? excerpt,
       int? author,
@@ -32,5 +33,5 @@ class PostApi with _$PostApi {
       List<int>? categories,
       List<void>? tags}) = _PostApi;
   factory PostApi.fromJson(Map<String, dynamic> json) =>
-      _$PostApiFromJson(json);
+      _$postApiFromJson(json);
 }
