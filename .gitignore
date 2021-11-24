@@ -8,9 +8,8 @@
 .buildlog/
 .history
 .svn/
-*.env
-*.g.dart
-*.freezed.dart
+.env*
+
 
 # IntelliJ related
 *.iml
@@ -33,9 +32,7 @@
 .pub-cache/
 .pub/
 /build/
-*.env
-*.g.dart
-*.freezed.dart
+
 
 # Web related
 lib/generated_plugin_registrant.dart
@@ -50,3 +47,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+.env*
+
+*.g.dart
+*.freezed.dart
