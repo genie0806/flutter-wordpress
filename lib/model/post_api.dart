@@ -31,7 +31,29 @@ class PostApi with _$PostApi {
       String? template,
       String? format,
       List<int>? categories,
-      List<void>? tags}) = _PostApi;
+      List<dynamic>? tags}) = _PostApi;
   factory PostApi.fromJson(Map<String, dynamic> json) =>
-      _$postApiFromJson(json);
+      _$PostApiFromJson(json);
+}
+
+@freezed
+class Content with _$Content {
+  factory Content({String? rendered, bool? protected}) = _Content;
+
+  factory Content.fromJson(Map<String, dynamic> json) =>
+      _$ContentFromJson(json);
+}
+
+@freezed
+class Guid with _$Guid {
+  factory Guid({String? rendered}) = _Guid;
+
+  factory Guid.fromJson(Map<String, dynamic> json) => _$GuidFromJson(json);
+}
+
+@freezed
+class Title with _$Title {
+  factory Title({String? rendered}) = _Title;
+
+  factory Title.fromJson(Map<String, dynamic> json) => _$TitleFromJson(json);
 }
