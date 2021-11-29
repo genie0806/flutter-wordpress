@@ -1,36 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:test_virtue/view_page.dart';
+import 'package:wordpress_api/wordpress_api.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  await dotenv.load(fileName: 'url.env');
+  runApp(const TestPage());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class TestPage extends StatelessWidget {
+  const TestPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        const Text(''),
-        const Text(''),
-        const Text(''),
-      ],
-    );
+    return const MaterialApp(title: 'Try Image Search', home: ViewPage());
   }
 }
