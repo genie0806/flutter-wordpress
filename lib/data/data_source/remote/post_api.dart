@@ -1,7 +1,7 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:test_virtue/core/result.dart';
-import 'package:test_virtue/model/post_model/post_model.dart';
+import 'package:test_virtue/domain/model/post_model/post_model.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 String baseUrl = dotenv.get('BASE_URL');
