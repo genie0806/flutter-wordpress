@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:test_virtue/view_page.dart';
-import 'package:wordpress_api/wordpress_api.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
