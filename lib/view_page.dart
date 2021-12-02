@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:test_virtue/core/result.dart';
 import 'package:test_virtue/data/data_source/remote/simple_post_api.dart';
 import 'package:test_virtue/domain/model/post_model/post_model.dart';
-<<<<<<< HEAD
-import 'package:test_virtue/domain/model/simple_post/simple_post_model.dart';
-import 'package:wordpress_api/wordpress_api.dart';
-=======
 import 'package:test_virtue/domain/model/simple_post_model/simple_post_model.dart';
->>>>>>> b4b3f698e9ba488e26ab344686aeef26d8b021e0
+import 'package:wordpress_api/wordpress_api.dart';
+import 'package:test_virtue/domain/model/simple_post_model/simple_post_model.dart';
 
 import 'package:test_virtue/data/data_source/remote/post_api.dart';
 
