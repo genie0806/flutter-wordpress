@@ -7,11 +7,14 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 String baseUrl = dotenv.get('BASE_URL');
 
 class PostApi {
-  Future<List<PostModel>> fetchData() async {
+  Future<Result<List<PostModel>>> fetchData() async {
     final response = await http.get(Uri.parse(baseUrl + 'posts'));
     Iterable jsonResponse = convert.jsonDecode(response.body);
     List<PostModel> postApi =
         jsonResponse.map((e) => PostModel.fromJson(e)).toList();
-    return postApi;
+    if (postApi != null) {
+      return Result.success(postApi);
+    }
+    return const Result.error('잠시후 다시 시도해 주십시오');
   }
 }
