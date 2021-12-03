@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_virtue/presentation/postpage/post_page.dart';
 import 'package:test_virtue/view_page.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -14,6 +15,6 @@ class TestPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(title: 'Try Image Search', home: ViewPage());
+    return const MaterialApp(title: 'Try Image Search', home: PostPage());
   }
 }
