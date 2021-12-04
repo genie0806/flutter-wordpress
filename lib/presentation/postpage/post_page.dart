@@ -2,9 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wordpress_content/wp_content.dart';
 import 'package:provider/provider.dart';
+import 'package:test_virtue/domain/model/simple_post_model/simple_post_model.dart';
+import 'package:test_virtue/presentation/postpage/post_page_view_model.dart';
+import 'package:wordpress_api/wordpress_api.dart';
 
 class PostPage extends StatefulWidget {
-  const PostPage({Key? key}) : super(key: key);
+  const PostPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _PostPageState createState() => _PostPageState();
@@ -13,6 +18,8 @@ class PostPage extends StatefulWidget {
 class _PostPageState extends State<PostPage> {
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<PostPageViewModel>();
+    final post = viewModel.postsState.post;
     return SafeArea(
       child: Scaffold(
           extendBodyBehindAppBar: true,
@@ -60,10 +67,10 @@ class _PostPageState extends State<PostPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('카테고리 명'),
-                        const Text(
-                          '옥적갤러리 개인전',
-                          style: TextStyle(fontSize: 40),
+                        Text(post?.categoryName ?? ''),
+                        Text(
+                          post?.title ?? '',
+                          style: const TextStyle(fontSize: 40),
                         ),
                         Container(
                           color: Colors.grey.shade200,
@@ -93,7 +100,7 @@ class _PostPageState extends State<PostPage> {
                                     const SizedBox(
                                       width: 76,
                                     ),
-                                    Text('양해웅 작가'),
+                                    Text(post?.author ?? ''),
                                   ]),
                                 ),
                               ),
@@ -117,7 +124,7 @@ class _PostPageState extends State<PostPage> {
                                     const SizedBox(
                                       width: 50,
                                     ),
-                                    Text('개인전'),
+                                    Text(post?.displayform ?? ''),
                                   ]),
                                 ),
                               ),
@@ -141,7 +148,7 @@ class _PostPageState extends State<PostPage> {
                                     const SizedBox(
                                       width: 35,
                                     ),
-                                    Text('모던'),
+                                    Text(post?.style ?? ''),
                                   ]),
                                 ),
                               ),
@@ -165,7 +172,7 @@ class _PostPageState extends State<PostPage> {
                                     const SizedBox(
                                       width: 50,
                                     ),
-                                    Text('갤러리'),
+                                    Text(post?.space ?? ''),
                                   ]),
                                 ),
                               ),
@@ -184,24 +191,24 @@ class _PostPageState extends State<PostPage> {
                                     const SizedBox(
                                       width: 76,
                                     ),
-                                    Text('전라남도 여수'),
+                                    Text(post?.location ?? ''),
                                   ]),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        WPContent(
-                          post.postContent.toString(),
-                          headingTextColor: Colors.black,
-                          paragraphTextColor: Colors.black,
-                          imageCaptionTextColor: Colors.black,
-                          textDirection: TextDirection.ltr,
-                          fontFamily: 'my_font_family',
-                          fontSize: 16.0,
-                          paragraphArabicIdentifier: 'tk-adobe-arabic',
-                          arabicFontFamily: 'my_arabic_font_family',
-                        )
+                        //WPContent(
+                        //  post.postContent.toString(),
+                        //  headingTextColor: Colors.black,
+                        //  paragraphTextColor: Colors.black,
+                        //  imageCaptionTextColor: Colors.black,
+                        //  textDirection: TextDirection.ltr,
+                        //  fontFamily: 'my_font_family',
+                        //  fontSize: 16.0,
+                        //  paragraphArabicIdentifier: 'tk-adobe-arabic',
+                        //  arabicFontFamily: 'my_arabic_font_family',
+                        //)
                       ],
                     ),
                   ],

@@ -19,11 +19,21 @@ class PostPageViewModel with ChangeNotifier {
   final _eventController = StreamController<PostPageEvent>();
   Stream<PostPageEvent> get eventStream => _eventController.stream;
 
+  Future<void> fetchPostListPage(NoParams params) async {
+    final result = await useCases.getPostList(params);
+    result.when(success: (resultPostList) {
+      _postsState = _postsState.copyWith(postList: resultPostList);
+    }, error: (e) {
+      print((result as Error).message.toString());
+      _eventController.add(PostPageEvent.showSnackBar('네트워크 에러 입니다'));
+    });
+  }
+
   Future<void> ferchPostPage(NoParams params) async {
     final result = await useCases.getPost(params);
 
     result.when(success: (resultPosts) {
-      _postsState = _postsState.copyWith(posts: resultPosts);
+      _postsState = _postsState.copyWith(post: resultPosts);
       notifyListeners();
     }, error: (e) {
       print((result as Error).message.toString());
