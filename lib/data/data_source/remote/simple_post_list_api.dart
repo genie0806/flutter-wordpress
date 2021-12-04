@@ -6,11 +6,12 @@ import 'package:test_virtue/domain/model/simple_post_model/simple_post_model.dar
 
 String baseUrl = dotenv.get('BASE_URL');
 
-class SimplePostLApi {
-  Future<Result<SimplePostModel>> fetchData() async {
+class SimplePostListApi {
+  Future<Result<List<SimplePostModel>>> fetchData() async {
     final response = await http.get(Uri.parse(baseUrl + 'latest-posts'));
-    Map<String, dynamic> jsonResponse = convert.jsonDecode((response.body));
-    SimplePostModel simplePostApi = SimplePostModel.fromJson(jsonResponse);
+    Iterable jsonResponse = convert.jsonDecode((response.body));
+    List<SimplePostModel> simplePostApi =
+        jsonResponse.map((e) => SimplePostModel.fromJson(e)).toList();
     if (simplePostApi != null) {
       return Result.success(simplePostApi);
     }
