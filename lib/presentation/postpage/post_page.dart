@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_wordpress_content/wp_content.dart';
 import 'package:provider/provider.dart';
 
 class PostPage extends StatefulWidget {
@@ -86,10 +87,34 @@ class _PostPageState extends State<PostPage> {
                                               color: Colors.grey.shade400))),
                                   child: Row(children: [
                                     Text(
+                                      '작가',
+                                      style: TextStyle(color: Colors.grey[700]),
+                                    ),
+                                    const SizedBox(
+                                      width: 76,
+                                    ),
+                                    Text('양해웅 작가'),
+                                  ]),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                                child: Container(
+                                  width: 175.5,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      color: Colors.grey.shade200,
+                                      border: Border(
+                                          bottom: BorderSide(
+                                              width: 1,
+                                              color: Colors.grey.shade400))),
+                                  child: Row(children: [
+                                    Text(
                                       '전시형태',
                                       style: TextStyle(color: Colors.grey[700]),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 50,
                                     ),
                                     Text('개인전'),
@@ -110,34 +135,10 @@ class _PostPageState extends State<PostPage> {
                                               color: Colors.grey.shade400))),
                                   child: Row(children: [
                                     Text(
-                                      '전시공간',
-                                      style: TextStyle(color: Colors.grey[700]),
-                                    ),
-                                    SizedBox(
-                                      width: 50,
-                                    ),
-                                    Text('갤러리'),
-                                  ]),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 15),
-                                child: Container(
-                                  width: 175.5,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey.shade200,
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              width: 1,
-                                              color: Colors.grey.shade400))),
-                                  child: Row(children: [
-                                    Text(
                                       '작품 스타일',
                                       style: TextStyle(color: Colors.grey[700]),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 35,
                                     ),
                                     Text('모던'),
@@ -158,13 +159,13 @@ class _PostPageState extends State<PostPage> {
                                               color: Colors.grey.shade400))),
                                   child: Row(children: [
                                     Text(
-                                      '작가',
+                                      '전시공간',
                                       style: TextStyle(color: Colors.grey[700]),
                                     ),
-                                    SizedBox(
-                                      width: 76,
+                                    const SizedBox(
+                                      width: 50,
                                     ),
-                                    Text('양해웅 작가'),
+                                    Text('갤러리'),
                                   ]),
                                 ),
                               ),
@@ -180,7 +181,7 @@ class _PostPageState extends State<PostPage> {
                                       '지역',
                                       style: TextStyle(color: Colors.grey[700]),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 76,
                                     ),
                                     Text('전라남도 여수'),
@@ -189,9 +190,20 @@ class _PostPageState extends State<PostPage> {
                               ),
                             ],
                           ),
+                        ),
+                        WPContent(
+                          post.postContent.toString(),
+                          headingTextColor: Colors.black,
+                          paragraphTextColor: Colors.black,
+                          imageCaptionTextColor: Colors.black,
+                          textDirection: TextDirection.ltr,
+                          fontFamily: 'my_font_family',
+                          fontSize: 16.0,
+                          paragraphArabicIdentifier: 'tk-adobe-arabic',
+                          arabicFontFamily: 'my_arabic_font_family',
                         )
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
