@@ -8,20 +8,11 @@ String baseUrl = dotenv.get('BASE_URL');
 
 class SimplePostApi {
   Future<Result<SimplePostModel>> fetchData() async {
-    final response = await http.get(Uri.parse(baseUrl + 'latest-posts'));
+    final response = await http.get(Uri.parse(
+        'https://virtureart.shop/index.php/wp-json/wp/v2/latest-posts'));
     Map<String, dynamic> jsonResponse = convert.jsonDecode((response.body));
+    print('잘들어가는중');
     SimplePostModel simplePostApi = SimplePostModel.fromJson(jsonResponse);
-    if (simplePostApi != null) {
-      return Result.success(simplePostApi);
-    }
-    return const Result.error('잠시후 다시 시도해 주십시오');
-  }
-
-  Future<Result<List<SimplePostModel>>> fetchListData() async {
-    final response = await http.get(Uri.parse(baseUrl + 'latest-posts'));
-    Iterable jsonResponse = convert.jsonDecode((response.body));
-    List<SimplePostModel> simplePostApi =
-        jsonResponse.map((e) => SimplePostModel.fromJson(e)).toList();
     if (simplePostApi != null) {
       return Result.success(simplePostApi);
     }

@@ -8,7 +8,8 @@ String baseUrl = dotenv.get('BASE_URL');
 
 class PostApi {
   Future<Result<List<PostModel>>> fetchData() async {
-    final response = await http.get(Uri.parse(baseUrl + 'posts'));
+    final response = await http.get(Uri.parse(
+        'https://virtureart.shop/index.php/wp-json/wp/v2/latest-posts'));
     Iterable jsonResponse = convert.jsonDecode(response.body);
     List<PostModel> postApi =
         jsonResponse.map((e) => PostModel.fromJson(e)).toList();

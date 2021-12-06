@@ -2,13 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wordpress_content/wp_content.dart';
 import 'package:provider/provider.dart';
+import 'package:test_virtue/core/data_case.dart';
 import 'package:test_virtue/domain/model/simple_post_model/simple_post_model.dart';
+import 'package:test_virtue/presentation/postpage/post_page_event.dart';
 import 'package:test_virtue/presentation/postpage/post_page_view_model.dart';
-import 'package:wordpress_api/wordpress_api.dart';
 
 class PostPage extends StatefulWidget {
+  final SimplePostModel model;
   const PostPage({
     Key? key,
+    required this.model,
   }) : super(key: key);
 
   @override
@@ -17,9 +20,24 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   @override
+  void initState() {
+    super.initState();
+    Future.microtask(() {
+      context.read<PostPageViewModel>().ferchPostPage(NoParams());
+      context.read<PostPageViewModel>().eventStream.listen((event) {
+        if (event is Showsnackbar) {
+          final snackbar = SnackBar(content: Text(event.message));
+          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+        }
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<PostPageViewModel>();
     final post = viewModel.postsState.post;
+    final postModel = SimplePostModel();
     return SafeArea(
       child: Scaffold(
           extendBodyBehindAppBar: true,
@@ -27,11 +45,16 @@ class _PostPageState extends State<PostPage> {
             titleSpacing: 1,
             toolbarHeight: 40,
             backgroundColor: Colors.transparent,
+            automaticallyImplyLeading: false,
+            shadowColor: const Color(0xffFEFEFE),
+            //elevation: 1,
             title: Row(
               children: [
                 IconButton(
                     padding: EdgeInsets.zero,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     //constraints: const BoxConstraints(minWidth:),
                     icon: const Icon(
                       Icons.arrow_back,
@@ -40,23 +63,23 @@ class _PostPageState extends State<PostPage> {
                     )),
                 IconButton(
                     padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(minWidth: 30),
+                    constraints: const BoxConstraints(minWidth: 35),
                     onPressed: () {},
                     icon: const Icon(CupertinoIcons.home,
                         color: Colors.white, size: 25)),
               ],
             ),
-            elevation: 0.0,
           ),
           body: CustomScrollView(
             slivers: [
               SliverAppBar(
-                pinned: true,
+                automaticallyImplyLeading: false,
+                backgroundColor: Colors.transparent,
+                pinned: false,
                 expandedHeight: 360,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Image.network(
-                    //객체로 바꿀부분
-                    'https://virtureart.shop/wp-content/uploads/2021/11/20210209%EF%BC%BF175631.jpg',
+                    widget.model.largeUrl ?? '',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -67,10 +90,17 @@ class _PostPageState extends State<PostPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(post?.categoryName ?? ''),
                         Text(
-                          post?.title ?? '',
-                          style: const TextStyle(fontSize: 40),
+                          widget.model.categoryName ?? '',
+                          style: const TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          widget.model.title ?? '',
+                          style: const TextStyle(
+                            fontSize: 40,
+                          ),
                         ),
                         Container(
                           color: Colors.grey.shade200,
@@ -100,7 +130,7 @@ class _PostPageState extends State<PostPage> {
                                     const SizedBox(
                                       width: 76,
                                     ),
-                                    Text(post?.author ?? ''),
+                                    Text(widget.model.author ?? ''),
                                   ]),
                                 ),
                               ),
@@ -124,7 +154,7 @@ class _PostPageState extends State<PostPage> {
                                     const SizedBox(
                                       width: 50,
                                     ),
-                                    Text(post?.displayform ?? ''),
+                                    Text(widget.model.displayform ?? ''),
                                   ]),
                                 ),
                               ),
@@ -148,7 +178,7 @@ class _PostPageState extends State<PostPage> {
                                     const SizedBox(
                                       width: 35,
                                     ),
-                                    Text(post?.style ?? ''),
+                                    Text(widget.model.style ?? ''),
                                   ]),
                                 ),
                               ),
@@ -172,7 +202,7 @@ class _PostPageState extends State<PostPage> {
                                     const SizedBox(
                                       width: 50,
                                     ),
-                                    Text(post?.space ?? ''),
+                                    Text(widget.model.space ?? ''),
                                   ]),
                                 ),
                               ),
@@ -191,24 +221,24 @@ class _PostPageState extends State<PostPage> {
                                     const SizedBox(
                                       width: 76,
                                     ),
-                                    Text(post?.location ?? ''),
+                                    Text(widget.model.location ?? ''),
                                   ]),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        //WPContent(
-                        //  post.postContent.toString(),
-                        //  headingTextColor: Colors.black,
-                        //  paragraphTextColor: Colors.black,
-                        //  imageCaptionTextColor: Colors.black,
-                        //  textDirection: TextDirection.ltr,
-                        //  fontFamily: 'my_font_family',
-                        //  fontSize: 16.0,
-                        //  paragraphArabicIdentifier: 'tk-adobe-arabic',
-                        //  arabicFontFamily: 'my_arabic_font_family',
-                        //)
+                        WPContent(
+                          widget.model.postContent.toString(),
+                          headingTextColor: Colors.black,
+                          paragraphTextColor: Colors.black,
+                          imageCaptionTextColor: Colors.black,
+                          textDirection: TextDirection.ltr,
+                          fontFamily: 'my_font_family',
+                          fontSize: 16.0,
+                          paragraphArabicIdentifier: 'tk-adobe-arabic',
+                          arabicFontFamily: 'my_arabic_font_family',
+                        )
                       ],
                     ),
                   ],
