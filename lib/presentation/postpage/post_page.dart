@@ -93,7 +93,7 @@ class _PostPageState extends State<PostPage> {
                 delegate: SliverChildListDelegate(
                   [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 20, 15, 15),
+                      padding: const EdgeInsets.fromLTRB(17, 25, 17, 15),
                       child: Text(
                         widget.model.categoryName ?? '',
                         style: const TextStyle(
@@ -101,11 +101,27 @@ class _PostPageState extends State<PostPage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 0, 15, 20),
+                      padding: const EdgeInsets.fromLTRB(17, 0, 17, 20),
                       child: Text(
                         widget.model.title ?? '',
                         style: const TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(17, 0, 17, 30),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 22,
+                            child: ClipOval(
+                              child: Image.network(
+                                widget.model.profileUrl ?? '',
+                                fit: BoxFit.scaleDown,
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                     PostBoard(widget: widget),
