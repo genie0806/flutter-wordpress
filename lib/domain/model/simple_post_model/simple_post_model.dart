@@ -21,6 +21,8 @@ class SimplePostModel with _$SimplePostModel {
     String? thumsnailUrl,
     String? mediumUrl,
     String? largeUrl,
+    String? profile,
+    String? profileUrl,
   }) = _SimplePostModel;
   factory SimplePostModel.fromJson(Map<String, dynamic> json) =>
       _$SimplePostModelFromJson(json);
