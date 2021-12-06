@@ -4,10 +4,9 @@ import 'package:flutter_wordpress_content/wp_content.dart';
 import 'package:provider/provider.dart';
 import 'package:test_virtue/core/data_case.dart';
 import 'package:test_virtue/domain/model/simple_post_model/simple_post_model.dart';
+import 'package:test_virtue/presentation/postpage/components/post_board.dart';
 import 'package:test_virtue/presentation/postpage/post_page_event.dart';
 import 'package:test_virtue/presentation/postpage/post_page_view_model.dart';
-
-import 'components/sliver_image.dart';
 
 class PostPage extends StatefulWidget {
   final SimplePostModel model;
@@ -78,15 +77,12 @@ class _PostPageState extends State<PostPage> {
                 toolbarHeight: 0,
                 automaticallyImplyLeading: false,
                 backgroundColor: Colors.transparent,
-                pinned: false,
-                expandedHeight: 380,
-                title: Text('옥적갤러리 개인전'),
+                pinned: true,
+                floating: false,
+                snap: false,
+                expandedHeight: 375,
                 stretch: true,
                 flexibleSpace: FlexibleSpaceBar(
-                  stretchModes: const <StretchMode>[
-                    StretchMode.zoomBackground,
-                    StretchMode.blurBackground
-                  ],
                   background: Image.network(
                     widget.model.largeUrl ?? '',
                     fit: BoxFit.cover,
@@ -101,8 +97,7 @@ class _PostPageState extends State<PostPage> {
                       child: Text(
                         widget.model.categoryName ?? '',
                         style: const TextStyle(
-                          fontSize: 15,
-                        ),
+                            fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Padding(
@@ -113,127 +108,7 @@ class _PostPageState extends State<PostPage> {
                             fontSize: 25, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    Container(
-                      color: Colors.grey.shade200,
-                      width: 411,
-                      child: Wrap(
-                        direction: Axis.horizontal,
-                        //spacing: 10.0,
-                        //runSpacing: 20.0,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            child: Container(
-                              width: 175.5,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  color: Colors.grey.shade200,
-                                  border: Border(
-                                      bottom: BorderSide(
-                                          width: 1,
-                                          color: Colors.grey.shade400))),
-                              child: Row(children: [
-                                Text(
-                                  '작가',
-                                  style: TextStyle(color: Colors.grey[700]),
-                                ),
-                                const SizedBox(
-                                  width: 76,
-                                ),
-                                Text(widget.model.author ?? ''),
-                              ]),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            child: Container(
-                              width: 175.5,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  color: Colors.grey.shade200,
-                                  border: Border(
-                                      bottom: BorderSide(
-                                          width: 1,
-                                          color: Colors.grey.shade400))),
-                              child: Row(children: [
-                                Text(
-                                  '전시형태',
-                                  style: TextStyle(color: Colors.grey[700]),
-                                ),
-                                const SizedBox(
-                                  width: 50,
-                                ),
-                                Text(widget.model.displayform ?? ''),
-                              ]),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            child: Container(
-                              width: 175.5,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  color: Colors.grey.shade200,
-                                  border: Border(
-                                      bottom: BorderSide(
-                                          width: 1,
-                                          color: Colors.grey.shade400))),
-                              child: Row(children: [
-                                Text(
-                                  '작품 스타일',
-                                  style: TextStyle(color: Colors.grey[700]),
-                                ),
-                                const SizedBox(
-                                  width: 35,
-                                ),
-                                Text(widget.model.style ?? ''),
-                              ]),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            child: Container(
-                              width: 175.5,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  color: Colors.grey.shade200,
-                                  border: Border(
-                                      bottom: BorderSide(
-                                          width: 1,
-                                          color: Colors.grey.shade400))),
-                              child: Row(children: [
-                                Text(
-                                  '전시공간',
-                                  style: TextStyle(color: Colors.grey[700]),
-                                ),
-                                const SizedBox(
-                                  width: 50,
-                                ),
-                                Text(widget.model.space ?? ''),
-                              ]),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            child: Container(
-                              width: 351,
-                              height: 50,
-                              color: Colors.grey.shade200,
-                              child: Row(children: [
-                                Text(
-                                  '지역',
-                                  style: TextStyle(color: Colors.grey[700]),
-                                ),
-                                const SizedBox(
-                                  width: 76,
-                                ),
-                                Text(widget.model.location ?? ''),
-                              ]),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    PostBoard(widget: widget),
                     WPContent(
                       widget.model.postContent.toString(),
                       headingTextColor: Colors.black,
