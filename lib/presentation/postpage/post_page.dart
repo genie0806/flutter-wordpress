@@ -90,16 +90,21 @@ class _PostPageState extends State<PostPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          widget.model.categoryName ?? '',
-                          style: const TextStyle(
-                            fontSize: 15,
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(15, 20, 15, 15),
+                          child: Text(
+                            widget.model.categoryName ?? '',
+                            style: const TextStyle(
+                              fontSize: 15,
+                            ),
                           ),
                         ),
-                        Text(
-                          widget.model.title ?? '',
-                          style: const TextStyle(
-                            fontSize: 40,
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(15, 0, 15, 20),
+                          child: Text(
+                            widget.model.title ?? '',
+                            style: const TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold),
                           ),
                         ),
                         Container(
