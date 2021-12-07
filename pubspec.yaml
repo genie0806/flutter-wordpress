@@ -42,6 +42,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   wordpress_api: ^1.2.0
   flutter_wordpress_content: ^1.0.25
+  intl: ^0.17.0
   
 
 dev_dependencies:

@@ -4,9 +4,12 @@ import 'package:flutter_wordpress_content/wp_content.dart';
 import 'package:provider/provider.dart';
 import 'package:test_virtue/core/data_case.dart';
 import 'package:test_virtue/domain/model/simple_post_model/simple_post_model.dart';
+import 'package:test_virtue/presentation/postpage/components/follow_button.dart';
 import 'package:test_virtue/presentation/postpage/components/post_board.dart';
 import 'package:test_virtue/presentation/postpage/post_page_event.dart';
 import 'package:test_virtue/presentation/postpage/post_page_view_model.dart';
+import 'package:test_virtue/presentation/postpage/components/date_parse.dart';
+import 'package:intl/intl.dart';
 
 class PostPage extends StatefulWidget {
   final SimplePostModel model;
@@ -20,6 +23,8 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
+  bool pressed = true;
+
   @override
   void initState() {
     super.initState();
@@ -39,6 +44,10 @@ class _PostPageState extends State<PostPage> {
     final viewModel = context.watch<PostPageViewModel>();
     final post = viewModel.postsState.post;
     final postModel = SimplePostModel();
+
+    DateTime date = DateTime.parse(widget.model.postDate ?? '');
+    String dateform = DateFormat('yyyy년 MM월 dd일').format(date);
+
     return SafeArea(
       child: Scaffold(
           extendBodyBehindAppBar: true,
@@ -80,7 +89,7 @@ class _PostPageState extends State<PostPage> {
                 pinned: true,
                 floating: false,
                 snap: false,
-                expandedHeight: 375,
+                expandedHeight: 370,
                 stretch: true,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Image.network(
@@ -120,17 +129,56 @@ class _PostPageState extends State<PostPage> {
                                 fit: BoxFit.scaleDown,
                               ),
                             ),
-                          )
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.model.profile ?? '',
+                                  style: const TextStyle(fontSize: 14),
+                                ),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  dateform,
+                                  style: const TextStyle(
+                                      fontSize: 14, color: Colors.grey),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 135,
+                          ),
+                          ElevatedButton(
+                              onPressed: () {
+                                pressed = !pressed;
+                              },
+                              style: pressed
+                                  ? ElevatedButton.styleFrom(
+                                      primary: Colors.black)
+                                  : ElevatedButton.styleFrom(
+                                      primary: Colors.white),
+                              child: pressed
+                                  ? const Text('Follow')
+                                  : const Text(
+                                      'Following',
+                                      style: TextStyle(color: Colors.black),
+                                    )),
                         ],
                       ),
                     ),
+                    //회색 포스트 보드
                     PostBoard(widget: widget),
                     WPContent(
                       widget.model.postContent.toString(),
                       headingTextColor: Colors.black,
                       paragraphTextColor: Colors.black,
                       imageCaptionTextColor: Colors.black,
-                      textDirection: TextDirection.ltr,
+                      //textDirection: TextDirection.ltr,
                       fontFamily: 'my_font_family',
                       fontSize: 16.0,
                       paragraphArabicIdentifier: 'tk-adobe-arabic',
