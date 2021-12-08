@@ -19,8 +19,8 @@ class PostListPageViewModel with ChangeNotifier {
 
   Future refresh() async {
     await fetchPostListPage(NoParams());
-    notifyListeners();
-    return Future.delayed(Duration(milliseconds: 1000));
+
+    return Future.delayed(const Duration(seconds: 1));
   }
 
   Future<void> fetchPostListPage(NoParams params) async {

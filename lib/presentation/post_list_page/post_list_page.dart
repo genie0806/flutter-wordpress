@@ -43,6 +43,7 @@ class _PostListPageState extends State<PostListPage> {
 
   @override
   void dispose() {
+    //dispose.call();
     super.dispose();
   }
 

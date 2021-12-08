@@ -19,7 +19,7 @@ class PostPageViewModel with ChangeNotifier {
   Future refresh() async {
     await ferchPostPage(NoParams());
     notifyListeners();
-    return Future.delayed(Duration(milliseconds: 1000));
+    return Future.delayed(const Duration(seconds: 1));
   }
 
   Future<void> ferchPostPage(NoParams params) async {

@@ -42,7 +42,7 @@ class _PostPageState extends State<PostPage> {
 
   @override
   void dispose() {
-    //dispose.call();
+    dispose.call();
     super.dispose();
   }
 
@@ -87,128 +87,132 @@ class _PostPageState extends State<PostPage> {
             ],
           ),
         ),
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              toolbarHeight: 0,
-              automaticallyImplyLeading: false,
-              backgroundColor: Colors.transparent,
-              pinned: true,
-              floating: false,
-              snap: false,
-              expandedHeight: 370,
-              stretch: true,
-              flexibleSpace: FlexibleSpaceBar(
-                background: Image.network(
-                  widget.model.largeUrl ?? '',
-                  fit: BoxFit.cover,
+        body: RefreshIndicator(
+          onRefresh: viewModel.refresh,
+          child: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                toolbarHeight: 0,
+                automaticallyImplyLeading: false,
+                backgroundColor: Colors.transparent,
+                pinned: true,
+                floating: false,
+                snap: false,
+                expandedHeight: 370,
+                stretch: true,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Image.network(
+                    widget.model.largeUrl ?? '',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(17, 25, 17, 15),
-                    child: Text(
-                      widget.model.categoryName ?? '',
-                      style: const TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.bold),
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(17, 25, 17, 15),
+                      child: Text(
+                        widget.model.categoryName ?? '',
+                        style: const TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(17, 0, 17, 20),
-                    child: Text(
-                      widget.model.title ?? '',
-                      style: const TextStyle(
-                          fontSize: 25, fontWeight: FontWeight.bold),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(17, 0, 17, 20),
+                      child: Text(
+                        widget.model.title ?? '',
+                        style: const TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(17, 0, 17, 30),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 22,
-                          child: ClipOval(
-                            child: Image.network(
-                              widget.model.profileUrl ?? '',
-                              fit: BoxFit.scaleDown,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(17, 0, 17, 30),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 22,
+                            child: ClipOval(
+                              child: Image.network(
+                                widget.model.profileUrl ?? '',
+                                fit: BoxFit.scaleDown,
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                widget.model.profile ?? '',
-                                style: const TextStyle(fontSize: 14),
-                              ),
-                              const SizedBox(
-                                height: 4,
-                              ),
-                              Text(
-                                dateform,
-                                style: const TextStyle(
-                                    fontSize: 14, color: Colors.grey),
-                              ),
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.model.profile ?? '',
+                                  style: const TextStyle(fontSize: 14),
+                                ),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  dateform,
+                                  style: const TextStyle(
+                                      fontSize: 14, color: Colors.grey),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        const Expanded(
-                          child: SizedBox(),
-                        ),
-                        ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                pressed = !pressed;
-                              });
-                            },
-                            style: pressed
-                                ? ElevatedButton.styleFrom(
-                                    primary: Colors.black,
-                                    maximumSize: const Size(93, 40),
-                                    minimumSize: const Size(93, 40),
-                                  )
-                                : ElevatedButton.styleFrom(
-                                    primary: Colors.white,
-                                    maximumSize: const Size(93, 40),
-                                    minimumSize: const Size(93, 40),
-                                    side: const BorderSide(color: Colors.black),
-                                  ),
-                            child: pressed
-                                ? const Text('Follow')
-                                : const Text(
-                                    'Following',
-                                    style: TextStyle(color: Colors.black),
-                                  )),
-                      ],
+                          const Expanded(
+                            child: SizedBox(),
+                          ),
+                          ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  pressed = !pressed;
+                                });
+                              },
+                              style: pressed
+                                  ? ElevatedButton.styleFrom(
+                                      primary: Colors.black,
+                                      maximumSize: const Size(93, 40),
+                                      minimumSize: const Size(93, 40),
+                                    )
+                                  : ElevatedButton.styleFrom(
+                                      primary: Colors.white,
+                                      maximumSize: const Size(93, 40),
+                                      minimumSize: const Size(93, 40),
+                                      side:
+                                          const BorderSide(color: Colors.black),
+                                    ),
+                              child: pressed
+                                  ? const Text('Follow')
+                                  : const Text(
+                                      'Following',
+                                      style: TextStyle(color: Colors.black),
+                                    )),
+                        ],
+                      ),
                     ),
-                  ),
-                  //회색 포스트 보드
-                  Greyboard(
-                    widget: widget,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: WPContent(
-                      widget.model.postContent.toString(),
-                      headingTextColor: Colors.black,
-                      paragraphTextColor: Colors.black,
-                      imageCaptionTextColor: Colors.black,
-                      //textDirection: TextDirection.ltr,
-                      fontFamily: 'my_font_family',
-                      fontSize: 17.0,
-                      paragraphArabicIdentifier: 'tk-adobe-arabic',
-                      arabicFontFamily: 'my_arabic_font_family',
+                    //회색 포스트 보드
+                    Greyboard(
+                      widget: widget,
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: WPContent(
+                        widget.model.postContent.toString(),
+                        headingTextColor: Colors.black,
+                        paragraphTextColor: Colors.black,
+                        imageCaptionTextColor: Colors.black,
+                        //textDirection: TextDirection.ltr,
+                        fontFamily: 'my_font_family',
+                        fontSize: 17.0,
+                        paragraphArabicIdentifier: 'tk-adobe-arabic',
+                        arabicFontFamily: 'my_arabic_font_family',
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
