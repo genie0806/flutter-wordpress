@@ -1,10 +1,9 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'post_list_page_event.freezed.dart';
+
+@freezed
 abstract class PostListPageEvent {
   factory PostListPageEvent.showSnackBar(String message) = Showsnackbar;
-}
-
-class Showsnackbar implements PostListPageEvent {
-  final String message;
-  Showsnackbar(
-    this.message,
-  );
+  factory PostListPageEvent.reloadPage() = ReloadPage;
 }

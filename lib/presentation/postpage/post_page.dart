@@ -41,6 +41,12 @@ class _PostPageState extends State<PostPage> {
   }
 
   @override
+  void dispose() {
+    //dispose.call();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<PostPageViewModel>();
     final post = viewModel.postsState.post;

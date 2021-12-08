@@ -17,9 +17,14 @@ class PostListPageViewModel with ChangeNotifier {
   final _eventController = StreamController<PostListPageEvent>();
   Stream<PostListPageEvent> get eventStream => _eventController.stream;
 
+  Future refresh() async {
+    await fetchPostListPage(NoParams());
+    notifyListeners();
+    return Future.delayed(Duration(milliseconds: 1000));
+  }
+
   Future<void> fetchPostListPage(NoParams params) async {
     final result = await listUseCases.getPostList(params);
-
     result.when(success: (resultPostList) {
       _postsListState = _postsListState.copyWith(postList: resultPostList);
       notifyListeners();

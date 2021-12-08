@@ -16,6 +16,12 @@ class PostPageViewModel with ChangeNotifier {
   final _eventController = StreamController<PostPageEvent>();
   Stream<PostPageEvent> get eventStream => _eventController.stream;
 
+  Future refresh() async {
+    await ferchPostPage(NoParams());
+    notifyListeners();
+    return Future.delayed(Duration(milliseconds: 1000));
+  }
+
   Future<void> ferchPostPage(NoParams params) async {
     final result = await useCases.getPost(params);
     result.when(success: (resultPosts) {
