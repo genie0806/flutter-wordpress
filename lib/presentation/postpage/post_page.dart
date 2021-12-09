@@ -3,22 +3,17 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wordpress_content/wp_content.dart';
-import 'package:provider/provider.dart';
-import 'package:test_virtue/core/data_case.dart';
-import 'package:test_virtue/domain/model/simple_post_model/simple_post_model.dart';
-import 'package:test_virtue/presentation/postpage/components/board.dart';
-import 'package:test_virtue/presentation/postpage/components/follow_button.dart';
-import 'package:test_virtue/presentation/postpage/components/post_board.dart';
-import 'package:test_virtue/presentation/postpage/post_page_event.dart';
-import 'package:test_virtue/presentation/postpage/post_page_view_model.dart';
-import 'package:test_virtue/presentation/postpage/components/date_parse.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:test_virtue/presentation/post_list_page/post_list_page_view_model.dart';
+import 'package:test_virtue/presentation/postpage/components/board.dart';
 
 class PostPage extends StatefulWidget {
-  final SimplePostModel model;
+  final int id;
+
   const PostPage({
     Key? key,
-    required this.model,
+    required this.id,
   }) : super(key: key);
 
   @override
@@ -33,18 +28,18 @@ class _PostPageState extends State<PostPage> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<PostPageViewModel>().ferchPostPage(NoParams());
+      // context.read<PostPageViewModel>().ferchPostPage(NoParams());
 
-      final viewModel = context.read<PostPageViewModel>();
-      streamSubscription = viewModel.eventStream.listen((event) {
-        event.when(showSnackBar: (message) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(message)),
-          );
-        }, reloadPage: () {
-          Navigator.pop(context, true);
-        });
-      });
+      // final viewModel = context.read<PostListPageViewModel>();
+      // streamSubscription = viewModel.eventStream.listen((event) {
+      //   event.when(showSnackBar: (message) {
+      //     ScaffoldMessenger.of(context).showSnackBar(
+      //       SnackBar(content: Text(message)),
+      //     );
+      //   }, reloadPage: () {
+      //     Navigator.pop(context, true);
+      //   });
+      // });
     });
   }
 
@@ -56,9 +51,12 @@ class _PostPageState extends State<PostPage> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<PostPageViewModel>();
+    final viewModel = context.watch<PostListPageViewModel>();
 
-    DateTime date = DateTime.parse(widget.model.postDate ?? '');
+    final model =
+        viewModel.postsListState.postList.where((e) => e.id == widget.id).first;
+
+    DateTime date = DateTime.parse(model.postDate ?? '');
     String dateform = DateFormat('yyyy년 MM월 dd일').format(date);
 
     return SafeArea(
@@ -108,7 +106,7 @@ class _PostPageState extends State<PostPage> {
                 stretch: true,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Image.network(
-                    widget.model.largeUrl ?? '',
+                    model.largeUrl ?? '',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -119,7 +117,7 @@ class _PostPageState extends State<PostPage> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(17, 25, 17, 15),
                       child: Text(
-                        widget.model.categoryName ?? '',
+                        model.categoryName ?? '',
                         style: const TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),
@@ -127,7 +125,7 @@ class _PostPageState extends State<PostPage> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(17, 0, 17, 20),
                       child: Text(
-                        widget.model.title ?? '',
+                        model.title ?? '',
                         style: const TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold),
                       ),
@@ -140,7 +138,7 @@ class _PostPageState extends State<PostPage> {
                             radius: 22,
                             child: ClipOval(
                               child: Image.network(
-                                widget.model.profileUrl ?? '',
+                                model.profileUrl ?? '',
                                 fit: BoxFit.scaleDown,
                               ),
                             ),
@@ -151,7 +149,7 @@ class _PostPageState extends State<PostPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  widget.model.profile ?? '',
+                                  model.profile ?? '',
                                   style: const TextStyle(fontSize: 14),
                                 ),
                                 const SizedBox(
@@ -198,12 +196,12 @@ class _PostPageState extends State<PostPage> {
                     ),
                     //회색 포스트 보드
                     Greyboard(
-                      widget: widget,
+                      simplePostModel: model,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: WPContent(
-                        widget.model.postContent.toString(),
+                        model.postContent.toString(),
                         headingTextColor: Colors.black,
                         paragraphTextColor: Colors.black,
                         imageCaptionTextColor: Colors.black,

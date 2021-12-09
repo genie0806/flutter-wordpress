@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:test_virtue/presentation/postpage/post_page.dart';
+import 'package:test_virtue/domain/model/simple_post_model/simple_post_model.dart';
 
 class Greyboard extends StatelessWidget {
-  final PostPage widget;
+  final SimplePostModel simplePostModel;
   const Greyboard({
     Key? key,
-    required this.widget,
+    required this.simplePostModel,
   }) : super(key: key);
 
   @override
@@ -40,7 +40,7 @@ class Greyboard extends StatelessWidget {
                         //const SizedBox(),
                         Flexible(
                             flex: 1,
-                            child: Text(widget.model.displayform ?? '')),
+                            child: Text(simplePostModel.displayform ?? '')),
                         const SizedBox(),
                       ]),
                 ),
@@ -72,7 +72,7 @@ class Greyboard extends StatelessWidget {
                       Flexible(
                           flex: 1,
                           fit: FlexFit.tight,
-                          child: Text(widget.model.author ?? '')),
+                          child: Text(simplePostModel.author ?? '')),
                       SizedBox(),
                     ],
                   ),
@@ -107,7 +107,7 @@ class Greyboard extends StatelessWidget {
 
                         //const SizedBox(),
                         Flexible(
-                            flex: 1, child: Text(widget.model.space ?? '')),
+                            flex: 1, child: Text(simplePostModel.space ?? '')),
                         const SizedBox(),
                       ]),
                 ),
@@ -138,7 +138,7 @@ class Greyboard extends StatelessWidget {
                       Flexible(
                           flex: 1,
                           fit: FlexFit.tight,
-                          child: Text(widget.model.style ?? '')),
+                          child: Text(simplePostModel.style ?? '')),
                       const SizedBox(),
                     ],
                   ),
@@ -167,7 +167,7 @@ class Greyboard extends StatelessWidget {
                 Flexible(
                     flex: 2,
                     fit: FlexFit.tight,
-                    child: Text(widget.model.location ?? '')),
+                    child: Text(simplePostModel.location ?? '')),
                 Flexible(flex: 1, fit: FlexFit.tight, child: SizedBox()),
               ],
             ),

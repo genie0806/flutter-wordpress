@@ -91,7 +91,7 @@ flutter:
   fonts:
     - family: today_font
       fonts:
-        - asset: assets\font\today_font.ttf
+        - asset: assets/font/today_font.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
