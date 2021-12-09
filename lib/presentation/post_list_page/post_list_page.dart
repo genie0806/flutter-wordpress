@@ -24,7 +24,7 @@ class PostListPage extends StatefulWidget {
 }
 
 class _PostListPageState extends State<PostListPage> {
-  StreamSubscription? _streamSubscription;
+  StreamSubscription? streamSubscription;
 
   @override
   void initState() {
@@ -43,7 +43,6 @@ class _PostListPageState extends State<PostListPage> {
 
   @override
   void dispose() {
-    //dispose.call();
     super.dispose();
   }
 
@@ -76,9 +75,9 @@ Widget imageResultView(PostListPageViewModel viewModel, BuildContext context) {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            ChangeNotifierProvider<PostPageViewModel>(
+                            ChangeNotifierProvider<PostListPageViewModel>(
                                 create: (context) {
-                                  return context.read<PostPageViewModel>();
+                                  return context.read<PostListPageViewModel>();
                                 },
                                 child: PostPage(
                                   model: e,

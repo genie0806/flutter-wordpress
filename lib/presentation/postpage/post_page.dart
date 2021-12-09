@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wordpress_content/wp_content.dart';
@@ -24,6 +26,7 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
+  StreamSubscription? streamSubscription;
   bool pressed = true;
 
   @override
@@ -31,26 +34,29 @@ class _PostPageState extends State<PostPage> {
     super.initState();
     Future.microtask(() {
       context.read<PostPageViewModel>().ferchPostPage(NoParams());
-      context.read<PostPageViewModel>().eventStream.listen((event) {
-        if (event is Showsnackbar) {
-          final snackbar = SnackBar(content: Text(event.message));
-          ScaffoldMessenger.of(context).showSnackBar(snackbar);
-        }
+
+      final viewModel = context.read<PostPageViewModel>();
+      streamSubscription = viewModel.eventStream.listen((event) {
+        event.when(showSnackBar: (message) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(message)),
+          );
+        }, reloadPage: () {
+          Navigator.pop(context, true);
+        });
       });
     });
   }
 
   @override
   void dispose() {
-    dispose.call();
+    streamSubscription?.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<PostPageViewModel>();
-    final post = viewModel.postsState.post;
-    final postModel = SimplePostModel();
 
     DateTime date = DateTime.parse(widget.model.postDate ?? '');
     String dateform = DateFormat('yyyy년 MM월 dd일').format(date);

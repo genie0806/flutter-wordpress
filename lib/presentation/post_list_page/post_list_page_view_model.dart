@@ -14,12 +14,11 @@ class PostListPageViewModel with ChangeNotifier {
 
   PostListPageViewModel(this.listUseCases);
 
-  final _eventController = StreamController<PostListPageEvent>();
+  final _eventController = StreamController<PostListPageEvent>.broadcast();
   Stream<PostListPageEvent> get eventStream => _eventController.stream;
 
   Future refresh() async {
     await fetchPostListPage(NoParams());
-
     return Future.delayed(const Duration(seconds: 1));
   }
 

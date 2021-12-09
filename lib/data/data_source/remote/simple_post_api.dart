@@ -11,7 +11,7 @@ class SimplePostApi {
     final response = await http.get(Uri.parse(
         'https://virtureart.shop/index.php/wp-json/wp/v2/latest-posts'));
     Map<String, dynamic> jsonResponse = convert.jsonDecode((response.body));
-    print('잘들어가는중');
+
     SimplePostModel simplePostApi = SimplePostModel.fromJson(jsonResponse);
     if (simplePostApi != null) {
       return Result.success(simplePostApi);

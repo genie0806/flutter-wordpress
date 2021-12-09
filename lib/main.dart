@@ -4,9 +4,9 @@ import 'package:test_virtue/di/provider_setup.dart';
 import 'package:test_virtue/presentation/post_list_page/post_list_page.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-Future<void> main() async {
+main() async {
   await dotenv.load(fileName: 'url.env');
-
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(providers: await getProviders(), child: const TestPage()),
   );

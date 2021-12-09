@@ -7,6 +7,6 @@ part 'post_page_state.freezed.dart';
 @freezed
 class PostsState with _$PostsState {
   factory PostsState({
-    SimplePostModel? post,
+    List<SimplePostModel>? post,
   }) = _PostsState;
 }
