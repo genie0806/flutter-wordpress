@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "497768939613",
+    "project_id": "virtue-ec9b8",
+    "storage_bucket": "virtue-ec9b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497768939613:android:072467ea02174b2e3fcdb4",
+        "android_client_info": {
+          "package_name": "com.example.virtue_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "497768939613-hltldic0v44lpn99bt5gke1cecpo8hsd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.virtue_test",
+            "certificate_hash": "d9a4a8ac7eda778aeaed5a3d0c668df0ad8fafd2"
+          }
+        },
+        {
+          "client_id": "497768939613-uke6cv4vckbubnorv538vdvrf86pkvfi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuI5inuo_ildPsVR844UhQcQIMBH5PXiU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "497768939613-uke6cv4vckbubnorv538vdvrf86pkvfi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
