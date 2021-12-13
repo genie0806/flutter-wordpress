@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
 
   LoginUI() {
     return Consumer<GoogleSign>(builder: (context, model, child) {
-      if (model.googleAccount != null) {
+      if (model.socialUserModel != null) {
         return Center(
           child: LoggedInUi(model),
         );
@@ -40,8 +40,10 @@ class _LoginPageState extends State<LoginPage> {
         CircleAvatar(
           backgroundImage:
               Image.network(model.googleAccount!.photoUrl ?? "").image,
+          radius: 50,
         ),
-        Text(model.googleAccount!.displayName ?? ''),
+        Text(model.socialUserModel!.displayName ?? ''),
+        Text(model.socialUserModel!.email ?? ''),
         ActionChip(
             label: Text("LogOut"),
             onPressed: () {
@@ -58,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           TextButton(
               onPressed: () {
-                Provider.of<GoogleSign>(context, listen: false).login();
+                Provider.of<GoogleSign>(context, listen: false).googleLogin();
               },
               child: Text('구글 로그인'))
         ],
