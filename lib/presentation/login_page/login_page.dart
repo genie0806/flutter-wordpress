@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:virtue_test/domain/model/social_user_model/social_user_model.dart';
 import 'package:virtue_test/presentation/login_page/login_page_view_model.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,58 +13,44 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<LoginViewModel>();
+    final model = SocialUserModel();
     return Scaffold(
       appBar: AppBar(
         title: Text('test'),
       ),
-      body: LoginUI(),
-    );
-  }
-
-  LoginUI() {
-    return Consumer<GoogleSign>(builder: (context, model, child) {
-      if (model.socialUserModel != null) {
-        return Center(
-          child: LoggedInUi(model),
-        );
-      } else {
-        return loginContorols(context);
-      }
-    });
-  }
-
-  LoggedInUi(GoogleSign model) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        CircleAvatar(
-          backgroundImage:
-              Image.network(model.googleAccount!.photoUrl ?? "").image,
-          radius: 50,
-        ),
-        Text(model.socialUserModel!.displayName ?? ''),
-        Text(model.socialUserModel!.email ?? ''),
-        ActionChip(
-            label: Text("LogOut"),
-            onPressed: () {
-              Provider.of<GoogleSign>(context, listen: false).logOut();
-            })
-      ],
-    );
-  }
-
-  loginContorols(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextButton(
-              onPressed: () {
-                Provider.of<GoogleSign>(context, listen: false).googleLogin();
-              },
-              child: Text('구글 로그인'))
-        ],
+      body: Center(
+        child: model != null
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    backgroundImage: Image.network(viewModel.useCases
+                                .getSocialLogin.googleAccount!.photoUrl ??
+                            "")
+                        .image,
+                    radius: 50,
+                  ),
+                  Text(model.displayName ?? ''),
+                  Text(model.email ?? ''),
+                  ActionChip(
+                      label: Text("LogOut"),
+                      onPressed: () {
+                        viewModel.useCases.getSocialLogout;
+                      })
+                ],
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        viewModel.useCases.getSocialLogout;
+                      },
+                      child: Text('구글 로그인'))
+                ],
+              ),
       ),
     );
   }
