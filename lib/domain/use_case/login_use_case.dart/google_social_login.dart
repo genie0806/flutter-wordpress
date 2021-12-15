@@ -20,6 +20,6 @@ class GoogleSocialLogin {
         email: googleAccount!.email,
         photoUrl: googleAccount!.photoUrl);
     await socialLoginApi.fetchSocialLogin(socialUserModel!.email ?? '');
-    return await repository.getSocialLogin(userName);
+    return repository.getSocialLogin(userName);
   }
 }

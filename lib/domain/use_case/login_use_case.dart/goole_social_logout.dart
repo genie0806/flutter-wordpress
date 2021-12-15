@@ -12,6 +12,6 @@ class GoogleSocialLogout {
   Future<bool> call(String userName) async {
     googleAccount = await googleSignIn.signOut();
 
-    return repository.getSocialLogin(userName);
+    return repository.getSocialLogout(userName);
   }
 }

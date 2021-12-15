@@ -1,27 +1,19 @@
-import 'package:flutter/cupertino.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:virtue_test/data/data_source/remote/social_login_api.dart';
-import 'package:virtue_test/domain/model/social_user_model/social_user_model.dart';
+import 'package:flutter/material.dart';
 
-class GoogleSign with ChangeNotifier {
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
-  GoogleSignInAccount? googleAccount;
-  SocialUserModel? socialUserModel;
-  SocialLoginApi socialLoginApi = SocialLoginApi();
+import 'package:virtue_test/domain/use_case/login_use_case.dart/login_use_cases.dart';
 
-  googleLogin() async {
-    this.googleAccount = await _googleSignIn.signIn();
-    this.socialUserModel = SocialUserModel(
-        displayName: this.googleAccount!.displayName,
-        email: this.googleAccount!.email,
-        photoUrl: this.googleAccount!.photoUrl);
-    await socialLoginApi.fetchSocialLogin(socialUserModel!.email ?? '');
+class SocialLoginViewModel with ChangeNotifier {
+  final LoginUseCases useCases;
+
+  SocialLoginViewModel(
+    this.useCases,
+  );
+
+  Future googleLogin() async {
     notifyListeners();
   }
 
   logOut() async {
-    this.googleAccount = await _googleSignIn.signOut();
-
     notifyListeners();
   }
 }

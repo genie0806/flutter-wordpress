@@ -11,4 +11,9 @@ class SocialLoginRepositoryImpl implements SocialLoginRepository {
   Future<bool> getSocialLogin(String userName) async {
     return socialLoginApi.fetchSocialLogin(userName);
   }
+
+  @override
+  Future<bool> getSocialLogout(String userName) {
+    return socialLoginApi.fetchSocialLogin(userName);
+  }
 }
