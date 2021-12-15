@@ -6,8 +6,7 @@ import 'package:virtue_test/presentation/login_page/login_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-main() async {
-  await dotenv.load(fileName: 'url.env');
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(providers: await getProviders(), child: const TestPage()),
