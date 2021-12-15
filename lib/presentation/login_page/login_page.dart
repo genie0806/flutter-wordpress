@@ -20,38 +20,6 @@ class _LoginPageState extends State<LoginPage> {
         title: Text('test'),
       ),
       body: LoginUi(),
-      //     Center(
-      //         child: model != null
-      //             ? Column(
-      //                 mainAxisAlignment: MainAxisAlignment.center,
-      //                 children: [
-      //                   TextButton(
-      //                       onPressed: () {
-      //                         viewModel.googleLogin();
-      //                       },
-      //                       child: Text('구글 로그인'))
-      //                 ],
-      //               )
-      //             : Column(
-      //                 mainAxisAlignment: MainAxisAlignment.center,
-      //                 crossAxisAlignment: CrossAxisAlignment.center,
-      //                 children: [
-      //                   CircleAvatar(
-      //                     backgroundImage: Image.network(viewModel.useCases
-      //                                 .getSocialLogin.googleAccount?.photoUrl ??
-      //                             "")
-      //                         .image,
-      //                     radius: 50,
-      //                   ),
-      //                   Text(model.displayName ?? ''),
-      //                   Text(model.email ?? ''),
-      //                   ActionChip(
-      //                       label: Text("LogOut"),
-      //                       onPressed: () {
-      //                         viewModel.googleLogout();
-      //                       })
-      //                 ],
-      //               )),
     );
   }
 }
@@ -91,6 +59,7 @@ class LoggedUi extends StatelessWidget {
             ''),
         Text(viewModel.useCases.getSocialLogin.socialUserModel?.email ?? ''),
         ActionChip(
+            avatar: Icon(Icons.logout),
             label: Text("LogOut"),
             onPressed: () {
               viewModel.googleLogout();
@@ -106,7 +75,7 @@ class LoginControls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<LoginViewModel>();
-    final model = SocialUserModel();
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

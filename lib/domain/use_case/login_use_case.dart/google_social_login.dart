@@ -19,6 +19,6 @@ class GoogleSocialLogin {
         displayName: googleAccount?.displayName ?? '',
         email: googleAccount?.email ?? '',
         photoUrl: googleAccount?.photoUrl ?? '');
-    return await repository.getSocialLogin(socialUserModel?.email ?? '');
+    return repository.getSocialLogin(socialUserModel?.email ?? '');
   }
 }

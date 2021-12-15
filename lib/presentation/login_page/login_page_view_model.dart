@@ -10,6 +10,9 @@ class LoginViewModel with ChangeNotifier {
   LoginUseCases useCases;
   GoogleSignIn googleSignIn = GoogleSignIn();
 
+  LoginPageState _loginState = LoginPageState();
+  LoginPageState get loginState => _loginState;
+
   LoginViewModel(
     this.useCases,
   );
@@ -19,13 +22,15 @@ class LoginViewModel with ChangeNotifier {
   SocialLoginApi? socialLoginApi = SocialLoginApi();
 
   Future<void> googleLogin() async {
-    useCases.getSocialLogin(socialUserModel?.email ?? '');
+    await useCases.getSocialLogin(socialUserModel?.email ?? '');
+
     notifyListeners();
   }
 
   Future<void> googleLogout() async {
     googleSignInAccount = await googleSignIn.signOut();
-    //useCases.getSocialLogout(socialUserModel?.email ?? '');
+    //useCases.getSocialLogout;
+    socialUserModel = null;
     notifyListeners();
   }
 }
