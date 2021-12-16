@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virtue_test/di/provider_setup.dart';
 import 'package:virtue_test/presentation/login_page/login_page.dart';
-import 'package:virtue_test/presentation/login_page/login_page_view_model.dart';
-import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future main() async {
+  await dotenv.load(fileName: 'url.env');
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(providers: await getProviders(), child: const TestPage()),

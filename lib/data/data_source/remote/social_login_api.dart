@@ -1,4 +1,8 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+
+String scoailApiUrl = dotenv.get('SOCIAL_API_URL');
+String socialApiEnd = dotenv.get('SOCIAL_API_END');
 
 class SocialLoginApi {
   static var client = http.Client();
@@ -6,7 +10,7 @@ class SocialLoginApi {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/x-www-form-urlencoded'
     };
-    var url = Uri.https("virtureart.shop", "/wp-json/jwt-auth/v1/token");
+    Uri url = Uri.https(scoailApiUrl, socialApiEnd);
 
     final response = await client.post(url,
         headers: requestHeaders,

@@ -17,9 +17,7 @@ class LoginViewModel with ChangeNotifier {
     this.useCases,
   );
 
-  GoogleSignInAccount? googleSignInAccount;
   SocialUserModel? socialUserModel;
-  SocialLoginApi? socialLoginApi = SocialLoginApi();
 
   Future<void> googleLogin() async {
     await useCases.getSocialLogin(socialUserModel?.email ?? '');
@@ -28,8 +26,8 @@ class LoginViewModel with ChangeNotifier {
   }
 
   Future<void> googleLogout() async {
-    googleSignInAccount = await googleSignIn.signOut();
-    //useCases.getSocialLogout;
+    //googleSignInAccount = await googleSignIn.signOut();
+    useCases.getSocialLogout;
     socialUserModel = null;
     notifyListeners();
   }

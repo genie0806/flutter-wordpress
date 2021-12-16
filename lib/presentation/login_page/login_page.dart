@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virtue_test/domain/model/social_user_model/social_user_model.dart';
 import 'package:virtue_test/presentation/login_page/login_page_view_model.dart';
+import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,26 +17,12 @@ class _LoginPageState extends State<LoginPage> {
     final viewModel = context.watch<LoginViewModel>();
     final model = SocialUserModel();
     return Scaffold(
-      appBar: AppBar(
-        title: Text('test'),
-      ),
-      body: LoginUi(),
-    );
-  }
-}
-
-class LoginUi extends StatelessWidget {
-  const LoginUi({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final viewModel = context.watch<LoginViewModel>();
-    final model = SocialUserModel();
-    if (viewModel.useCases.getSocialLogin.googleAccount != null) {
-      return Center(child: LoggedUi());
-    } else {
-      return LoginControls();
-    }
+        appBar: AppBar(
+          title: Text('test'),
+        ),
+        body: viewModel.useCases.getSocialLogin.googleAccount != null
+            ? Center(child: LoggedUi())
+            : LoginControls());
   }
 }
 
@@ -80,8 +67,10 @@ class LoginControls extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextButton(
-            onPressed: () {
+            onPressed: () async {
               viewModel.googleLogin();
+              await Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => PostListPage()));
             },
             child: Text('구글 로그인'))
       ],
