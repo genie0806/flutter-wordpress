@@ -68,9 +68,10 @@ class LoginControls extends StatelessWidget {
       children: [
         TextButton(
             onPressed: () async {
-              viewModel.googleLogin();
-              await Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => PostListPage()));
+              viewModel.googleLogin().whenComplete(() {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => PostListPage()));
+              });
             },
             child: Text('구글 로그인'))
       ],
