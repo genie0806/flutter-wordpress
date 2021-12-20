@@ -5,7 +5,7 @@ String scoailApiUrl = dotenv.get('SOCIAL_API_URL');
 String socialApiEnd = dotenv.get('SOCIAL_API_END');
 
 class SocialLoginApi {
-  static var client = http.Client();
+  final client = http.Client();
   Future<bool> fetchSocialLogin(String userName) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/x-www-form-urlencoded'

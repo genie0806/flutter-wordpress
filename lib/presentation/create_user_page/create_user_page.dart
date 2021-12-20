@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:virtue_test/data/data_source/remote/create_user_api.dart';
 import 'package:virtue_test/domain/model/create_user_model/create_user_model.dart';
 import 'package:virtue_test/domain/model/create_user_model/create_user_status_model.dart';
+import 'package:virtue_test/domain/model/create_user_model/user_model.dart';
+import 'package:virtue_test/presentation/create_user_page/create_user_page_view_model.dart';
 
 class CreateUserPage extends StatefulWidget {
   const CreateUserPage({Key? key}) : super(key: key);
@@ -35,7 +38,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
   }
 
   Widget uiSetup(BuildContext context) {
-    CreateUserModel model = CreateUserModel();
+
     return SingleChildScrollView(
       child: Form(
         key: globalKey,
@@ -51,7 +54,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
               }
               return null;
             }, (onSavedVal) {
-              model.email = onSavedVal;
+               = onSavedVal;
             }, initialValue: "", paddingBottom: 20),
             FormHelper.inputFieldWidget(
                 context,
@@ -125,17 +128,17 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     isApiCallProcess = true;
                   });
 
-                  CreateUserAPi.fetchRegisterUser(model).then(
-                    (UserResponseModel? responseModel) {
+                  CreateUserAPi.fetchRegisterUser(createUserModel).then(
+                    (CreateUserStatusModel responseModel) {
                       setState(() {
                         isApiCallProcess = false;
                       });
 
-                      if (responseModel?.code == 200) {
+                      if (responseModel.code == 200) {
                         FormHelper.showSimpleAlertDialog(
                             context,
                             "Virtue Register",
-                            responseModel?.message ?? "",
+                            responseModel.message ?? "",
                             "OK", () {
                           Navigator.of(context).pop();
                         });
@@ -143,7 +146,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                         FormHelper.showSimpleAlertDialog(
                             context,
                             "Virtue Register",
-                            responseModel?.message ?? "",
+                            responseModel.message ?? "",
                             "OK", () {
                           Navigator.of(context).pop();
                         });

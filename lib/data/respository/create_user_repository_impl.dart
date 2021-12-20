@@ -10,6 +10,6 @@ class CreateUserRepositoryImpl implements CreateUserRepository {
 
   @override
   Future<CreateUserStatusModel> postRegisterUser(CreateUserModel model) async {
-    return createUserAPi.fetchRegisterUser(model);
+    return CreateUserAPi.fetchRegisterUser(model);
   }
 }
