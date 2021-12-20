@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:virtue_test/domain/model/create_user_model/user_model.dart';
+import 'package:virtue_test/domain/model/create_user_model/create_user_model.dart';
+import 'package:virtue_test/domain/model/create_user_model/create_user_state_model.dart';
 
 String baseUrl = dotenv.get('BASE_URL');
 
 class CreateUserAPi {
   static final client = http.Client();
 
-  static Future<UserResponseModel> registerUser(UserModel model) async {
+  static Future<UserResponseModel> registerUser(CreateUserModel model) async {
     Map<String, String> requestHeaders = {
       'content-type': 'application/json',
     };
