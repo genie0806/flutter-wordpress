@@ -47,6 +47,7 @@ dependencies:
   line_icons: ^2.0.0
   google_sign_in: ^5.2.1
   dio: ^4.0.4
+  snippet_coder_utils: ^1.0.9
 
 dev_dependencies:
   flutter_test:

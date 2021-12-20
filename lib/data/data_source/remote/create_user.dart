@@ -2,10 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:virtue_test/domain/model/create_user_model/user_model.dart';
 
-String baseUrl = dotenv.get('BASE_URL');
+//String baseUrl = dotenv.get('BASE_URL');
 
 class CreateUserAPi {
   static final client = http.Client();
@@ -15,7 +14,8 @@ class CreateUserAPi {
       'content-type': 'application/json',
     };
     final response = await client.post(
-      Uri.parse(baseUrl + 'users/register'),
+      Uri.parse(
+          'https://virtureart.shop/index.php/wp-json/wp/v2/users/register'),
       headers: requestHeaders,
       body: jsonEncode(model.toJson()),
     );

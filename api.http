@@ -1,0 +1,9 @@
+###User Signup API
+POST  https://virtureart.shop/index.php/wp-json/wp/v2/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"",
+    "email":"dini0806@daum.net",
+    "password" : "123456"
+}

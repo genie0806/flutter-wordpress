@@ -13,8 +13,8 @@ class UserModel {
   }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['email'] = this.email;
-    data['password'] = this.password;
+    data['email'] = email;
+    data['password'] = password;
 
     return data;
   }
@@ -34,8 +34,8 @@ class UserResponseModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['code'] = this.code;
-    data['message'] = this.message;
+    data['code'] = code;
+    data['message'] = message;
     return data;
   }
 }
