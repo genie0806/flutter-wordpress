@@ -8,6 +8,6 @@ class PostRegisterUserUseCase {
   PostRegisterUserUseCase(this.repository);
 
   Future<CreateUserStatusModel> call(CreateUserModel model) async {
-    return await repository.postRegisterUser(model);
+    return repository.postRegisterUser(model);
   }
 }

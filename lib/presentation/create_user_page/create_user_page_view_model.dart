@@ -12,9 +12,8 @@ class CreateUserPageViewModel with ChangeNotifier {
 
   CreateUserPageViewModel(this.useCases);
 
-  Future<CreateUserStatusModel?> creteUser(CreateUserModel model) async {
-    final result = await useCases.postRegisterUserUseCase(model);
-
+  Future<CreateUserStatusModel?> creteUser(model) async {
+    final _createUserState = await useCases.postRegisterUserUseCase(model);
     notifyListeners();
   }
 }

@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:virtue_test/core/result.dart';
 import 'package:virtue_test/domain/use_case/post_use_case/post_use_cases.dart';
-import 'package:virtue_test/presentation/postpage/post_page_event.dart';
-import 'package:virtue_test/presentation/postpage/post_page_state.dart';
+import 'package:virtue_test/presentation/post_page/post_page_event.dart';
+import 'package:virtue_test/presentation/post_page/post_page_state.dart';
 
 class PostPageViewModel with ChangeNotifier {
   final PostUseCases useCases;

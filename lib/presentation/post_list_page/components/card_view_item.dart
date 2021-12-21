@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/src/provider.dart';
 import 'package:virtue_test/data/data_source/remote/simple_post_api.dart';
 import 'package:virtue_test/domain/model/simple_post_model/simple_post_model.dart';
-import 'package:virtue_test/presentation/postpage/post_page_view_model.dart';
+import 'package:virtue_test/presentation/post_page/post_page_view_model.dart';
 
 class CardViewItem extends StatelessWidget {
   final SimplePostModel model;

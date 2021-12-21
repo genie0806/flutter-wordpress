@@ -19,7 +19,7 @@ import 'package:virtue_test/domain/use_case/post_use_case/post_use_cases.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_page_view_model.dart';
 import 'package:virtue_test/presentation/login_page/login_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
-import 'package:virtue_test/presentation/postpage/post_page_view_model.dart';
+import 'package:virtue_test/presentation/post_page/post_page_view_model.dart';
 
 Future<List<SingleChildWidget>> getProviders() async {
   //Post의 관련된 DI
@@ -38,10 +38,10 @@ Future<List<SingleChildWidget>> getProviders() async {
     getSocialLogout: GoogleSocialLogout(loginRepository),
   );
 
-  final createUserData = CreateUserAPi();
-  final createUserRepository = CreateUserRepositoryImpl(createUserData);
-  final createUserUseCases = CreateUserUseCases(
-      postRegisterUserUseCase: PostRegisterUserUseCase(createUserRepository));
+  //final createUserData = CreateUserAPi();
+  //final createUserRepository = CreateUserRepositoryImpl(createUserData);
+  //final createUserUseCases = CreateUserUseCases(
+  //    postRegisterUserUseCase: PostRegisterUserUseCase(createUserRepository));
 
   return [
     //Post의 관련된 DI
@@ -52,7 +52,7 @@ Future<List<SingleChildWidget>> getProviders() async {
     //Login의 관련된 DI
     ChangeNotifierProvider<LoginViewModel>(
         create: (context) => LoginViewModel(loginUseCases)),
-    ChangeNotifierProvider<CreateUserPageViewModel>(
-        create: (context) => CreateUserPageViewModel(createUserUseCases)),
+    //ChangeNotifierProvider<CreateUserPageViewModel>(
+    //    create: (context) => CreateUserPageViewModel(createUserUseCases)),
   ];
 }

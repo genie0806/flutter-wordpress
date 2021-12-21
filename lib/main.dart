@@ -10,7 +10,8 @@ Future main() async {
   await dotenv.load(fileName: 'url.env');
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    MultiProvider(providers: await getProviders(), child: const TestPage()),
+    //MultiProvider(providers: await getProviders(), child: )
+    const TestPage(),
   );
 }
 

@@ -8,7 +8,7 @@ import 'package:virtue_test/presentation/post_list_page/components/card_view_ite
 import 'package:virtue_test/presentation/post_list_page/components/search_bar.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_event.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
-import 'package:virtue_test/presentation/postpage/post_page.dart';
+import 'package:virtue_test/presentation/post_page/post_page.dart';
 
 class PostListPage extends StatefulWidget {
   const PostListPage({

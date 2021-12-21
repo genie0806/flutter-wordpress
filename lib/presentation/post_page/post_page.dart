@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
-import 'package:virtue_test/presentation/postpage/components/content_board.dart';
-import 'package:virtue_test/presentation/postpage/components/info_board.dart';
-import 'package:virtue_test/presentation/postpage/components/profile_board.dart';
-import 'package:virtue_test/presentation/postpage/components/sliver_image.dart';
+import 'package:virtue_test/presentation/post_page/components/content_board.dart';
+import 'package:virtue_test/presentation/post_page/components/info_board.dart';
+import 'package:virtue_test/presentation/post_page/components/profile_board.dart';
+import 'package:virtue_test/presentation/post_page/components/sliver_image.dart';
 
 class PostPage extends StatefulWidget {
   final int id;
