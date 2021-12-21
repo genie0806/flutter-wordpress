@@ -10,8 +10,7 @@ String baseUrl = dotenv.get('BASE_URL');
 class CreateUserAPi {
   static final client = http.Client();
 
-  static Future<CreateUserStatusModel> fetchRegisterUser(
-      UserModel model) async {
+  static Future<UserResponseModel> fetchRegisterUser(UserModel model) async {
     Map<String, String> requestHeaders = {
       'content-type': 'application/json',
     };
@@ -20,6 +19,6 @@ class CreateUserAPi {
       headers: requestHeaders,
       body: jsonEncode(model.toJson()),
     );
-    return createUserStatusModelFromJson(response.body);
+    return userResponseFromJson(response.body);
   }
 }
