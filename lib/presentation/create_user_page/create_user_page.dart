@@ -36,20 +36,23 @@ class _CreateUserPageState extends State<CreateUserPage> {
           child: SingleChildScrollView(
             child: Form(
               key: globalKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  emailForm(context, userModel),
-                  passwordForm(context, userModel),
-                  confirmForm(context, userModel),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Center(
-                    child: registerButton(userModel, context),
-                  )
-                ],
+              child: Padding(
+                padding: const EdgeInsets.only(top: 60),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    emailForm(context, userModel),
+                    passwordForm(context, userModel),
+                    confirmForm(context, userModel),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Center(
+                      child: registerButton(userModel, context),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
