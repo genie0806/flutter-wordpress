@@ -5,13 +5,13 @@ import 'package:virtue_test/presentation/login_page/login_page.dart';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_page.dart';
+import 'package:virtue_test/presentation/login_page/login_page_native.dart';
 
 Future main() async {
   await dotenv.load(fileName: 'url.env');
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    //MultiProvider(providers: await getProviders(), child: )
-    const TestPage(),
+    MultiProvider(providers: await getProviders(), child: const TestPage()),
   );
 }
 

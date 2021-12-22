@@ -7,12 +7,12 @@ import 'package:virtue_test/presentation/post_list_page/post_list_page_state.dar
 import 'package:virtue_test/core/result.dart';
 
 class PostListPageViewModel with ChangeNotifier {
-  final PostUseCases listUseCases;
+  final PostUseCases useCases;
 
   PostsListState _postsListState = PostsListState();
   PostsListState get postsListState => _postsListState;
 
-  PostListPageViewModel(this.listUseCases);
+  PostListPageViewModel(this.useCases);
 
   final _eventController = StreamController<PostListPageEvent>.broadcast();
   Stream<PostListPageEvent> get eventStream => _eventController.stream;
@@ -33,7 +33,7 @@ class PostListPageViewModel with ChangeNotifier {
   }
 
   Future<void> fetchPostListPage() async {
-    final result = await listUseCases.getPostList();
+    final result = await useCases.getPostList();
     result.when(success: (resultPostList) {
       _postsListState = _postsListState.copyWith(postList: resultPostList);
       notifyListeners();

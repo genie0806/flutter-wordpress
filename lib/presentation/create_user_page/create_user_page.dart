@@ -18,8 +18,8 @@ class CreateUserPage extends StatefulWidget {
 
 class _CreateUserPageState extends State<CreateUserPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  static final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-  static final GlobalKey processkey = GlobalKey();
+  final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+  final GlobalKey processkey = GlobalKey();
   bool isApiCallProcess = false;
   bool hidePassword = true;
   bool hideConfirmPassword = true;
@@ -159,15 +159,14 @@ class _CreateUserPageState extends State<CreateUserPage> {
         });
 
         CreateUserAPi.fetchRegisterUser(userModel).then(
-          (UserResponseModel responseModel) {
+          (responseModel) {
             setState(() {
               isApiCallProcess = false;
             });
 
             if (responseModel.code == 200) {
               FormHelper.showSimpleAlertDialog(
-                  context, "Virtue Register", responseModel.message ?? "", "OK",
-                  () {
+                  context, "", responseModel.message ?? "", "OK", () {
                 Navigator.of(context).pop();
               });
             } else {

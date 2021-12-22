@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:virtue_test/domain/model/social_user_model/social_user_model.dart';
+import 'package:virtue_test/domain/model/login_user_model/social_user_model.dart';
 import 'package:virtue_test/presentation/login_page/login_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
 
