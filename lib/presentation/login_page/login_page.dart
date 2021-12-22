@@ -20,39 +20,10 @@ class _LoginPageState extends State<LoginPage> {
         appBar: AppBar(
           title: Text('test'),
         ),
-        body: viewModel.useCases.getSocialLogin.googleAccount != null
-            ? Center(child: LoggedUi())
-            : LoginControls());
-  }
-}
-
-class LoggedUi extends StatelessWidget {
-  const LoggedUi({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final viewModel = context.watch<LoginViewModel>();
-    final model = SocialUserModel();
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        CircleAvatar(
-          backgroundImage: NetworkImage(
-              viewModel.useCases.getSocialLogin.googleAccount?.photoUrl ?? ""),
-          radius: 50,
-        ),
-        Text(viewModel.useCases.getSocialLogin.socialUserModel?.displayName ??
-            ''),
-        Text(viewModel.useCases.getSocialLogin.socialUserModel?.email ?? ''),
-        ActionChip(
-            avatar: Icon(Icons.logout),
-            label: Text("LogOut"),
-            onPressed: () {
-              viewModel.googleLogout();
-            })
-      ],
-    );
+        body:
+            //viewModel.useCases.getSocialLogin.googleAccount != null
+            //    ? Center(child: LoggedUi())
+            LoginControls());
   }
 }
 
@@ -78,3 +49,35 @@ class LoginControls extends StatelessWidget {
     );
   }
 }
+//소셜 로그 아웃 코드
+//class LoggedUi extends StatelessWidget {
+//  const LoggedUi({Key? key}) : super(key: key);
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    final viewModel = context.watch<LoginViewModel>();
+//    final model = SocialUserModel();
+//    return Column(
+//      mainAxisAlignment: MainAxisAlignment.center,
+//      crossAxisAlignment: CrossAxisAlignment.center,
+//      children: [
+//        CircleAvatar(
+//          backgroundImage: NetworkImage(
+//              viewModel.useCases.getSocialLogin.googleAccount?.photoUrl ?? ""),
+//          radius: 50,
+//        ),
+//        Text(viewModel.useCases.getSocialLogin.socialUserModel?.displayName ??
+//            ''),
+//        Text(viewModel.useCases.getSocialLogin.socialUserModel?.email ?? ''),
+//        ActionChip(
+//            avatar: Icon(Icons.logout),
+//            label: Text("LogOut"),
+//            onPressed: () {
+//              viewModel.googleLogout();
+//            })
+//      ],
+//    );
+//  }
+//}
+
+

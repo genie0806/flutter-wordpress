@@ -160,7 +160,6 @@ class _PostListPageState extends State<PostListPage> {
             ];
           },
           body: TabBarView(children: [
-            Text('다다'),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: RefreshIndicator(
@@ -197,6 +196,7 @@ class _PostListPageState extends State<PostListPage> {
                     ]),
               ),
             ),
+            Text('다다'),
             Text('다다'),
             Text('다다'),
           ]),
