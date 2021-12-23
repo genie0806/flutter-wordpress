@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () async {
                   viewModel.googleLogin().whenComplete(() {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => PostListPage()));
+                        builder: (context) => const PostListPage()));
                   });
                 },
                 icon: const SizedBox(

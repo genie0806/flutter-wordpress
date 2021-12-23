@@ -57,6 +57,7 @@ class _PostListPageState extends State<PostListPage> {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                automaticallyImplyLeading: false,
                 pinned: false,
                 floating: false,
                 snap: false,
@@ -116,6 +117,7 @@ class _PostListPageState extends State<PostListPage> {
                 ),
               ),
               SliverAppBar(
+                automaticallyImplyLeading: false,
                 pinned: true,
                 floating: false,
                 //expandedHeight: 0,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/src/provider.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
@@ -8,6 +9,7 @@ import 'package:virtue_test/domain/model/create_user_model/user_model.dart';
 import 'package:virtue_test/domain/util/email_validator.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_event.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_page_view_model.dart';
+import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
 
 class CreateUserPage extends StatefulWidget {
   const CreateUserPage({Key? key}) : super(key: key);
@@ -27,14 +29,23 @@ class _CreateUserPageState extends State<CreateUserPage> {
       final viewModel = context.read<CreateUserPageViewModel>();
       viewModel.uiEventStream.listen((event) {
         event.when(showSuccessToast: (String message) {
-          FormHelper.showSimpleAlertDialog(context, "", message, "OK", () {
-            Navigator.of(context).pop();
+          Fluttertoast.showToast(
+                  msg: message,
+                  gravity: ToastGravity.BOTTOM,
+                  backgroundColor: const Color(0xff6E6E6E),
+                  fontSize: 20,
+                  toastLength: Toast.LENGTH_SHORT)
+              .whenComplete(() {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => const PostListPage()));
           });
         }, showErrorToast: (String message) {
-          viewModel.state.isApiCallProcess;
-          FormHelper.showSimpleAlertDialog(context, "", message, "OK", () {
-            Navigator.of(context).pop();
-          });
+          Fluttertoast.showToast(
+              msg: message,
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: const Color(0xff6E6E6E),
+              fontSize: 20,
+              toastLength: Toast.LENGTH_SHORT);
         });
       });
     });
@@ -81,7 +92,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
   Widget emailForm(BuildContext context, CreateUserPageViewModel viewModel) {
     return FormHelper.inputFieldWidget(
         context, const Icon(Icons.email), "이메일", "이메일", (onValidateVal) {
-      if (onValidateVal.isEmpty) {
+      if (onValidateVal.trim().isEmpty) {
         return '이메일을 입력해주세요';
       }
       if (!onValidateVal.contains('@') && !onValidateVal.contains('.')) {
@@ -102,8 +113,11 @@ class _CreateUserPageState extends State<CreateUserPage> {
         "비밀번호",
         "비밀번호",
         (onValidateVal) {
-          if (onValidateVal.isEmpty) {
+          if (onValidateVal.trim().isEmpty) {
             return '비밀번호를 입력해주세요';
+          }
+          if (onValidateVal.length < 8) {
+            return '비밀번호는 영문 숫자를 포함하여 8자 이상이어야 합니다.';
           }
           return null;
         },
@@ -174,6 +188,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
     }
 
     return FormHelper.submitButton("Register", () {
+      FocusScope.of(context).requestFocus(FocusNode());
       if (validateAndSave()) {
         viewModel.onEvent(const RegisterUser());
       }
