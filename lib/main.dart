@@ -25,6 +25,6 @@ class TestPage extends StatelessWidget {
     return const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Try Image Search',
-        home: CreateUserPage());
+        home: LoginPage());
   }
 }

@@ -4,9 +4,9 @@ import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:virtue_test/data/data_source/remote/create_user_api.dart';
 import 'package:virtue_test/domain/model/create_user_model/create_user_model.dart';
-import 'package:virtue_test/domain/model/create_user_model/create_user_status_model.dart';
 import 'package:virtue_test/domain/model/create_user_model/user_model.dart';
 import 'package:virtue_test/domain/util/email_validator.dart';
+import 'package:virtue_test/presentation/create_user_page/create_user_event.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_page_view_model.dart';
 
 class CreateUserPage extends StatefulWidget {
@@ -20,18 +20,16 @@ class _CreateUserPageState extends State<CreateUserPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   final GlobalKey processkey = GlobalKey();
-  bool isApiCallProcess = false;
-  bool hidePassword = true;
-  bool hideConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
-    UserModel userModel = UserModel();
+    final viewModel = context.watch<CreateUserPageViewModel>();
+    final state = viewModel.state;
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
         body: ProgressHUD(
-          inAsyncCall: isApiCallProcess,
+          inAsyncCall: state.isApiCallProcess,
           key: processkey,
           child: SingleChildScrollView(
             child: Form(
@@ -42,14 +40,14 @@ class _CreateUserPageState extends State<CreateUserPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    emailForm(context, userModel),
-                    passwordForm(context, userModel),
-                    confirmForm(context, userModel),
+                    emailForm(context, viewModel),
+                    passwordForm(context, viewModel),
+                    confirmForm(context, viewModel),
                     const SizedBox(
                       height: 20,
                     ),
                     Center(
-                      child: registerButton(userModel, context),
+                      child: registerButton(context),
                     )
                   ],
                 ),
@@ -62,7 +60,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
   }
 
   //이메일 입력 란
-  Widget emailForm(BuildContext context, UserModel userModel) {
+  Widget emailForm(BuildContext context, CreateUserPageViewModel viewModel) {
     return FormHelper.inputFieldWidget(
         context, const Icon(Icons.email), "이메일", "이메일", (value) {
       if (value.isEmpty) {
@@ -73,12 +71,13 @@ class _CreateUserPageState extends State<CreateUserPage> {
       }
       return null;
     }, (onSavedVal) {
-      userModel.email = onSavedVal;
+      viewModel.onEvent(StoreEmail(onSavedVal));
     }, initialValue: "", paddingBottom: 20);
   }
 
 //비밀번호 입력 란
-  Widget passwordForm(BuildContext context, UserModel userModel) {
+  Widget passwordForm(BuildContext context, CreateUserPageViewModel viewModel) {
+    final state = viewModel.state;
     return FormHelper.inputFieldWidget(
         context,
         const Icon(Icons.verified_user),
@@ -91,26 +90,26 @@ class _CreateUserPageState extends State<CreateUserPage> {
           return null;
         },
         (onSavedVal) {
-          userModel.password = onSavedVal;
+          viewModel.onEvent(StorePassword(onSavedVal));
         },
         initialValue: "",
         paddingBottom: 20,
-        obscureText: hidePassword,
+        obscureText: state.hidePassword,
         suffixIcon: IconButton(
             color: Colors.redAccent.withOpacity(.4),
             onPressed: () {
-              setState(() {
-                hidePassword = !hidePassword;
-              });
+              viewModel.onEvent(const TogglePasswordVisibility());
             },
-            icon: Icon(hidePassword ? Icons.visibility_off : Icons.visibility)),
+            icon: Icon(
+                state.hidePassword ? Icons.visibility_off : Icons.visibility)),
         onChange: (val) {
-          userModel.password = val;
+          viewModel.onEvent(StorePassword(val));
         });
   }
 
   //비밀번호 확인 입력란
-  Widget confirmForm(BuildContext context, UserModel userModel) {
+  Widget confirmForm(BuildContext context, CreateUserPageViewModel viewModel) {
+    final state = viewModel.state;
     return FormHelper.inputFieldWidget(
         context,
         const Icon(Icons.verified_user),
@@ -129,22 +128,22 @@ class _CreateUserPageState extends State<CreateUserPage> {
         (onSavedVal) {},
         initialValue: "",
         paddingBottom: 20,
-        obscureText: hideConfirmPassword,
+        obscureText: state.hideConfirmPassword,
         suffixIcon: IconButton(
             color: Colors.redAccent.withOpacity(.4),
             onPressed: () {
-              setState(() {
-                hideConfirmPassword = !hideConfirmPassword;
-              });
+              viewModel.onEvent(const ToggleConfirmPasswordVisibility());
             },
-            icon: Icon(hidePassword ? Icons.visibility_off : Icons.visibility)),
+            icon: Icon(
+                state.hidePassword ? Icons.visibility_off : Icons.visibility)),
         onChange: (val) {
-          userModel.confirmPassword = val;
+          viewModel.onEvent(StoreConfirmPassword(val));
         });
   }
 
 //로그인 버튼 입력
-  Widget registerButton(UserModel userModel, BuildContext context) {
+  Widget registerButton(
+      BuildContext context, CreateUserPageViewModel viewModel) {
     bool validateAndSave() {
       final form = globalKey.currentState;
       if (form?.validate() ?? true) {
@@ -157,11 +156,15 @@ class _CreateUserPageState extends State<CreateUserPage> {
 
     return FormHelper.submitButton("Register", () {
       if (validateAndSave()) {
+        viewModel.onEvent(const RegisterUser());
+      }
+
+      if (validateAndSave()) {
         setState(() {
           isApiCallProcess = true;
         });
 
-        CreateUserAPi.fetchRegisterUser(userModel).then(
+        CreateUserAPi.registerUser(userModel).then(
           (responseModel) {
             setState(() {
               isApiCallProcess = false;

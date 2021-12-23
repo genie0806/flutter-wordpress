@@ -6,11 +6,11 @@ part 'create_user_model.g.dart';
 
 @freezed
 class CreateUserModel with _$CreateUserModel {
-  factory CreateUserModel({
-    String? email,
-    String? password,
-    String? confirmPassword,
-  }) = _CreateUserModel;
+  factory CreateUserModel(
+      {String? email,
+      String? password,
+      String? confirmPassword,
+      String? nickname}) = _CreateUserModel;
   factory CreateUserModel.fromJson(Map<String, dynamic> json) =>
       _$CreateUserModelFromJson(json);
 }
