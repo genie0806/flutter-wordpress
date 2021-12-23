@@ -80,11 +80,11 @@ class _CreateUserPageState extends State<CreateUserPage> {
   //이메일 입력 란
   Widget emailForm(BuildContext context, CreateUserPageViewModel viewModel) {
     return FormHelper.inputFieldWidget(
-        context, const Icon(Icons.email), "이메일", "이메일", (email) {
-      if (email.isEmpty) {
+        context, const Icon(Icons.email), "이메일", "이메일", (onValidateVal) {
+      if (onValidateVal.isEmpty) {
         return '이메일을 입력해주세요';
       }
-      if (email.isEmpty && email.contains("@") && email.contains(".")) {
+      if (!onValidateVal.contains('@') && !onValidateVal.contains('.')) {
         return '이메일 형식으로 입력해주세요';
       }
       return null;
