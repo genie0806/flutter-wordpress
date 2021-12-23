@@ -36,8 +36,9 @@ class _CreateUserPageState extends State<CreateUserPage> {
                   fontSize: 20,
                   toastLength: Toast.LENGTH_SHORT)
               .whenComplete(() {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const PostListPage()));
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => const PostListPage()),
+                (route) => false);
           });
         }, showErrorToast: (String message) {
           Fluttertoast.showToast(
