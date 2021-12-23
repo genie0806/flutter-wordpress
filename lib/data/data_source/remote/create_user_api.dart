@@ -7,10 +7,9 @@ import 'package:virtue_test/domain/model/create_user_model/create_user_response_
 String baseUrl = dotenv.get('BASE_URL');
 
 class CreateUserAPi {
-  static final client = http.Client();
+  final client = http.Client();
 
-  static Future<CreateUserResponseModel> registerUser(
-      CreateUserModel model) async {
+  Future<CreateUserResponseModel> registerUser(CreateUserModel model) async {
     Map<String, String> requestHeaders = {
       'content-type': 'application/json',
     };

@@ -4,6 +4,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:virtue_test/domain/model/login_user_model/social_user_model.dart';
+import 'package:virtue_test/presentation/create_user_page/create_user_page.dart';
 import 'package:virtue_test/presentation/login_page/login_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
 
@@ -100,7 +101,8 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.only(top: 30),
               child: TextButton(
                 onPressed: () {
-                  //Navigator.of(context).push(CreateUserPage());
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const CreateUserPage()));
                 },
                 child: RichText(
                   text: const TextSpan(

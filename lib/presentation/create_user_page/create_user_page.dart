@@ -17,9 +17,28 @@ class CreateUserPage extends StatefulWidget {
 }
 
 class _CreateUserPageState extends State<CreateUserPage> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   final GlobalKey processkey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() {
+      final viewModel = context.read<CreateUserPageViewModel>();
+      viewModel.uiEventStream.listen((event) {
+        event.when(showSuccessToast: (String message) {
+          FormHelper.showSimpleAlertDialog(context, "", message, "OK", () {
+            Navigator.of(context).pop();
+          });
+        }, showErrorToast: (String message) {
+          viewModel.state.isApiCallProcess;
+          FormHelper.showSimpleAlertDialog(context, "", message, "OK", () {
+            Navigator.of(context).pop();
+          });
+        });
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +46,6 @@ class _CreateUserPageState extends State<CreateUserPage> {
     final state = viewModel.state;
     return SafeArea(
       child: Scaffold(
-        key: _scaffoldKey,
         body: ProgressHUD(
           inAsyncCall: state.isApiCallProcess,
           key: processkey,
@@ -47,7 +65,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                       height: 20,
                     ),
                     Center(
-                      child: registerButton(context),
+                      child: registerButton(context, viewModel),
                     )
                   ],
                 ),
@@ -62,11 +80,11 @@ class _CreateUserPageState extends State<CreateUserPage> {
   //이메일 입력 란
   Widget emailForm(BuildContext context, CreateUserPageViewModel viewModel) {
     return FormHelper.inputFieldWidget(
-        context, const Icon(Icons.email), "이메일", "이메일", (value) {
-      if (value.isEmpty) {
+        context, const Icon(Icons.email), "이메일", "이메일", (email) {
+      if (email.isEmpty) {
         return '이메일을 입력해주세요';
       }
-      if (value.isEmpty && !value.toString().isValidEmail()) {
+      if (email.isEmpty && email.contains("@") && email.contains(".")) {
         return '이메일 형식으로 입력해주세요';
       }
       return null;
@@ -120,7 +138,8 @@ class _CreateUserPageState extends State<CreateUserPage> {
             return '확인을 위해 비밀번호를 한 번 더 입력해주세요';
           }
 
-          if (userModel.password != userModel.confirmPassword) {
+          if (viewModel.state.userModel.password !=
+              viewModel.state.userModel.password) {
             return '비밀번호가 일치하지 않습니다.';
           }
           return null;
@@ -157,33 +176,6 @@ class _CreateUserPageState extends State<CreateUserPage> {
     return FormHelper.submitButton("Register", () {
       if (validateAndSave()) {
         viewModel.onEvent(const RegisterUser());
-      }
-
-      if (validateAndSave()) {
-        setState(() {
-          isApiCallProcess = true;
-        });
-
-        CreateUserAPi.registerUser(userModel).then(
-          (responseModel) {
-            setState(() {
-              isApiCallProcess = false;
-            });
-
-            if (responseModel.code == 200) {
-              FormHelper.showSimpleAlertDialog(
-                  context, "", responseModel.message ?? "", "OK", () {
-                Navigator.of(context).pop();
-              });
-            } else {
-              FormHelper.showSimpleAlertDialog(
-                  context, "Virtue Register", responseModel.message ?? "", "OK",
-                  () {
-                Navigator.of(context).pop();
-              });
-            }
-          },
-        );
       }
     });
   }
