@@ -1,12 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/src/provider.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
-import 'package:virtue_test/data/data_source/remote/create_user_api.dart';
-import 'package:virtue_test/domain/model/create_user_model/create_user_model.dart';
-import 'package:virtue_test/domain/model/create_user_model/user_model.dart';
-import 'package:virtue_test/domain/util/email_validator.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_event.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
@@ -21,13 +19,16 @@ class CreateUserPage extends StatefulWidget {
 class _CreateUserPageState extends State<CreateUserPage> {
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   final GlobalKey processkey = GlobalKey();
+  StreamSubscription? streamSubscription;
+  ProgressIndicator? _progressIndicator;
 
   @override
   void initState() {
     super.initState();
+    _progressIndicator;
     Future.microtask(() {
       final viewModel = context.read<CreateUserPageViewModel>();
-      viewModel.uiEventStream.listen((event) {
+      streamSubscription = viewModel.uiEventStream.listen((event) {
         event.when(showSuccessToast: (String message) {
           Fluttertoast.showToast(
                   msg: message,
@@ -50,6 +51,12 @@ class _CreateUserPageState extends State<CreateUserPage> {
         });
       });
     });
+  }
+
+  @override
+  void dispose() {
+    streamSubscription?.cancel();
+    super.dispose();
   }
 
   @override
@@ -175,7 +182,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
         });
   }
 
-//로그인 버튼 입력
+//회원가입 버튼 입력
   Widget registerButton(
       BuildContext context, CreateUserPageViewModel viewModel) {
     bool validateAndSave() {
@@ -190,6 +197,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
 
     return FormHelper.submitButton("Register", () {
       FocusScope.of(context).requestFocus(FocusNode());
+
       if (validateAndSave()) {
         viewModel.onEvent(const RegisterUser());
       }

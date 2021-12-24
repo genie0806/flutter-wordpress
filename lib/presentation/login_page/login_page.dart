@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
@@ -36,8 +37,16 @@ class _LoginPageState extends State<LoginPage> {
               child: ElevatedButton.icon(
                 onPressed: () async {
                   viewModel.googleLogin().whenComplete(() {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => PostListPage()));
+                    Fluttertoast.showToast(
+                            msg: "구글 계정으로 로그인 하였습니다.",
+                            gravity: ToastGravity.BOTTOM,
+                            backgroundColor: const Color(0xff6E6E6E),
+                            fontSize: 20,
+                            toastLength: Toast.LENGTH_SHORT)
+                        .whenComplete(() {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => PostListPage()));
+                    });
                   });
                 },
                 icon: SizedBox(

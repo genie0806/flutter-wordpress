@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
+import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:virtue_test/presentation/post_list_page/components/card_view_item.dart';
 import 'package:virtue_test/presentation/post_list_page/components/search_bar.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_event.dart';
