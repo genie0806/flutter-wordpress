@@ -21,8 +21,8 @@ class _CreateUserPageState extends State<CreateUserPage> {
   final GlobalKey processkey = GlobalKey();
   StreamSubscription? streamSubscription;
   ProgressIndicator? _progressIndicator;
-  TextEditingController _emailController =
-      TextEditingController.fromValue(TextEditingValue(text: ""));
+  //TextEditingController _emailController =
+  //TextEditingController.fromValue(TextEditingValue(text: ""));
 
   @override
   void initState() {
@@ -58,7 +58,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
   @override
   void dispose() {
     streamSubscription?.cancel();
-    _emailController.dispose();
+    //_emailController.dispose();
     super.dispose();
   }
 
@@ -80,10 +80,9 @@ class _CreateUserPageState extends State<CreateUserPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    emailForm(context, viewModel),
-                    passwordForm(context, viewModel),
-                    confirmForm(context, viewModel),
-                    email(context, viewModel),
+                    emailField(context, viewModel),
+                    passwordFiled(context, viewModel),
+                    confirmPasswordFiled(context, viewModel),
                     const SizedBox(
                       height: 20,
                     ),
@@ -100,27 +99,12 @@ class _CreateUserPageState extends State<CreateUserPage> {
     );
   }
 
-  //이메일 입력 란
-  Widget emailForm(BuildContext context, CreateUserPageViewModel viewModel) {
-    return FormHelper.inputFieldWidget(
-        context, const Icon(Icons.email), "이메일", "이메일", (onValidateVal) {
-      if (onValidateVal.trim().isEmpty) {
-        return '이메일을 입력해주세요';
-      }
-      if (!onValidateVal.contains('@') && !onValidateVal.contains('.')) {
-        return '이메일 형식으로 입력해주세요';
-      }
-      return null;
-    }, (onSavedVal) {
-      viewModel.onEvent(StoreEmail(onSavedVal));
-    }, initialValue: "", paddingBottom: 20);
-  }
-
-  Widget email(BuildContext context, CreateUserPageViewModel viewModel) {
+  Widget emailField(BuildContext context, CreateUserPageViewModel viewModel) {
     return Padding(
         padding: const EdgeInsets.all(20.0),
         child: TextFormField(
-          controller: _emailController,
+          initialValue: "",
+          //controller: _emailController,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (onValidateVal) {
             if (onValidateVal!.trim().isEmpty) {
@@ -147,73 +131,107 @@ class _CreateUserPageState extends State<CreateUserPage> {
   }
 
 //비밀번호 입력 란
-  Widget passwordForm(BuildContext context, CreateUserPageViewModel viewModel) {
+  Widget passwordFiled(
+      BuildContext context, CreateUserPageViewModel viewModel) {
     final state = viewModel.state;
-    return FormHelper.inputFieldWidget(
-        context,
-        const Icon(Icons.verified_user),
-        "비밀번호",
-        "비밀번호",
-        (onValidateVal) {
-          if (onValidateVal.trim().isEmpty) {
-            return '비밀번호를 입력해주세요';
-          }
-          if (onValidateVal.length < 8) {
-            return '비밀번호는 영문 숫자를 포함하여 8자 이상이어야 합니다.';
-          }
-          return null;
-        },
-        (onSavedVal) {
-          viewModel.onEvent(StorePassword(onSavedVal));
-        },
-        initialValue: "",
-        paddingBottom: 20,
-        obscureText: state.hidePassword,
-        suffixIcon: IconButton(
-            color: Colors.redAccent.withOpacity(.4),
-            onPressed: () {
-              viewModel.onEvent(const TogglePasswordVisibility());
-            },
-            icon: Icon(
-                state.hidePassword ? Icons.visibility_off : Icons.visibility)),
-        onChange: (val) {
-          viewModel.onEvent(StorePassword(val));
-        });
+    return Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: TextFormField(
+          initialValue: "",
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          obscureText: state.hidePassword,
+          validator: (onValidateVal) {
+            if (onValidateVal!.trim().isEmpty) {
+              return '비밀번호를 입력해주세요';
+            }
+            if (onValidateVal.length < 8) {
+              return '비밀번호는 영문 숫자를 포함하여 8자 이상이어야 합니다.';
+            }
+            return null;
+          },
+          onChanged: (val) {
+            viewModel.onEvent(StorePassword(val));
+          },
+          onSaved: (onSavedVal) {
+            viewModel.onEvent(StorePassword(onSavedVal!));
+          },
+          cursorColor: const Color(0xff405376),
+          style: const TextStyle(
+            fontSize: 16,
+            color: Colors.black,
+          ),
+          decoration: InputDecoration(
+              isDense: true,
+              contentPadding: const EdgeInsets.fromLTRB(15, 25, 0, 0),
+              hintText: "비밀번호",
+              hintStyle: TextStyle(fontSize: 16, color: Colors.grey.shade400),
+              enabledBorder: activeInputBorder(),
+              focusedBorder: activeInputBorder(),
+              errorBorder: errorInputBorder(),
+              focusedErrorBorder: errorInputBorder(),
+              errorStyle:
+                  const TextStyle(color: Colors.redAccent, fontSize: 13),
+              suffixIcon: IconButton(
+                  color: Colors.grey.shade500.withOpacity(.4),
+                  onPressed: () {
+                    viewModel.onEvent(const TogglePasswordVisibility());
+                  },
+                  icon: Icon(state.hidePassword
+                      ? Icons.visibility_off
+                      : Icons.visibility))),
+        ));
   }
 
   //비밀번호 확인 입력란
-  Widget confirmForm(BuildContext context, CreateUserPageViewModel viewModel) {
-    final state = viewModel.state;
-    return FormHelper.inputFieldWidget(
-        context,
-        const Icon(Icons.verified_user),
-        "비밀번호 확인",
-        "비밀번호 확인",
-        (onValidateVal) {
-          if (onValidateVal.isEmpty) {
-            return '확인을 위해 비밀번호를 한 번 더 입력해주세요';
-          }
 
-          if (viewModel.state.userModel.password !=
-              viewModel.state.userModel.password) {
-            return '비밀번호가 일치하지 않습니다.';
-          }
-          return null;
-        },
-        (onSavedVal) {},
-        initialValue: "",
-        paddingBottom: 20,
-        obscureText: state.hideConfirmPassword,
-        suffixIcon: IconButton(
-            color: Colors.redAccent.withOpacity(.4),
-            onPressed: () {
-              viewModel.onEvent(const ToggleConfirmPasswordVisibility());
-            },
-            icon: Icon(
-                state.hidePassword ? Icons.visibility_off : Icons.visibility)),
-        onChange: (val) {
-          viewModel.onEvent(StoreConfirmPassword(val));
-        });
+  Widget confirmPasswordFiled(
+      BuildContext context, CreateUserPageViewModel viewModel) {
+    final state = viewModel.state;
+    return Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: TextFormField(
+          initialValue: "",
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          obscureText: state.hideConfirmPassword,
+          validator: (onValidateVal) {
+            if (onValidateVal!.isEmpty) {
+              return '확인을 위해 비밀번호를 한 번 더 입력해주세요';
+            }
+
+            if (viewModel.state.userModel.password !=
+                viewModel.state.userModel.confirmPassword) {
+              return '비밀번호가 일치하지 않습니다.';
+            }
+            return null;
+          },
+          onChanged: (val) {
+            viewModel.onEvent(StoreConfirmPassword(val));
+          },
+          cursorColor: const Color(0xff405376),
+          style: const TextStyle(
+            fontSize: 16,
+            color: Colors.black,
+          ),
+          decoration: InputDecoration(
+              isDense: true,
+              contentPadding: const EdgeInsets.fromLTRB(15, 25, 0, 0),
+              hintText: "비밀번호 확인",
+              hintStyle: TextStyle(fontSize: 16, color: Colors.grey.shade400),
+              enabledBorder: activeInputBorder(),
+              focusedBorder: activeInputBorder(),
+              errorBorder: errorInputBorder(),
+              focusedErrorBorder: errorInputBorder(),
+              errorStyle:
+                  const TextStyle(color: Colors.redAccent, fontSize: 13),
+              suffixIcon: IconButton(
+                  color: Colors.grey.shade500.withOpacity(.4),
+                  onPressed: () {
+                    viewModel.onEvent(const ToggleConfirmPasswordVisibility());
+                  },
+                  icon: Icon(state.hideConfirmPassword
+                      ? Icons.visibility_off
+                      : Icons.visibility))),
+        ));
   }
 
 //회원가입 버튼 입력
@@ -254,7 +272,7 @@ InputDecoration textInputDeco(String hint) {
 
 OutlineInputBorder errorInputBorder() {
   return OutlineInputBorder(
-      borderSide: BorderSide(
+      borderSide: const BorderSide(
         width: 0.5,
         color: Colors.red,
       ),

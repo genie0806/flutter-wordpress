@@ -33,6 +33,11 @@ class CreateUserPageViewModel with ChangeNotifier {
         _state = state.copyWith(
             userModel: state.userModel.copyWith(password: password));
       },
+      storeConfirmPassword: (confirmPassword) {
+        _state = state.copyWith(
+            userModel:
+                state.userModel.copyWith(confirmPassword: confirmPassword));
+      },
       registerUser: () async {
         final result = await useCases.postRegisterUserUseCase(state.userModel);
         result.when(success: (message) {
@@ -48,7 +53,7 @@ class CreateUserPageViewModel with ChangeNotifier {
         _state =
             _state.copyWith(hideConfirmPassword: !state.hideConfirmPassword);
       },
-      storeConfirmPassword: (String confirmPassword) {},
+      //storeConfirmPassword: (String confirmPassword) {},
     );
     notifyListeners();
   }
