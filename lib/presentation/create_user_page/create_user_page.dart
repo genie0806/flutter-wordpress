@@ -21,6 +21,8 @@ class _CreateUserPageState extends State<CreateUserPage> {
   final GlobalKey processkey = GlobalKey();
   StreamSubscription? streamSubscription;
   ProgressIndicator? _progressIndicator;
+  TextEditingController _emailController =
+      TextEditingController.fromValue(TextEditingValue(text: ""));
 
   @override
   void initState() {
@@ -56,6 +58,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
   @override
   void dispose() {
     streamSubscription?.cancel();
+    _emailController.dispose();
     super.dispose();
   }
 
@@ -80,6 +83,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     emailForm(context, viewModel),
                     passwordForm(context, viewModel),
                     confirmForm(context, viewModel),
+                    email(context, viewModel),
                     const SizedBox(
                       height: 20,
                     ),
@@ -110,6 +114,36 @@ class _CreateUserPageState extends State<CreateUserPage> {
     }, (onSavedVal) {
       viewModel.onEvent(StoreEmail(onSavedVal));
     }, initialValue: "", paddingBottom: 20);
+  }
+
+  Widget email(BuildContext context, CreateUserPageViewModel viewModel) {
+    return Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: TextFormField(
+          controller: _emailController,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (onValidateVal) {
+            if (onValidateVal!.trim().isEmpty) {
+              return '이메일을 입력해주세요';
+            }
+            if (!onValidateVal.contains('@')) {
+              return '이메일 형식으로 입력해주세요';
+            }
+            if (!onValidateVal.contains('.')) {
+              return '이메일 형식으로 입력해주세요';
+            }
+            return null;
+          },
+          onSaved: (onSavedVal) {
+            viewModel.onEvent(StoreEmail(onSavedVal!));
+          },
+          cursorColor: const Color(0xff405376),
+          style: const TextStyle(
+            fontSize: 16,
+            color: Colors.black,
+          ),
+          decoration: textInputDeco('이메일'),
+        ));
   }
 
 //비밀번호 입력 란
@@ -203,4 +237,32 @@ class _CreateUserPageState extends State<CreateUserPage> {
       }
     });
   }
+}
+
+InputDecoration textInputDeco(String hint) {
+  return InputDecoration(
+      isDense: true,
+      contentPadding: const EdgeInsets.fromLTRB(15, 25, 0, 0),
+      hintText: hint,
+      hintStyle: TextStyle(fontSize: 16, color: Colors.grey.shade400),
+      enabledBorder: activeInputBorder(),
+      focusedBorder: activeInputBorder(),
+      errorBorder: errorInputBorder(),
+      focusedErrorBorder: errorInputBorder(),
+      errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 13));
+}
+
+OutlineInputBorder errorInputBorder() {
+  return OutlineInputBorder(
+      borderSide: BorderSide(
+        width: 0.5,
+        color: Colors.red,
+      ),
+      borderRadius: BorderRadius.circular(0));
+}
+
+OutlineInputBorder activeInputBorder() {
+  return OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.grey.shade400, width: 0.5),
+      borderRadius: BorderRadius.circular(0));
 }
