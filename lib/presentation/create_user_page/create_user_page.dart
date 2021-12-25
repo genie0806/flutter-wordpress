@@ -85,6 +85,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     emailField(context, viewModel),
                     passwordFiled(context, viewModel),
                     confirmPasswordFiled(context, viewModel),
+                    nicknameField(context, viewModel),
                     const SizedBox(
                       height: 20,
                     ),
@@ -197,6 +198,36 @@ class _CreateUserPageState extends State<CreateUserPage> {
             color: Colors.black,
           ),
           decoration: confirmPasswordInputDeco(viewModel, state),
+        ));
+  }
+
+//별명 입력란
+  Widget nicknameField(
+      BuildContext context, CreateUserPageViewModel viewModel) {
+    return Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: TextFormField(
+          initialValue: "",
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (onValidateVal) {
+            if (onValidateVal!.trim().isEmpty) {
+              return '닉네임을 2~15자 내로 입력해주세요';
+            }
+            if (onValidateVal.length < 2 && onValidateVal.length > 15) {
+              return '닉네임을 2~15자 내로 입력해주세요';
+            }
+
+            return null;
+          },
+          onSaved: (onSavedVal) {
+            viewModel.onEvent(StoreNickName(onSavedVal!));
+          },
+          cursorColor: const Color(0xff405376),
+          style: const TextStyle(
+            fontSize: 16,
+            color: Colors.black,
+          ),
+          decoration: textInputDeco('닉네임'),
         ));
   }
 

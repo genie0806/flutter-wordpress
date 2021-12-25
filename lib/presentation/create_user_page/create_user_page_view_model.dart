@@ -55,7 +55,7 @@ class CreateUserPageViewModel with ChangeNotifier {
       },
       storenickname: (nickname) {
         _state = state.copyWith(
-            userModel: state.userModel.copyWith(password: nickname));
+            userModel: state.userModel.copyWith(nickname: nickname));
       },
     );
     notifyListeners();

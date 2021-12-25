@@ -7,7 +7,6 @@ part 'create_user_state.freezed.dart';
 class CreateUserState with _$CreateUserState {
   factory CreateUserState(
       {required CreateUserModel userModel,
-      @Default(false) bool isApiCallProcess,
       @Default(true) bool hidePassword,
       @Default(true) bool hideConfirmPassword}) = _CreateUserState;
 }
