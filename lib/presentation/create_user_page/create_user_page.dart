@@ -77,7 +77,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
             child: Form(
               key: globalKey,
               child: Padding(
-                padding: const EdgeInsets.only(top: 60),
+                padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +104,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
 
   Widget emailField(BuildContext context, CreateUserPageViewModel viewModel) {
     return Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.symmetric(vertical: 15),
         child: TextFormField(
           initialValue: "",
           //controller: _emailController,
@@ -138,7 +138,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
       BuildContext context, CreateUserPageViewModel viewModel) {
     final state = viewModel.state;
     return Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.symmetric(vertical: 15),
         child: TextFormField(
           initialValue: "",
           autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -173,7 +173,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
       BuildContext context, CreateUserPageViewModel viewModel) {
     final state = viewModel.state;
     return Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.symmetric(vertical: 15),
         child: TextFormField(
           initialValue: "",
           autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -205,7 +205,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
   Widget nicknameField(
       BuildContext context, CreateUserPageViewModel viewModel) {
     return Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.symmetric(vertical: 15),
         child: TextFormField(
           initialValue: "",
           autovalidateMode: AutovalidateMode.onUserInteraction,

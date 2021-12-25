@@ -6,7 +6,7 @@ import 'package:virtue_test/presentation/create_user_page/create_user_state.dart
 InputDecoration textInputDeco(String hint) {
   return InputDecoration(
       isDense: true,
-      contentPadding: const EdgeInsets.fromLTRB(15, 25, 0, 0),
+      contentPadding: const EdgeInsets.fromLTRB(15, 29, 0, 0),
       hintText: hint,
       hintStyle: TextStyle(fontSize: 16, color: Colors.grey.shade400),
       enabledBorder: activeInputBorder(),
@@ -27,7 +27,7 @@ OutlineInputBorder errorInputBorder() {
 
 OutlineInputBorder activeInputBorder() {
   return OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.grey.shade400, width: 0.5),
+      borderSide: BorderSide(color: Colors.grey.shade500, width: 0.5),
       borderRadius: BorderRadius.circular(0));
 }
 
@@ -35,7 +35,7 @@ InputDecoration confirmPasswordInputDeco(
     CreateUserPageViewModel viewModel, CreateUserState state) {
   return InputDecoration(
       isDense: true,
-      contentPadding: const EdgeInsets.fromLTRB(15, 25, 0, 0),
+      contentPadding: const EdgeInsets.fromLTRB(15, 29, 0, 0),
       hintText: "비밀번호 확인",
       hintStyle: TextStyle(fontSize: 16, color: Colors.grey.shade400),
       enabledBorder: activeInputBorder(),
@@ -48,16 +48,16 @@ InputDecoration confirmPasswordInputDeco(
           onPressed: () {
             viewModel.onEvent(const ToggleConfirmPasswordVisibility());
           },
-          icon: Icon(state.hideConfirmPassword
-              ? Icons.visibility_off
-              : Icons.visibility)));
+          icon: state.hideConfirmPassword
+              ? Icon(Icons.visibility_off, size: 23)
+              : Icon(Icons.visibility, size: 23)));
 }
 
 InputDecoration passwordInputDeco(
     CreateUserPageViewModel viewModel, CreateUserState state) {
   return InputDecoration(
       isDense: true,
-      contentPadding: const EdgeInsets.fromLTRB(15, 25, 0, 0),
+      contentPadding: const EdgeInsets.fromLTRB(15, 29, 0, 0),
       hintText: "비밀번호",
       hintStyle: TextStyle(fontSize: 16, color: Colors.grey.shade400),
       enabledBorder: activeInputBorder(),
@@ -70,6 +70,7 @@ InputDecoration passwordInputDeco(
           onPressed: () {
             viewModel.onEvent(const TogglePasswordVisibility());
           },
-          icon: Icon(
-              state.hidePassword ? Icons.visibility_off : Icons.visibility)));
+          icon: state.hidePassword
+              ? const Icon(Icons.visibility_off, size: 23)
+              : const Icon(Icons.visibility, size: 23)));
 }
