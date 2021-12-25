@@ -8,6 +8,7 @@ abstract class CreateUserEvent with _$CreateUserEvent {
   const factory CreateUserEvent.storePassword(String password) = StorePassword;
   const factory CreateUserEvent.storeConfirmPassword(String confirmPassword) =
       StoreConfirmPassword;
+  const factory CreateUserEvent.storenickname(String nickname) = StoreNickName;
   const factory CreateUserEvent.registerUser() = RegisterUser;
   const factory CreateUserEvent.togglePasswordVisibility() =
       TogglePasswordVisibility;

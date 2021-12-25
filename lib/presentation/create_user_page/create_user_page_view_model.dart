@@ -53,7 +53,10 @@ class CreateUserPageViewModel with ChangeNotifier {
         _state =
             _state.copyWith(hideConfirmPassword: !state.hideConfirmPassword);
       },
-      //storeConfirmPassword: (String confirmPassword) {},
+      storenickname: (nickname) {
+        _state = state.copyWith(
+            userModel: state.userModel.copyWith(password: nickname));
+      },
     );
     notifyListeners();
   }
