@@ -244,12 +244,24 @@ class _CreateUserPageState extends State<CreateUserPage> {
       }
     }
 
-    return FormHelper.submitButton("Register", () {
-      FocusScope.of(context).requestFocus(FocusNode());
+    return ElevatedButton(
+      onPressed: () {
+        FocusScope.of(context).requestFocus(FocusNode());
 
-      if (validateAndSave()) {
-        viewModel.onEvent(const RegisterUser());
-      }
-    });
+        if (validateAndSave()) {
+          viewModel.onEvent(const RegisterUser());
+        }
+      },
+      child: Text(
+        '회원가입 완료',
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+      ),
+      style: ElevatedButton.styleFrom(
+        primary: Color(0xff405479),
+        //maximumSize: const Size(375, 50),
+        minimumSize: const Size(375, 55),
+        //side: const BorderSide(color: Colors.black, width: 0.5),
+      ),
+    );
   }
 }
