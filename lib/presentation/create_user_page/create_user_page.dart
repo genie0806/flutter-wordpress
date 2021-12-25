@@ -70,6 +70,20 @@ class _CreateUserPageState extends State<CreateUserPage> {
     final state = viewModel.state;
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: const Padding(
+            padding: EdgeInsets.only(left: 70),
+            child: Text(
+              '이메일로 회원가입',
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.start,
+            ),
+          ),
+        ),
         body: ProgressHUD(
           inAsyncCall: state.isApiCallProcess,
           key: processkey,
@@ -77,7 +91,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
             child: Form(
               key: globalKey,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
+                padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
