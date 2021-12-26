@@ -4,22 +4,22 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
-import 'package:virtue_test/domain/model/login_user_model/social_user_model.dart';
+import 'package:virtue_test/domain/model/social_login_model/social_user_model.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_page.dart';
-import 'package:virtue_test/presentation/login_page/login_page_view_model.dart';
+import 'package:virtue_test/presentation/social_login_page/social_login_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SocialLoginPage extends StatefulWidget {
+  const SocialLoginPage({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SocialLoginPageState createState() => _SocialLoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SocialLoginPageState extends State<SocialLoginPage> {
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<LoginViewModel>();
+    final viewModel = context.watch<SocialLoginViewModel>();
     final model = SocialUserModel();
     return Scaffold(
       backgroundColor: Colors.white,

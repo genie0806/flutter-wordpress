@@ -3,12 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/src/provider.dart';
-import 'package:snippet_coder_utils/FormHelper.dart';
-import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:virtue_test/presentation/create_user_page/components/text_field_item.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_event.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_page_view_model.dart';
-import 'package:virtue_test/presentation/create_user_page/create_user_state.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
 
 class CreateUserPage extends StatefulWidget {
@@ -84,30 +81,26 @@ class _CreateUserPageState extends State<CreateUserPage> {
             ),
           ),
         ),
-        body: ProgressHUD(
-          inAsyncCall: state.isApiCallProcess,
-          key: processkey,
-          child: SingleChildScrollView(
-            child: Form(
-              key: globalKey,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    emailField(context, viewModel),
-                    passwordFiled(context, viewModel),
-                    confirmPasswordFiled(context, viewModel),
-                    nicknameField(context, viewModel),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Center(
-                      child: registerButton(context, viewModel),
-                    )
-                  ],
-                ),
+        body: SingleChildScrollView(
+          child: Form(
+            key: globalKey,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  emailField(context, viewModel),
+                  passwordFiled(context, viewModel),
+                  confirmPasswordFiled(context, viewModel),
+                  nicknameField(context, viewModel),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Center(
+                    child: registerButton(context, viewModel),
+                  )
+                ],
               ),
             ),
           ),
@@ -266,7 +259,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
           viewModel.onEvent(const RegisterUser());
         }
       },
-      child: Text(
+      child: const Text(
         '회원가입 완료',
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
       ),
