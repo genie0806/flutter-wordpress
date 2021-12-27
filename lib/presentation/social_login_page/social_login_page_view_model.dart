@@ -7,7 +7,7 @@ import 'package:virtue_test/domain/use_case/social_login_use_case.dart/login_use
 import 'package:virtue_test/presentation/social_login_page/social_login_page_state.dart';
 
 class SocialLoginViewModel with ChangeNotifier {
-  LoginUseCases useCases;
+  SocialLoginUseCases useCases;
   GoogleSignIn googleSignIn = GoogleSignIn();
 
   SocialLoginPageState _loginState = SocialLoginPageState();
@@ -21,7 +21,6 @@ class SocialLoginViewModel with ChangeNotifier {
 
   Future<void> googleLogin() async {
     await useCases.getSocialLogin(socialUserModel?.email ?? '');
-
     notifyListeners();
   }
 

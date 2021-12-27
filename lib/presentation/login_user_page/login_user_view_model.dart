@@ -1,15 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:virtue_test/domain/model/login_user_model/login_response_model.dart';
 import 'package:virtue_test/domain/model/login_user_model/login_user_model.dart';
-import 'package:virtue_test/domain/use_case/login_user_use_case.dart/Login_user_cases.dart';
+import 'package:virtue_test/domain/use_case/login_user_use_case.dart/Login_user_use_cases.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_ui_event.dart';
 import 'package:virtue_test/presentation/login_user_page/login_user_event.dart';
 import 'package:virtue_test/presentation/login_user_page/login_user_state.dart';
 import 'package:virtue_test/presentation/login_user_page/login_user_ui_event.dart';
 
 class LoginUserViewModel with ChangeNotifier {
-  LoginUserCases useCases;
+  LoginUserUseCases useCases;
 
   LoginUserViewModel(this.useCases);
 

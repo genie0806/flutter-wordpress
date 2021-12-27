@@ -17,16 +17,13 @@ class CreateUserPage extends StatefulWidget {
 
 class _CreateUserPageState extends State<CreateUserPage> {
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-  final GlobalKey processkey = GlobalKey();
   StreamSubscription? streamSubscription;
-  ProgressIndicator? _progressIndicator;
   //TextEditingController _emailController =
   //TextEditingController.fromValue(TextEditingValue(text: ""));
 
   @override
   void initState() {
     super.initState();
-    _progressIndicator;
     Future.microtask(() {
       final viewModel = context.read<CreateUserPageViewModel>();
       streamSubscription = viewModel.uiEventStream.listen((event) {

@@ -6,6 +6,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:virtue_test/domain/model/social_login_model/social_user_model.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_page.dart';
+import 'package:virtue_test/presentation/login_user_page/login_user_page.dart';
 import 'package:virtue_test/presentation/social_login_page/social_login_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
 
@@ -52,8 +53,8 @@ class _SocialLoginPageState extends State<SocialLoginPage> {
                 icon: SizedBox(
                   height: 25,
                   width: 25,
-                  child: Image.network(
-                    'https://developers.google.com/identity/images/g-logo.png?hl=ko',
+                  child: Image.asset(
+                    'assets/g-logo.png',
                   ),
                 ),
                 label: const Text(
@@ -72,10 +73,8 @@ class _SocialLoginPageState extends State<SocialLoginPage> {
               padding: const EdgeInsets.only(top: 25),
               child: ElevatedButton.icon(
                 onPressed: () async {
-                  viewModel.googleLogin().whenComplete(() {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const PostListPage()));
-                  });
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const LoginPageNative()));
                 },
                 icon: const SizedBox(
                   height: 25,
