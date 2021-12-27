@@ -21,7 +21,7 @@ class LoginUserViewModel with ChangeNotifier {
       StreamController.broadcast();
   Stream<LoginUserUiEvent> get uiEventStream => _uiEventStreamController.stream;
 
-  void onEvent(LoginUserEvent event) {
+  Future<void> onEvent(LoginUserEvent event) async {
     event.when(
       storeUsername: (username) {
         _state = state.copyWith(username: state.username);
@@ -29,12 +29,14 @@ class LoginUserViewModel with ChangeNotifier {
       storePassword: (password) {
         _state = state.copyWith(password: state.password);
       },
-      loginUser: () async {
+      loginUser: (username, password) async {
         final result =
             await useCases.getLoginUserUseCase(state.username, state.password);
         result.when(success: (message) {
+          true;
           _uiEventStreamController.add(LoginSuccessToast(message));
         }, error: (message) {
+          false;
           _uiEventStreamController.add(LoginErrorToast(message));
         });
       },

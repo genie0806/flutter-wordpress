@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/src/provider.dart';
+import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:virtue_test/data/data_source/remote/login_user_api.dart';
 import 'package:virtue_test/domain/model/login_user_model/login_response_model.dart';
 import 'package:virtue_test/presentation/login_user_page/components/text_field_item.dart';
@@ -21,6 +22,7 @@ class _LoginPageNativeState extends State<LoginPageNative> {
   final GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
   StreamSubscription? streamSubscription;
   LoginResponseModel responseModel = LoginResponseModel();
+  //TextEditingController passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -62,6 +64,16 @@ class _LoginPageNativeState extends State<LoginPageNative> {
 
   @override
   Widget build(BuildContext context) {
+    bool validateAndSave() {
+      final form = globalFormKey.currentState;
+      if (form?.validate() ?? true) {
+        form?.save();
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     final viewModel = context.watch<LoginUserViewModel>();
     final state = viewModel.state;
     return Scaffold(
@@ -137,14 +149,13 @@ class _LoginPageNativeState extends State<LoginPageNative> {
                         }
                         return null;
                       },
-                      //onChanged: (val) {
-                      //  viewModel.onEvent(StorePassword(val));
-                      //},
-
-                      onSaved: (password) {
-                        viewModel.onEvent(StorePassword(state.password.trim()));
+                      onChanged: (val) {
+                        viewModel.onEvent(StorePassword(val));
                       },
-
+                      onSaved: (password) {
+                        viewModel
+                            .onEvent(StorePassword(password.toString().trim()));
+                      },
                       cursorColor: const Color(0xff405376),
                       style: const TextStyle(
                         fontSize: 16,
@@ -157,7 +168,8 @@ class _LoginPageNativeState extends State<LoginPageNative> {
                     FocusScope.of(context).requestFocus(FocusNode());
 
                     if (validateAndSave()) {
-                      viewModel.onEvent(const LoginUser());
+                      viewModel.onEvent(LoginUserEvent.loginUser(
+                          state.username, state.password));
                     }
                   },
                   child: const Text(
@@ -172,45 +184,36 @@ class _LoginPageNativeState extends State<LoginPageNative> {
                   ),
                 ),
 
-                //FormHelper.submitButton("Login", () {
-                //  if (validateAndSave()) {
-                //
-                //    LoginUserApi.fetchLoginUser(userEmail, password)
-                //        .then((response) {
-                //
-                //      print(response);
-                //      if (response) {
-                //        globalFormKey.currentState?.reset();
-                //        Navigator.of(context).pushReplacement(
-                //            MaterialPageRoute(
-                //                builder: (context) => PostListPage()));
-                //        print(response);
-                //      } else {
-                //        FormHelper.showSimpleAlertDialog(
-                //            context, '로그인 오류', '아이디 또는 비밀번호가 잘못되었습니다.', 'ok',
-                //            () {
-                //          Navigator.of(context).pop();
-                //        });
-                //      }
-                //    });
-                //  }
-                //},
-                //),
+                // FormHelper.submitButton(
+                //   "Login",
+                //   () {
+                //     if (validateAndSave()) {
+                //       LoginUserApi.fetchLoginUser(
+                //               state.username, state.password)
+                //           .then((response) {
+                //         print(response);
+                //         if (response) {
+                //           globalFormKey.currentState?.reset();
+                //           Navigator.of(context).pushReplacement(
+                //               MaterialPageRoute(
+                //                   builder: (context) => PostListPage()));
+                //           print(response);
+                //         } else {
+                //           FormHelper.showSimpleAlertDialog(
+                //               context, '로그인 오류', '아이디 또는 비밀번호가 잘못되었습니다.', 'ok',
+                //               () {
+                //             Navigator.of(context).pop();
+                //           });
+                //         }
+                //       });
+                //     }
+                //   },
+                // ),
               ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  bool validateAndSave() {
-    final form = globalFormKey.currentState;
-    if (form?.validate() ?? true) {
-      form?.save();
-      return true;
-    } else {
-      return false;
-    }
   }
 }

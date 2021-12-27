@@ -11,11 +11,13 @@ class LoginUserApi {
     Map<String, String> requestHeaders = {
       'Content-type': 'application/x-www-form-urlencoded'
     };
-    final response =
-        await http.post(Uri.parse(loginUrl), headers: requestHeaders, body: {
-      "username": username,
-      "password": password,
-    });
+    final response = await http.post(
+        Uri.parse('https://virtureart.shop/wp-json/jwt-auth/v1/token'),
+        headers: requestHeaders,
+        body: {
+          "username": username,
+          "password": password,
+        });
     if (response.statusCode == 200) {
       String jsonMessage = response.body;
       LoginResponseModel responseModel = loginStatusFromJson(jsonMessage);

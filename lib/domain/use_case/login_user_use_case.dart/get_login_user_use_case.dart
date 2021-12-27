@@ -12,8 +12,10 @@ class GetLoginUserUseCase {
     await repository.getLoginUser(username, password);
 
     if (responseModel.statusCode == 200) {
+      responseModel.success == true;
       return Result.success(responseModel.message ?? "");
     } else {
+      responseModel.success == false;
       return Result.error(responseModel.message ?? "");
     }
   }
