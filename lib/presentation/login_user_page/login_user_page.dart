@@ -100,8 +100,9 @@ class _LoginPageNativeState extends State<LoginPageNative> {
                         }
                         return null;
                       },
-                      onSaved: (username) {
-                        viewModel.onEvent(StoreUsername(state.username.trim()));
+                      onSaved: (value) {
+                        viewModel
+                            .onEvent(StoreUsername(value.toString().trim()));
                       },
                       cursorColor: const Color(0xff405376),
                       style: const TextStyle(
@@ -152,9 +153,9 @@ class _LoginPageNativeState extends State<LoginPageNative> {
                       onChanged: (val) {
                         viewModel.onEvent(StorePassword(val));
                       },
-                      onSaved: (password) {
+                      onSaved: (value) {
                         viewModel
-                            .onEvent(StorePassword(password.toString().trim()));
+                            .onEvent(StorePassword(value.toString().trim()));
                       },
                       cursorColor: const Color(0xff405376),
                       style: const TextStyle(
