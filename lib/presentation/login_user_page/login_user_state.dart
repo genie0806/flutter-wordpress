@@ -11,3 +11,4 @@ class LoginUserState with _$LoginUserState {
     @Default(true) bool hidePassword,
   }) = _LoginUserState;
 }
+flutter pub run build_runner build
