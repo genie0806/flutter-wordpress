@@ -12,6 +12,7 @@ class CommentGetmodel with _$CommentGetmodel {
     String? avatar,
     String? content,
     String? date,
+    int? postId,
   }) = _CommentGetmodel;
   factory CommentGetmodel.fromJson(Map<String, dynamic> json) =>
       _$CommentGetmodelFromJson(json);

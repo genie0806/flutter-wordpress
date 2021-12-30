@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virtue_test/di/provider_setup.dart';
-import 'package:virtue_test/presentation/social_login_page/social_login_page.dart';
-
+import 'package:virtue_test/presentation/comment_page/components/comment_form_filed.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:virtue_test/presentation/create_user_page/create_user_page.dart';
 
 Future main() async {
   await dotenv.load(fileName: 'url.env');
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    MultiProvider(providers: await getProviders(), child: const TestPage()),
-  );
+      //MultiProvider(providers: await getProviders(), child: const TestPage()),
+      const TestPage());
 }
 
 class TestPage extends StatelessWidget {
@@ -24,6 +22,6 @@ class TestPage extends StatelessWidget {
     return const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Try Image Search',
-        home: SocialLoginPage());
+        home: CommentFormField());
   }
 }
