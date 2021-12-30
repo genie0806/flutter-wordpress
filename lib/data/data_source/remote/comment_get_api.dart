@@ -15,8 +15,12 @@ class CommentGetApi {
       List<CommentGetmodel> commentGetApiList =
           jsonResponse.map((e) => CommentGetmodel.fromJson(e)).toList();
 
-      return Result.success(commentGetApiList);
-    } on Exception catch (e) {
+      if (response.statusCode == 200) {
+        return Result.success(commentGetApiList);
+      } else {
+        return const Result.error('인터넷 연결이 되어있지 않습니다.');
+      }
+    } catch (e) {
       return const Result.error('인터넷 연결이 되어있지 않습니다.');
     }
   }

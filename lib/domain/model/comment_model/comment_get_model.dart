@@ -6,11 +6,13 @@ part 'comment_get_model.g.dart';
 
 @freezed
 class CommentGetmodel with _$CommentGetmodel {
-  factory CommentGetmodel(
-      {int? id,
-      String? author,
-      String? avatar,
-      String? content}) = _CommentGetmodel;
+  factory CommentGetmodel({
+    int? id,
+    String? author,
+    String? avatar,
+    String? content,
+    String? date,
+  }) = _CommentGetmodel;
   factory CommentGetmodel.fromJson(Map<String, dynamic> json) =>
       _$CommentGetmodelFromJson(json);
 }

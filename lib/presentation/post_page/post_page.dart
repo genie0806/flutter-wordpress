@@ -157,10 +157,8 @@ class _PostPageState extends State<PostPage> {
                                     Icons.favorite_border_outlined,
                                     color: Colors.black,
                                   )
-                                : const Icon(
-                                    Icons.favorite,
-                                    color: Color(0xff405376),
-                                  ),
+                                : const Icon(Icons.favorite,
+                                    color: Colors.indigoAccent),
                             label: likesPressed
                                 ? const Text(
                                     '0',
