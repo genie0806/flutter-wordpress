@@ -1,12 +1,9 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
-import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:virtue_test/presentation/post_list_page/components/card_view_item.dart';
-import 'package:virtue_test/presentation/post_list_page/components/search_bar.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_event.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
 import 'package:virtue_test/presentation/post_page/post_page.dart';
@@ -176,7 +173,7 @@ class _PostListPageState extends State<PostListPage> {
                           '전체 ' +
                               viewModel.postsListState.postList.length
                                   .toString(),
-                          style: TextStyle(fontSize: 15),
+                          style: const TextStyle(fontSize: 15),
                         ),
                       ),
                       ...viewModel.postsListState.postList
@@ -199,9 +196,9 @@ class _PostListPageState extends State<PostListPage> {
                     ]),
               ),
             ),
-            Text('다다'),
-            Text('다다'),
-            Text('다다'),
+            const Text('다다'),
+            const Text('다다'),
+            const Text('다다'),
           ]),
         ),
       ),

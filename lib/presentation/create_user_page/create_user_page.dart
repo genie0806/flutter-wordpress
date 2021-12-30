@@ -61,7 +61,6 @@ class _CreateUserPageState extends State<CreateUserPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<CreateUserPageViewModel>();
-    final state = viewModel.state;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,

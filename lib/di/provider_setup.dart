@@ -51,13 +51,11 @@ Future<List<SingleChildWidget>> getProviders() async {
       postRegisterUserUseCase: PostRegisterUserUseCase(createUserRepository));
 
 //LoginUser 관련된 DI
-  final loginResponse = LoginResponseModel();
+
   final loginUserData = LoginUserApi();
-  final loginUserRepository =
-      LoginUserRepositoryImpl(loginUserData, loginResponse);
+  final loginUserRepository = LoginUserRepositoryImpl(loginUserData);
   final loginUserUseCases = LoginUserUseCases(
-      getLoginUserUseCase:
-          GetLoginUserUseCase(loginUserRepository, loginResponse));
+      getLoginUserUseCase: GetLoginUserUseCase(loginUserRepository));
 
   return [
     //Post의 관련된 DI

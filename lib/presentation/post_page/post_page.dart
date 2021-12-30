@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
 import 'package:virtue_test/presentation/post_page/components/content_board.dart';

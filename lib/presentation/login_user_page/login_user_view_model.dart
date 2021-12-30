@@ -24,19 +24,16 @@ class LoginUserViewModel with ChangeNotifier {
   Future<void> onEvent(LoginUserEvent event) async {
     event.when(
       storeUsername: (username) {
-        _state = state.copyWith(username: state.username);
+        _state = state.copyWith(username: username);
       },
       storePassword: (password) {
-        _state = state.copyWith(password: state.password);
+        _state = state.copyWith(password: password);
       },
       loginUser: (username, password) async {
-        final result =
-            await useCases.getLoginUserUseCase(state.username, state.password);
+        final result = await useCases.getLoginUserUseCase(username, password);
         result.when(success: (message) {
-          true;
           _uiEventStreamController.add(LoginSuccessToast(message));
         }, error: (message) {
-          false;
           _uiEventStreamController.add(LoginErrorToast(message));
         });
       },

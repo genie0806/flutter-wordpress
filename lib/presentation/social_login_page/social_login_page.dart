@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
-import 'package:virtue_test/domain/model/social_login_model/social_user_model.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_page.dart';
 import 'package:virtue_test/presentation/login_user_page/login_user_page.dart';
 import 'package:virtue_test/presentation/social_login_page/social_login_page_view_model.dart';
@@ -21,7 +19,6 @@ class _SocialLoginPageState extends State<SocialLoginPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<SocialLoginViewModel>();
-    final model = SocialUserModel();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -46,7 +43,7 @@ class _SocialLoginPageState extends State<SocialLoginPage> {
                             toastLength: Toast.LENGTH_SHORT)
                         .whenComplete(() {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => PostListPage()));
+                          builder: (context) => const PostListPage()));
                     });
                   });
                 },
@@ -74,7 +71,7 @@ class _SocialLoginPageState extends State<SocialLoginPage> {
               child: ElevatedButton.icon(
                 onPressed: () async {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const LoginPageNative()));
+                      builder: (context) => const LoginUserPage()));
                 },
                 icon: const SizedBox(
                   height: 25,

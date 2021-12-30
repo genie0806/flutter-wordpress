@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:virtue_test/data/data_source/remote/login_user_api.dart';
-import 'package:virtue_test/presentation/login_page/test_page.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
 
 class LoginPageNative extends StatefulWidget {
@@ -77,33 +76,34 @@ class _LoginPageNativeState extends State<LoginPageNative> {
                                 ? Icons.visibility_off
                                 : Icons.visibility))),
                   ),
-                  FormHelper.submitButton("Login", () {
-                    if (validateAndSave()) {
-                      setState(() {
-                        isApiCallProcess = true;
-                      });
-                      LoginUserApi.fetchLoginUser(userEmail, password)
-                          .then((response) {
-                        setState(() {
-                          isApiCallProcess = false;
-                        });
-                        print(response);
-                        if (response) {
-                          globalFormKey.currentState?.reset();
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => TestPage()));
-                          print(response);
-                        } else {
-                          FormHelper.showSimpleAlertDialog(
-                              context, '로그인 오류', '아이디 또는 비밀번호가 잘못되었습니다.', 'ok',
-                              () {
-                            Navigator.of(context).pop();
-                          });
-                        }
-                      });
-                    }
-                  }),
+                  //FormHelper.submitButton("Login", () {
+                  //  if (validateAndSave()) {
+                  //    setState(() {
+                  //      isApiCallProcess = true;
+                  //    });
+                  //    LoginUserApi.fetchLoginUser(userEmail, password)
+                  //        .then((response) {
+                  //      setState(() {
+                  //        isApiCallProcess = false;
+                  //      });
+                  //      print(response);
+                  //      if (response) {
+                  //        globalFormKey.currentState?.reset();
+                  //        Navigator.of(context).pushReplacement(
+                  //            MaterialPageRoute(
+                  //                builder: (context) => TestPage()));
+                  //        print(response);
+                  //      } else {
+                  //        FormHelper.showSimpleAlertDialog(
+                  //            context, '로그인 오류', '아이디 또는 비밀번호가 잘못되었습니다.', 'ok',
+                  //            () {
+                  //          Navigator.of(context).pop();
+                  //        });
+                  //      }
+                  //    });
+                  //  }
+                  //},
+                  //),
                 ],
               ),
             ),
