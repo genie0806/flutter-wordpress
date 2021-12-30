@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/src/provider.dart';
-import 'package:virtue_test/data/data_source/remote/simple_post_api.dart';
 import 'package:virtue_test/domain/model/simple_post_model/simple_post_model.dart';
-import 'package:virtue_test/presentation/post_page/post_page_view_model.dart';
 
 class CardViewItem extends StatelessWidget {
   final SimplePostModel model;
@@ -17,8 +15,6 @@ class CardViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<PostPageViewModel>();
-    final post = viewModel.postsState.post;
     DateTime date = DateTime.parse(model.postDate ?? '');
     String dateform = DateFormat('yyyy년 MM월 dd일').format(date);
 
@@ -33,7 +29,7 @@ class CardViewItem extends StatelessWidget {
                       model.largeUrl ?? '',
                     ),
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(15))),
+                  borderRadius: const BorderRadius.all(Radius.circular(15))),
               width: 380,
               height: 265,
             ),
