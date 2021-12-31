@@ -5,8 +5,8 @@ part 'comment_get_model.freezed.dart';
 part 'comment_get_model.g.dart';
 
 @freezed
-class CommentGetmodel with _$CommentGetmodel {
-  factory CommentGetmodel({
+class CommentGetModel with _$CommentGetmodel {
+  factory CommentGetModel({
     int? id,
     String? author,
     String? avatar,
@@ -14,6 +14,6 @@ class CommentGetmodel with _$CommentGetmodel {
     String? date,
     int? postId,
   }) = _CommentGetmodel;
-  factory CommentGetmodel.fromJson(Map<String, dynamic> json) =>
+  factory CommentGetModel.fromJson(Map<String, dynamic> json) =>
       _$CommentGetmodelFromJson(json);
 }

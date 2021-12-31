@@ -9,9 +9,9 @@ class CommentGetRepositoryImpl implements CommentGetRepository {
   CommentGetRepositoryImpl(
     this.commentGetApi,
   );
-  
+
   @override
-  Future<Result<List<CommentGetmodel>>> getComment(int id) async{
+  Future<Result<List<CommentGetModel>>> getComment(int id) async {
     return await commentGetApi.fetchComments(id);
   }
 }

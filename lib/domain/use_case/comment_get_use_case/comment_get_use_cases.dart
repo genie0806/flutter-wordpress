@@ -3,7 +3,7 @@ import 'package:virtue_test/domain/use_case/comment_get_use_case/get_comment_use
 class CommentGetUseCases {
   final GetCommentUseCase getCommentUseCase;
 
-  CommentGetUseCases(
-    this.getCommentUseCase,
-  );
+  CommentGetUseCases({
+    required this.getCommentUseCase,
+  });
 }

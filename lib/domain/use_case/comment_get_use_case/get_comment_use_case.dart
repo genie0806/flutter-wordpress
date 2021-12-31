@@ -7,7 +7,7 @@ class GetCommentUseCase {
 
   GetCommentUseCase(this.repository);
 
-  Future<Result<List<CommentGetmodel>>> call(int id) async {
+  Future<Result<List<CommentGetModel>>> call(int id) async {
     return await repository.getComment(id);
   }
 }

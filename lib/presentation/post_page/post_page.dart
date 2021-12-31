@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
+import 'package:virtue_test/presentation/comment_page/comment_page.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
 import 'package:virtue_test/presentation/post_page/components/content_board.dart';
 import 'package:virtue_test/presentation/post_page/components/info_board.dart';
@@ -59,8 +60,8 @@ class _PostPageState extends State<PostPage> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          titleSpacing: 1,
-          toolbarHeight: 40,
+          titleSpacing: 4,
+          toolbarHeight: 44,
           backgroundColor: Colors.transparent,
           automaticallyImplyLeading: false,
           shadowColor: const Color(0xffFEFEFE).withAlpha(1),
@@ -68,24 +69,31 @@ class _PostPageState extends State<PostPage> {
           title: Row(
             children: [
               IconButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: () {
-                    Navigator.pop(context);
-                    setState(() {
-                      viewModel.refreshList();
-                    });
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                    size: 30,
-                  )),
+                padding: EdgeInsets.zero,
+                onPressed: () {
+                  Navigator.pop(context);
+                  setState(() {
+                    viewModel.refreshList();
+                  });
+                },
+                icon: Image.asset(
+                  'assets/noun-arrow-left-1476218.png',
+                  width: 26,
+                  height: 26,
+                  color: Color(0xff7d7d7d),
+                ),
+              ),
               IconButton(
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(minWidth: 35),
-                  onPressed: () {},
-                  icon: const Icon(CupertinoIcons.home,
-                      color: Colors.white, size: 25)),
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(minWidth: 37),
+                onPressed: () {},
+                icon: Image.asset(
+                  'assets/icons8-home-100.png',
+                  width: 30,
+                  height: 30,
+                  color: const Color(0xff7d7d7d),
+                ),
+              ),
             ],
           ),
         ),
@@ -169,7 +177,17 @@ class _PostPageState extends State<PostPage> {
                                     style: TextStyle(color: Colors.black),
                                   )),
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              viewModel.postsListState.postList
+                                  .map((e) => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              CommentPage(postId: e.id!),
+                                        ),
+                                      ))
+                                  .toList();
+                            },
                             icon: const Icon(Ionicons.share_social_outline)),
                         ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(

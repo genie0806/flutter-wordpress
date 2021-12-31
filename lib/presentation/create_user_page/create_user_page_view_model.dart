@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:virtue_test/domain/model/create_user_model/create_user_model.dart';
-import 'package:virtue_test/domain/model/create_user_model/create_user_response_model.dart';
 import 'package:virtue_test/domain/use_case/create_user_use_case.dart/create_user_use_cases.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_event.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_state.dart';

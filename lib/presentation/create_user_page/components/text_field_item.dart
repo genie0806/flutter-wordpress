@@ -49,8 +49,8 @@ InputDecoration confirmPasswordInputDeco(
             viewModel.onEvent(const ToggleConfirmPasswordVisibility());
           },
           icon: state.hideConfirmPassword
-              ? Icon(Icons.visibility_off, size: 23)
-              : Icon(Icons.visibility, size: 23)));
+              ? const Icon(Icons.visibility_off, size: 23)
+              : const Icon(Icons.visibility, size: 23)));
 }
 
 InputDecoration passwordInputDeco(

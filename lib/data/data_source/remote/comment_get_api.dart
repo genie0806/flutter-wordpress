@@ -7,13 +7,13 @@ import 'dart:convert' as convert;
 String baseUrl = dotenv.get('BASE_URL');
 
 class CommentGetApi {
-  Future<Result<List<CommentGetmodel>>> fetchComments(int id) async {
+  Future<Result<List<CommentGetModel>>> fetchComments(int id) async {
     try {
       final response = await http.get(
           Uri.parse("$baseUrl/wp-json/wp/v2/comments?post=" + id.toString()));
       Iterable jsonResponse = convert.jsonDecode(response.body);
-      List<CommentGetmodel> commentGetApiList =
-          jsonResponse.map((e) => CommentGetmodel.fromJson(e)).toList();
+      List<CommentGetModel> commentGetApiList =
+          jsonResponse.map((e) => CommentGetModel.fromJson(e)).toList();
 
       if (response.statusCode == 200) {
         return Result.success(commentGetApiList);
