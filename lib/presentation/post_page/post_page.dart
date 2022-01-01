@@ -69,7 +69,7 @@ class _PostPageState extends State<PostPage> {
           title: Row(
             children: [
               IconButton(
-                padding: EdgeInsets.zero,
+                padding: EdgeInsets.only(top: 5),
                 onPressed: () {
                   Navigator.pop(context);
                   setState(() {
@@ -80,7 +80,7 @@ class _PostPageState extends State<PostPage> {
                   'assets/noun-arrow-left-1476218.png',
                   width: 26,
                   height: 26,
-                  color: Color(0xff7d7d7d),
+                  color: Colors.white,
                 ),
               ),
               IconButton(
@@ -91,7 +91,7 @@ class _PostPageState extends State<PostPage> {
                   'assets/icons8-home-100.png',
                   width: 30,
                   height: 30,
-                  color: const Color(0xff7d7d7d),
+                  color: Colors.white,
                 ),
               ),
             ],
@@ -183,15 +183,14 @@ class _PostPageState extends State<PostPage> {
                             style: ElevatedButton.styleFrom(
                                 primary: Colors.white, elevation: 0),
                             onPressed: () {
-                              viewModel.postsListState.postList
-                                  .map((e) => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              CommentPage(postId: e.id!),
-                                        ),
-                                      ))
-                                  .toList();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CommentPage(
+                                    postId: widget.id,
+                                  ),
+                                ),
+                              );
 
                               //navigator로 Comment 창으로 이동
                             },

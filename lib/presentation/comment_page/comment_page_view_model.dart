@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:virtue_test/domain/model/comment_model/comment_get_model.dart';
 
 import 'package:virtue_test/domain/use_case/comment_get_use_case/comment_get_use_cases.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_state.dart';

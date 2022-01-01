@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
-
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 
 class CommentPage extends StatefulWidget {
@@ -20,28 +18,29 @@ class _CommentPageState extends State<CommentPage> {
   StreamSubscription? streamSubscription;
 
   @override
-  void initState() {
-    super.initState();
-    Future.microtask(() {
-      context.read<CommentPageViewModel>().fetchCommentPage(widget.postId);
-      final viewModel = context.read<CommentPageViewModel>();
-      streamSubscription = viewModel.eventStream.listen((event) {
-        event.when(showToast: (String message) {});
-      });
-    });
-  }
+  //void initState() {
+  //  super.initState();
+  //  Future.microtask(() {
+  //    context.read<CommentPageViewModel>().fetchCommentPage(widget.postId);
+  //    final viewModel = context.read<CommentPageViewModel>();
+  //    streamSubscription = viewModel.eventStream.listen((event) {
+  //      event.when(showToast: (String message) {
+  //        return '오류입니다';
+  //      });
+  //    });
+  //  });
+  //}
 
-  @override
-  void dispose() {
-    streamSubscription?.cancel();
-    super.dispose();
-  }
+  //@override
+  //void dispose() {
+  //  streamSubscription?.cancel();
+  //  super.dispose();
+  //}
 
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<CommentPageViewModel>();
-    final model =
-        viewModel.state.model.where((e) => e.id == widget.postId).first;
+    final model = viewModel.state.model.first;
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 4,
@@ -83,7 +82,7 @@ class _CommentPageState extends State<CommentPage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.fromLTRB(15, 20, 15, 0),
         child: Column(
           children: [
             Padding(
@@ -95,10 +94,9 @@ class _CommentPageState extends State<CommentPage> {
                     CircleAvatar(
                       radius: 16,
                       child: ClipOval(
-                        child: Image.network(
-                          model.avatar ?? "",
-                          //fit: BoxFit.scaleDown,
-                        ),
+                        child: Image.network(model.avatar ?? ''
+                            //fit: BoxFit.scaleDown,
+                            ),
                       ),
                     ),
                     Expanded(
@@ -108,7 +106,7 @@ class _CommentPageState extends State<CommentPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              model.author ?? "",
+                              model.author ?? '',
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
