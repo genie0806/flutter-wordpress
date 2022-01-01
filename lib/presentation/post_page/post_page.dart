@@ -177,7 +177,12 @@ class _PostPageState extends State<PostPage> {
                                     style: TextStyle(color: Colors.black),
                                   )),
                         IconButton(
-                            onPressed: () async {
+                            onPressed: () {},
+                            icon: const Icon(Ionicons.share_social_outline)),
+                        ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.white, elevation: 0),
+                            onPressed: () {
                               viewModel.postsListState.postList
                                   .map((e) => Navigator.push(
                                         context,
@@ -187,15 +192,7 @@ class _PostPageState extends State<PostPage> {
                                         ),
                                       ))
                                   .toList();
-                            },
-                            icon: const Icon(Ionicons.share_social_outline)),
-                        ElevatedButton.icon(
-                            style: ElevatedButton.styleFrom(
-                                primary: Colors.white, elevation: 0),
-                            onPressed: () {
-                              setState(() {
-                                commentPressed = !commentPressed;
-                              });
+
                               //navigator로 Comment 창으로 이동
                             },
                             icon: const Icon(

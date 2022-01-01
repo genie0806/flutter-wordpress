@@ -23,6 +23,7 @@ class _CommentPageState extends State<CommentPage> {
   void initState() {
     super.initState();
     Future.microtask(() {
+      context.read<CommentPageViewModel>().fetchCommentPage(widget.postId);
       final viewModel = context.read<CommentPageViewModel>();
       streamSubscription = viewModel.eventStream.listen((event) {
         event.when(showToast: (String message) {});
