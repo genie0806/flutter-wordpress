@@ -54,9 +54,9 @@ class _CommentPageState extends State<CommentPage> {
             children: [
               IconButton(
                   padding: const EdgeInsets.only(top: 5),
-                  onPressed: () {
+                  onPressed: () async {
                     Navigator.pop(context);
-                    viewModel.refreshList(widget.postId);
+                    await viewModel.refreshList(widget.postId);
                   },
                   icon: Image.asset(
                     'assets/noun-arrow-left-1476218.png',
@@ -74,10 +74,10 @@ class _CommentPageState extends State<CommentPage> {
                     height: 30,
                     color: const Color(0xff7d7d7d),
                   )),
-              const Padding(
-                padding: EdgeInsets.only(left: 100),
+              Padding(
+                padding: EdgeInsets.only(left: 98),
                 child: Text(
-                  '댓글',
+                  '댓글 ' + model.length.toString(),
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.black),
                 ),

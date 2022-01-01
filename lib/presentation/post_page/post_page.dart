@@ -55,9 +55,9 @@ class _PostPageState extends State<PostPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<PostListPageViewModel>();
-    final contentViewModel = context.watch<CommentPageViewModel>();
     final model =
         viewModel.postsListState.postList.where((e) => e.id == widget.id).first;
+    final commentViewModel = context.watch<CommentPageViewModel>();
 
     return SafeArea(
       child: Scaffold(
@@ -203,13 +203,10 @@ class _PostPageState extends State<PostPage> {
                               Ionicons.chatbubble_outline,
                               color: Colors.black,
                             ),
-                            label: commentPressed
-                                ? const Text(
-                                    '0',
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                : const Text('1',
-                                    style: TextStyle(color: Colors.black))),
+                            label: Text(
+                              commentViewModel.state.model.length.toString(),
+                              style: TextStyle(color: Colors.black),
+                            )),
                       ],
                     ),
                   ),

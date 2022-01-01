@@ -37,5 +37,6 @@ class CommentPageViewModel with ChangeNotifier {
         _eventController.add(const CommentPageEvent.showToast('네트워크 에러 입니다'));
       },
     );
+    notifyListeners();
   }
 }
