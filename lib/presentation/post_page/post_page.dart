@@ -75,9 +75,7 @@ class _PostPageState extends State<PostPage> {
                 padding: EdgeInsets.only(top: 5),
                 onPressed: () {
                   Navigator.pop(context);
-                  setState(() {
-                    viewModel.refreshList();
-                  });
+                  viewModel.refreshList();
                 },
                 icon: Image.asset(
                   'assets/noun-arrow-left-1476218.png',

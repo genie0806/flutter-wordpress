@@ -48,15 +48,15 @@ class _CommentPageState extends State<CommentPage> {
           toolbarHeight: 44,
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-          //shadowColor: const Color(0xffFEFEFE).withAlpha(1),
           elevation: 0.7,
           title: Row(
             children: [
               IconButton(
                   padding: const EdgeInsets.only(top: 5),
                   onPressed: () async {
-                    Navigator.pop(context);
-                    await viewModel.refreshList(widget.postId);
+                    Navigator.pop(
+                      context,
+                    );
                   },
                   icon: Image.asset(
                     'assets/noun-arrow-left-1476218.png',
@@ -88,10 +88,10 @@ class _CommentPageState extends State<CommentPage> {
         body: Column(
           children: [
             if (model.isEmpty) ...{
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(top: 20),
               ),
-              Center(
+              const Center(
                   child: Text(
                 '첫번째 댓글을 남겨주세요',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
