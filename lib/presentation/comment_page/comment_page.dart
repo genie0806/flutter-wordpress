@@ -87,11 +87,22 @@ class _CommentPageState extends State<CommentPage> {
         ),
         body: Column(
           children: [
-            ...model.map(
-              (e) => CommentFormField(
-                model: e,
+            if (model.isEmpty) ...{
+              Padding(
+                padding: EdgeInsets.only(top: 20),
               ),
-            )
+              Center(
+                  child: Text(
+                '첫번째 댓글을 남겨주세요',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ))
+            } else ...{
+              ...model.map(
+                (e) => CommentFormField(
+                  model: e,
+                ),
+              )
+            }
           ],
         ));
   }
