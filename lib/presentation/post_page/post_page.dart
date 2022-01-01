@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page.dart';
+import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
 import 'package:virtue_test/presentation/post_page/components/content_board.dart';
 import 'package:virtue_test/presentation/post_page/components/info_board.dart';
@@ -54,8 +55,10 @@ class _PostPageState extends State<PostPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<PostListPageViewModel>();
+    final contentViewModel = context.watch<CommentPageViewModel>();
     final model =
         viewModel.postsListState.postList.where((e) => e.id == widget.id).first;
+
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
@@ -186,9 +189,11 @@ class _PostPageState extends State<PostPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => CommentPage(
-                                    postId: widget.id,
-                                  ),
+                                  builder: (context) {
+                                    return CommentPage(
+                                      postId: widget.id,
+                                    );
+                                  },
                                 ),
                               );
 
