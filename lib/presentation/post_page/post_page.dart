@@ -34,6 +34,7 @@ class _PostPageState extends State<PostPage> {
     super.initState();
     Future.microtask(() {
       final viewModel = context.read<PostListPageViewModel>();
+      context.read<CommentPageViewModel>().fetchCommentPage(widget.id);
       streamSubscription = viewModel.eventStream.listen((event) {
         event.when(
             showSnackBar: (message) {
@@ -42,6 +43,13 @@ class _PostPageState extends State<PostPage> {
               );
             },
             reloadPage: () {});
+      });
+      final commentViewModel = context.read<CommentPageViewModel>();
+      context.read<CommentPageViewModel>().fetchCommentPage(widget.id);
+      streamSubscription = commentViewModel.eventStream.listen((event) {
+        event.when(showToast: (String message) {
+          return '오류입니다';
+        });
       });
     });
   }

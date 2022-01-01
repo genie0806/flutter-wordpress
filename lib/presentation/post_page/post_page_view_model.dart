@@ -18,7 +18,7 @@ class PostPageViewModel with ChangeNotifier {
   Future refresh() async {
     await fetchPostPage();
     notifyListeners();
-    return Future.delayed(const Duration(microseconds: 300));
+    return Future.delayed(const Duration(microseconds: 100));
   }
 
   Future<void> fetchPostPage() async {

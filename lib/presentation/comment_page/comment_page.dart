@@ -22,8 +22,8 @@ class _CommentPageState extends State<CommentPage> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<CommentPageViewModel>().fetchCommentPage(widget.postId);
       final viewModel = context.read<CommentPageViewModel>();
+      context.read<CommentPageViewModel>().fetchCommentPage(widget.postId);
       streamSubscription = viewModel.eventStream.listen((event) {
         event.when(showToast: (String message) {
           return '오류입니다';
@@ -75,11 +75,11 @@ class _CommentPageState extends State<CommentPage> {
                     color: const Color(0xff7d7d7d),
                   )),
               Padding(
-                padding: EdgeInsets.only(left: 98),
+                padding: const EdgeInsets.only(left: 98),
                 child: Text(
                   '댓글 ' + model.length.toString(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 ),
               )
             ],
