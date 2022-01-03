@@ -34,7 +34,6 @@ class _PostPageState extends State<PostPage> {
     super.initState();
     Future.microtask(() {
       final viewModel = context.read<PostListPageViewModel>();
-      context.read<CommentPageViewModel>().fetchCommentPage(widget.id);
       streamSubscription = viewModel.eventStream.listen((event) {
         event.when(
             showSnackBar: (message) {
@@ -161,8 +160,8 @@ class _PostPageState extends State<PostPage> {
                     child: Row(
                       //crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        ElevatedButton.icon(
-                            style: ElevatedButton.styleFrom(
+                        TextButton.icon(
+                            style: TextButton.styleFrom(
                                 primary: Colors.white, elevation: 0),
                             onPressed: () {
                               setState(() {
@@ -188,8 +187,8 @@ class _PostPageState extends State<PostPage> {
                         IconButton(
                             onPressed: () {},
                             icon: const Icon(Ionicons.share_social_outline)),
-                        ElevatedButton.icon(
-                            style: ElevatedButton.styleFrom(
+                        TextButton.icon(
+                            style: TextButton.styleFrom(
                                 primary: Colors.white, elevation: 0),
                             onPressed: () {
                               Navigator.push(
@@ -211,7 +210,7 @@ class _PostPageState extends State<PostPage> {
                             ),
                             label: Text(
                               commentViewModel.state.model.length.toString(),
-                              style: TextStyle(color: Colors.black),
+                              style: const TextStyle(color: Colors.black),
                             )),
                       ],
                     ),

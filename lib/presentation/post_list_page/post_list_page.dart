@@ -165,8 +165,9 @@ class _PostListPageState extends State<PostListPage> {
               child: RefreshIndicator(
                 onRefresh: viewModel.refreshList,
                 child: ListView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    if (viewModel.postsListState.postList.isNotEmpty) ...{
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                         child: Text(
@@ -193,7 +194,11 @@ class _PostListPageState extends State<PostListPage> {
                                 },
                               ))
                           .toList()
-                    ]),
+                    } else ...{
+                      Center(child: CircularProgressIndicator())
+                    }
+                  ],
+                ),
               ),
             ),
             const Text('다다'),
@@ -204,30 +209,4 @@ class _PostListPageState extends State<PostListPage> {
       ),
     ));
   }
-}
-
-Widget imageResultView(PostListPageViewModel viewModel, BuildContext context) {
-  final viewModel = context.watch<PostListPageViewModel>();
-  return RefreshIndicator(
-    onRefresh: viewModel.refreshList,
-    child: ListView(
-        physics: const NeverScrollableScrollPhysics(),
-        children: viewModel.postsListState.postList
-            .map((e) => CardViewItem(
-                  model: e,
-                  onTap: () async {
-                    bool? result = await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PostPage(id: e.id!),
-                      ),
-                    );
-
-                    if (result != null && result == true) {
-                      viewModel.refreshList();
-                    }
-                  },
-                ))
-            .toList()),
-  );
 }
