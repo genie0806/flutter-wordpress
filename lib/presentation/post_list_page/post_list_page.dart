@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
+import 'package:virtue_test/domain/model/simple_post_model/simple_post_model.dart';
+import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/components/card_view_item.dart';
+import 'package:virtue_test/presentation/post_list_page/components/skeleton_post_list.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_event.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
 import 'package:virtue_test/presentation/post_page/post_page.dart';
@@ -49,6 +52,7 @@ class _PostListPageState extends State<PostListPage> {
     final viewModel = context.watch<PostListPageViewModel>();
     return SafeArea(
         child: Scaffold(
+      backgroundColor: Colors.white,
       body: DefaultTabController(
         length: 4,
         child: NestedScrollView(
@@ -195,7 +199,7 @@ class _PostListPageState extends State<PostListPage> {
                               ))
                           .toList()
                     } else ...{
-                      Center(child: CircularProgressIndicator())
+                      const SkeletonPostList()
                     }
                   ],
                 ),
