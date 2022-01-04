@@ -79,7 +79,7 @@ class _CommentPageState extends State<CommentPage> {
                 child: Text(
                   '댓글 ' + model.length.toString(),
                   textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black, fontSize: 18),
                 ),
               )
             ],
