@@ -4,5 +4,5 @@ part 'comment_page_event.freezed.dart';
 
 @freezed
 abstract class CommentPageEvent with _$CommentPageEvent {
-  const factory CommentPageEvent.storeContent(String email) = StoreContent;
+  const factory CommentPageEvent.storeContent(String content) = StoreContent;
 }
