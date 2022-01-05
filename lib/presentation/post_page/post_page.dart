@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
@@ -79,7 +78,7 @@ class _PostPageState extends State<PostPage> {
           title: Row(
             children: [
               IconButton(
-                padding: EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(top: 5),
                 onPressed: () {
                   Navigator.pop(context);
                   viewModel.refreshList();

@@ -1,18 +1,21 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:virtue_test/data/data_source/remote/comment_get_api.dart';
+import 'package:virtue_test/data/data_source/remote/create_comment.api.dart';
 import 'package:virtue_test/data/data_source/remote/create_user_api.dart';
 import 'package:virtue_test/data/data_source/remote/login_user_api.dart';
 import 'package:virtue_test/data/data_source/remote/simple_post_api.dart';
 import 'package:virtue_test/data/data_source/remote/simple_post_list_api.dart';
 import 'package:virtue_test/data/data_source/remote/social_login_api.dart';
 import 'package:virtue_test/data/respository/comment_get_repository_impl.dart';
+import 'package:virtue_test/data/respository/create_comment_repository_impl.dart';
 import 'package:virtue_test/data/respository/create_user_repository_impl.dart';
 import 'package:virtue_test/data/respository/login_user_repository_impl.dart';
 import 'package:virtue_test/data/respository/simple_post_list_repository_impl.dart';
 import 'package:virtue_test/data/respository/simple_post_repository_impl.dart';
 import 'package:virtue_test/data/respository/social_login_repository_impl.dart';
-import 'package:virtue_test/domain/use_case/comment_get_use_case/comment_get_use_cases.dart';
+import 'package:virtue_test/domain/use_case/comment_get_use_case/comment_use_cases.dart';
+import 'package:virtue_test/domain/use_case/comment_get_use_case/create_comment_use_case.dart';
 import 'package:virtue_test/domain/use_case/comment_get_use_case/get_comment_use_case.dart';
 import 'package:virtue_test/domain/use_case/create_user_use_case.dart/create_user_use_cases.dart';
 import 'package:virtue_test/domain/use_case/create_user_use_case.dart/post_register_user_use_case.dart';
@@ -61,9 +64,13 @@ Future<List<SingleChildWidget>> getProviders() async {
       getLoginUserUseCase: GetLoginUserUseCase(loginUserRepository));
 
   final commentGetData = CommentGetApi();
+  final createCommentData = CreateCommentApi();
   final commentGetRepository = CommentGetRepositoryImpl(commentGetData);
+  final createCommentRepository =
+      CreateCommentRepositoryImpl(createCommentData);
   final commentUseCases = CommentGetUseCases(
-      getCommentUseCase: GetCommentUseCase(commentGetRepository));
+      getCommentUseCase: GetCommentUseCase(commentGetRepository),
+      createCommentUseCase: CreateCommentUseCase(createCommentRepository));
 
   return [
     //Post의 관련된 DI
