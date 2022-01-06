@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/comment_page/components/comment_form_filed.dart';
+import 'package:virtue_test/presentation/comment_page/components/comment_text_form_field.dart';
 
 class CommentPage extends StatefulWidget {
   final int postId;
@@ -85,7 +86,7 @@ class _CommentPageState extends State<CommentPage> {
             ],
           ),
         ),
-        body: Column(
+        body: ListView(
           children: [
             if (model.isEmpty) ...{
               const Padding(
@@ -102,7 +103,30 @@ class _CommentPageState extends State<CommentPage> {
                   model: e,
                 ),
               )
-            }
+            },
+
+            //TextFormField(
+            //        initialValue: "",
+            //        autovalidateMode: AutovalidateMode.onUserInteraction,
+            //        validator: (onValidateVal) {
+            //          if (onValidateVal!.trim().isEmpty) {
+            //            return '이메일을 입력해주세요';
+            //          }
+            //          return null;
+            //        },
+            //        onChanged: (val) {
+            //          viewModel.onEvent(StoreUsername(val));
+            //        },
+            //        onSaved: (value) {
+            //          viewModel.onEvent(StoreUsername(value.toString().trim()));
+            //        },
+            //        cursorColor: const Color(0xff405376),
+            //        style: const TextStyle(
+            //          fontSize: 16,
+            //          color: Colors.black,
+            //        ),
+            //        decoration: textInputDeco('댓글을 입력해주세요'),
+            //      )
           ],
         ));
   }

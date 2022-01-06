@@ -20,7 +20,7 @@ class UserMeApi {
         return Result.success(
             UserMeModel.fromJson(convert.jsonDecode(response.body)));
       } else {
-        return const Result.error('로그인 연결이 안되어있습니다.');
+        return const Result.error('로그인이 안되어있습니다.');
       }
     } catch (e) {
       return const Result.error('인터넷 연결이 되어있지않습니다.');

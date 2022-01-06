@@ -19,6 +19,12 @@ class CommentPageViewModel with ChangeNotifier {
   final _eventController = StreamController<CommentPageUiEvent>.broadcast();
   Stream<CommentPageUiEvent> get eventStream => _eventController.stream;
 
+  void onEvent(CommentPageEvent event) {
+    event.when(storeContent: (content) {
+      _state = state.copyWith(model: state.model);
+    });
+  }
+
   Future refreshList(int id) async {
     await fetchCommentPage(id);
     notifyListeners();

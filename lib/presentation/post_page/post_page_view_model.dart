@@ -9,8 +9,8 @@ import 'package:virtue_test/presentation/post_page/post_page_state.dart';
 class PostPageViewModel with ChangeNotifier {
   final PostUseCases useCases;
   PostPageViewModel(this.useCases);
-  PostsState _postsState = PostsState();
-  PostsState get postsState => _postsState;
+  PostsState _state = PostsState();
+  PostsState get state => _state;
 
   final _eventController = StreamController<PostPageEvent>.broadcast();
   Stream<PostPageEvent> get eventStream => _eventController.stream;
@@ -24,7 +24,7 @@ class PostPageViewModel with ChangeNotifier {
   Future<void> fetchPostPage() async {
     final result = await useCases.getPostList();
     result.when(success: (resultPosts) {
-      _postsState = _postsState.copyWith(post: resultPosts);
+      _state = state.copyWith(post: resultPosts);
       notifyListeners();
     }, error: (e) {
       print((result as Error).message.toString());

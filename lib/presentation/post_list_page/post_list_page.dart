@@ -10,6 +10,7 @@ import 'package:virtue_test/presentation/post_list_page/components/skeleton_post
 import 'package:virtue_test/presentation/post_list_page/post_list_page_event.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
 import 'package:virtue_test/presentation/post_page/post_page.dart';
+import 'package:virtue_test/presentation/user_me_data/user_me_view_model.dart';
 
 class PostListPage extends StatefulWidget {
   const PostListPage({
@@ -38,6 +39,9 @@ class _PostListPageState extends State<PostListPage> {
           const ReloadPage();
         });
       });
+      context.read<UserMeViewModel>().fetchUserMe();
+      final userViewModel = context.read<UserMeViewModel>();
+      print(userViewModel.state.model?.email);
     });
   }
 
