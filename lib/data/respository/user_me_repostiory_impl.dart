@@ -11,7 +11,7 @@ class UserMeRepositoryImpl implements UserMeRepository {
   );
 
   @override
-  Future<Result<UserMeModel>> getUserMe() async {
-    return await userMeApi.fetchUserMe();
+  Future<Result<UserMeModel>> getUserMe(String token) async {
+    return await userMeApi.fetchUserMe(token);
   }
 }
