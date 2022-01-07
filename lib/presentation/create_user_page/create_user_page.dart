@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/src/provider.dart';
@@ -61,22 +62,40 @@ class _CreateUserPageState extends State<CreateUserPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<CreateUserPageViewModel>();
-    return SafeArea(
+    return ColorfulSafeArea(
+      color: Colors.white,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          foregroundColor: Colors.black,
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: const Padding(
-            padding: EdgeInsets.only(left: 70),
-            child: Text(
-              '이메일로 회원가입',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.start,
-            ),
-          ),
-        ),
+            titleSpacing: 6,
+            automaticallyImplyLeading: false,
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.white,
+            elevation: 0,
+            title: Row(
+              children: [
+                IconButton(
+                  padding: const EdgeInsets.only(top: 5),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Image.asset(
+                    'assets/noun-arrow-left-1476218.png',
+                    width: 26,
+                    height: 26,
+                    color: Colors.black,
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 90),
+                  child: Text(
+                    '이메일로 회원가입',
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+              ],
+            )),
         body: SingleChildScrollView(
           child: Form(
             key: globalKey,
