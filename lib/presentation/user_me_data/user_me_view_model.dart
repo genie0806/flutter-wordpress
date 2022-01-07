@@ -20,17 +20,18 @@ class UserMeViewModel with ChangeNotifier {
   final _eventController = StreamController<UserMeUiEvent>.broadcast();
   Stream<UserMeUiEvent> get eventStream => _eventController.stream;
 
-// Future<void> fetchUserMe() async {
-//   final result = await useCases.getUserMeUseCase();
-//   result.when(
-//     success: (resultUserMe) {
-//       _state = _state.copyWith(model: resultUserMe);
-//       notifyListeners();
-//     },
-//     error: (e) {
-//       print((result as Error).message.toString());
-//       _eventController
-//           .add(const UserMeUiEvent.showToast('유저정보를 가져올 수 없습니다.'));
-//     },
-//   );
+  Future<void> fetchUserMe() async {
+    final result = await useCases.getUserMeUseCase();
+    result.when(
+      success: (resultUserMe) {
+        _state = _state.copyWith(model: resultUserMe);
+        notifyListeners();
+      },
+      error: (e) {
+        print((result as Error).message.toString());
+        _eventController
+            .add(const UserMeUiEvent.showToast('유저정보를 가져올 수 없습니다.'));
+      },
+    );
+  }
 }

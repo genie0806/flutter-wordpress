@@ -39,6 +39,9 @@ class _PostListPageState extends State<PostListPage> {
           const ReloadPage();
         });
       });
+      context.read<UserMeViewModel>().fetchUserMe();
+      final userviewModel = context.read<UserMeViewModel>();
+      print(userviewModel.state.model?.email);
     });
   }
 
