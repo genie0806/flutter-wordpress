@@ -7,6 +7,7 @@ import 'package:virtue_test/data/data_source/remote/login_user_api.dart';
 import 'package:virtue_test/data/data_source/remote/simple_post_api.dart';
 import 'package:virtue_test/data/data_source/remote/simple_post_list_api.dart';
 import 'package:virtue_test/data/data_source/remote/social_login_api.dart';
+import 'package:virtue_test/data/data_source/remote/user_me_api.dart';
 import 'package:virtue_test/data/respository/comment_get_repository_impl.dart';
 import 'package:virtue_test/data/respository/create_comment_repository_impl.dart';
 import 'package:virtue_test/data/respository/create_user_repository_impl.dart';
@@ -14,6 +15,7 @@ import 'package:virtue_test/data/respository/login_user_repository_impl.dart';
 import 'package:virtue_test/data/respository/simple_post_list_repository_impl.dart';
 import 'package:virtue_test/data/respository/simple_post_repository_impl.dart';
 import 'package:virtue_test/data/respository/social_login_repository_impl.dart';
+import 'package:virtue_test/data/respository/user_me_repostiory_impl.dart';
 import 'package:virtue_test/domain/use_case/comment_get_use_case/comment_use_cases.dart';
 import 'package:virtue_test/domain/use_case/comment_get_use_case/create_comment_use_case.dart';
 import 'package:virtue_test/domain/use_case/comment_get_use_case/get_comment_use_case.dart';
@@ -27,12 +29,15 @@ import 'package:virtue_test/domain/use_case/social_login_use_case.dart/login_use
 import 'package:virtue_test/domain/use_case/post_use_case/get_post_list_use_case.dart';
 import 'package:virtue_test/domain/use_case/post_use_case/get_post_use_case.dart';
 import 'package:virtue_test/domain/use_case/post_use_case/post_use_cases.dart';
+import 'package:virtue_test/domain/use_case/user_me_use_case/get_user_me_use_case.dart';
+import 'package:virtue_test/domain/use_case/user_me_use_case/user_me_use_cases.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_page_view_model.dart';
 import 'package:virtue_test/presentation/login_user_page/login_user_view_model.dart';
 import 'package:virtue_test/presentation/social_login_page/social_login_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
 import 'package:virtue_test/presentation/post_page/post_page_view_model.dart';
+import 'package:virtue_test/presentation/user_me_data/user_me_view_model.dart';
 
 Future<List<SingleChildWidget>> getProviders() async {
   //Post의 관련된 DI
@@ -63,6 +68,7 @@ Future<List<SingleChildWidget>> getProviders() async {
   final loginUserUseCases = LoginUserUseCases(
       getLoginUserUseCase: GetLoginUserUseCase(loginUserRepository));
 
+//Comment에 관련된 DI
   final commentGetData = CommentGetApi();
   final createCommentData = CreateCommentApi();
   final commentGetRepository = CommentGetRepositoryImpl(commentGetData);
@@ -71,6 +77,12 @@ Future<List<SingleChildWidget>> getProviders() async {
   final commentUseCases = CommentGetUseCases(
       getCommentUseCase: GetCommentUseCase(commentGetRepository),
       createCommentUseCase: CreateCommentUseCase(createCommentRepository));
+
+//UserMe에 관련된 DI
+  final userMeData = UserMeApi();
+  final userMeRepository = UserMeRepositoryImpl(userMeData);
+  final userMeUseCases =
+      UserMeUseCases(getUserMeUseCase: GetUserMeUseCase(userMeRepository));
 
   return [
     //Post의 관련된 DI
@@ -88,5 +100,7 @@ Future<List<SingleChildWidget>> getProviders() async {
         create: (context) => LoginUserViewModel(loginUserUseCases)),
     ChangeNotifierProvider<CommentPageViewModel>(
         create: (context) => CommentPageViewModel(commentUseCases)),
+    ChangeNotifierProvider<UserMeViewModel>(
+        create: (context) => UserMeViewModel(userMeUseCases)),
   ];
 }

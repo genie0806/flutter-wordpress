@@ -5,18 +5,16 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 String baseUrl = dotenv.get('BASE_URL');
-Map<String, String> _urlHeader = {
-  'Authorization': '',
-};
 
 class UserMeApi {
-  Future<Result<UserMeModel>> fetchUserMe() async {
+  Future<Result<UserMeModel>> fetchUserMe(String token) async {
+    Map<String, String> _urlHeader = {'Authorization': 'Bearer' + token};
     try {
       final response = await http.get(
-        Uri.parse(baseUrl + '/users/me'),
+        Uri.parse(baseUrl + 'users/me'),
         headers: _urlHeader,
       );
-      if (response.statusCode >= 200 && response.statusCode < 300) {
+      if (response.statusCode == 200) {
         return Result.success(
             UserMeModel.fromJson(convert.jsonDecode(response.body)));
       } else {
