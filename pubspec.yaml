@@ -48,6 +48,7 @@ dependencies:
   google_fonts: ^2.1.1
   fluttertoast: ^8.0.8
   flutter_html: ^2.2.1
+  colorful_safe_area: ^0.3.0
   
   
 
