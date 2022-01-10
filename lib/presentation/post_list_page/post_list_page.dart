@@ -3,6 +3,7 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:virtue_test/domain/model/simple_post_model/simple_post_model.dart';
 import 'package:virtue_test/domain/util/system_navigator_double.dart';
@@ -201,12 +202,12 @@ class _PostListPageState extends State<PostListPage> {
                                       model: e,
                                       onTap: () async {
                                         bool? result = await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                PostPage(id: e.id!),
-                                          ),
-                                        );
+                                            context,
+                                            PageTransition(
+                                              child: PostPage(id: e.id!),
+                                              type: PageTransitionType
+                                                  .rightToLeftWithFade,
+                                            ));
 
                                         if (result != null && result == true) {
                                           viewModel.refreshList();

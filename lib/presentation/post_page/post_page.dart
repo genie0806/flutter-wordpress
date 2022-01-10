@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:virtue_test/data/data_source/remote/comment_get_api.dart';
 import 'package:virtue_test/data/data_source/remote/create_comment.api.dart';
@@ -204,15 +205,14 @@ class _PostPageState extends State<PostPage> {
                                   primary: Colors.white, elevation: 0),
                               onPressed: () {
                                 Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) {
-                                      return CommentPage(
+                                    context,
+                                    PageTransition(
+                                      child: CommentPage(
                                         postId: widget.id,
-                                      );
-                                    },
-                                  ),
-                                );
+                                      ),
+                                      type: PageTransitionType
+                                          .rightToLeftWithFade,
+                                    ));
 
                                 //navigator로 Comment 창으로 이동
                               },
