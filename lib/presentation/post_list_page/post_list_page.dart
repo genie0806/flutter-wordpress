@@ -25,7 +25,6 @@ class PostListPage extends StatefulWidget {
 
 class _PostListPageState extends State<PostListPage> {
   StreamSubscription? streamSubscription;
-  DateTime? currentBackPressTime;
 
   @override
   void initState() {

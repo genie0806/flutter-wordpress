@@ -20,18 +20,18 @@ class _CommentPageState extends State<CommentPage> {
   StreamSubscription? streamSubscription;
 
   @override
-  void initState() {
-    super.initState();
-    Future.microtask(() {
-      final viewModel = context.read<CommentPageViewModel>();
-      context.read<CommentPageViewModel>().fetchCommentPage(widget.postId);
-      streamSubscription = viewModel.eventStream.listen((event) {
-        event.when(showToast: (String message) {
-          return '오류입니다';
-        });
-      });
-    });
-  }
+  //void initState() {
+  //  super.initState();
+  //  Future.microtask(() {
+  //    final viewModel = context.read<CommentPageViewModel>();
+  //    context.read<CommentPageViewModel>().fetchCommentPage(widget.postId);
+  //    streamSubscription = viewModel.eventStream.listen((event) {
+  //      event.when(showToast: (String message) {
+  //        return '오류입니다';
+  //      });
+  //    });
+  //  });
+  //}
 
   @override
   void dispose() {

@@ -2,6 +2,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
+import 'package:virtue_test/data/data_source/remote/comment_get_api.dart';
+import 'package:virtue_test/data/data_source/remote/create_comment.api.dart';
+import 'package:virtue_test/data/respository/comment_get_repository_impl.dart';
+import 'package:virtue_test/data/respository/create_comment_repository_impl.dart';
+import 'package:virtue_test/domain/use_case/comment_get_use_case/comment_use_cases.dart';
+import 'package:virtue_test/domain/use_case/comment_get_use_case/create_comment_use_case.dart';
+import 'package:virtue_test/domain/use_case/comment_get_use_case/get_comment_use_case.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
@@ -199,7 +206,7 @@ class _PostPageState extends State<PostPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) {
+                                    builder: (_) {
                                       return CommentPage(
                                         postId: widget.id,
                                       );
