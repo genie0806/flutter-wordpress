@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:page_transition/page_transition.dart';
@@ -66,7 +67,9 @@ class _PostPageState extends State<PostPage> {
         viewModel.postsListState.postList.where((e) => e.id == widget.id).first;
     final commentViewModel = context.watch<CommentPageViewModel>();
 
-    return SafeArea(
+    return ColorfulSafeArea(
+      color: Colors.black,
+      bottom: false,
       child: WillPopScope(
         onWillPop: () async {
           Navigator.pop(context);
@@ -81,7 +84,10 @@ class _PostPageState extends State<PostPage> {
             toolbarHeight: 45,
             backgroundColor: Colors.transparent,
             automaticallyImplyLeading: false,
-            shadowColor: Colors.grey.withAlpha(1),
+            shadowColor: Colors.transparent,
+            bottomOpacity: 0.0,
+            elevation: 0.0,
+            centerTitle: true,
             title: Row(
               children: [
                 IconButton(
@@ -227,7 +233,7 @@ class _PostPageState extends State<PostPage> {
                                   icon: const Icon(
                                     Ionicons.chatbubble_outline,
                                     color: Colors.black,
-                                    size: 30,
+                                    size: 28,
                                   ),
                                   label: Text(
                                     commentViewModel.state.model.length

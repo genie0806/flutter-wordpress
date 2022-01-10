@@ -10,7 +10,17 @@ InputDecoration textInputDeco(String hint) {
       focusedBorder: activeInputBorder(),
       errorBorder: errorInputBorder(),
       focusedErrorBorder: errorInputBorder(),
-      errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 13));
+      errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 13),
+      suffixIcon: TextButton(
+        child: const Text(
+          '등록',
+          style: TextStyle(
+              color: Color(0xff405479),
+              fontSize: 17,
+              fontWeight: FontWeight.bold),
+        ),
+        onPressed: () {},
+      ));
 }
 
 OutlineInputBorder errorInputBorder() {
