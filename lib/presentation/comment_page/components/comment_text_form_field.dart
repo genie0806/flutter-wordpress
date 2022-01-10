@@ -19,11 +19,11 @@ OutlineInputBorder errorInputBorder() {
         width: 0.5,
         color: Colors.red,
       ),
-      borderRadius: BorderRadius.circular(0));
+      borderRadius: BorderRadius.circular(5));
 }
 
 OutlineInputBorder activeInputBorder() {
   return OutlineInputBorder(
       borderSide: BorderSide(color: Colors.grey.shade500, width: 0.5),
-      borderRadius: BorderRadius.circular(0));
+      borderRadius: BorderRadius.circular(5));
 }

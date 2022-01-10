@@ -115,31 +115,47 @@ class _CommentPageState extends State<CommentPage> {
                   },
                 ]),
               ),
-              Container(
-                alignment: Alignment.bottomCenter,
-                child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                  Expanded(
-                    child: TextFormField(
-                      initialValue: "",
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (onValidateVal) {
-                        if (onValidateVal!.trim().isEmpty) {
-                          return '댓글을 입력해주세요';
-                        }
-                        return null;
-                      },
-                      onChanged: (val) {
-                        viewModel.onEvent(StoreContent(val));
-                      },
-                      cursorColor: const Color(0xff405376),
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
+              const Padding(
+                padding: EdgeInsets.only(bottom: 10),
+                child: Divider(
+                  thickness: 0.5,
+                  color: Colors.black12,
+                  indent: 0,
+                  endIndent: 0,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: Container(
+                  alignment: Alignment.bottomCenter,
+                  child:
+                      Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: TextFormField(
+                          initialValue: "",
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (onValidateVal) {
+                            if (onValidateVal!.trim().isEmpty) {
+                              return '댓글을 입력해주세요';
+                            }
+                            return null;
+                          },
+                          onChanged: (val) {
+                            viewModel.onEvent(StoreContent(val));
+                          },
+                          cursorColor: const Color(0xff405376),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          decoration: textInputDeco('댓글을 입력해주세요'),
+                        ),
                       ),
-                      decoration: textInputDeco('댓글을 입력해주세요'),
                     ),
-                  ),
-                ]),
+                  ]),
+                ),
               ),
             ],
           ),
