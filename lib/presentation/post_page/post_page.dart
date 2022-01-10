@@ -3,13 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:virtue_test/data/data_source/remote/comment_get_api.dart';
-import 'package:virtue_test/data/data_source/remote/create_comment.api.dart';
-import 'package:virtue_test/data/respository/comment_get_repository_impl.dart';
-import 'package:virtue_test/data/respository/create_comment_repository_impl.dart';
-import 'package:virtue_test/domain/use_case/comment_get_use_case/comment_use_cases.dart';
-import 'package:virtue_test/domain/use_case/comment_get_use_case/create_comment_use_case.dart';
-import 'package:virtue_test/domain/use_case/comment_get_use_case/get_comment_use_case.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
@@ -82,13 +75,13 @@ class _PostPageState extends State<PostPage> {
         },
         child: Scaffold(
           extendBodyBehindAppBar: true,
+          backgroundColor: Colors.white,
           appBar: AppBar(
             titleSpacing: 4,
-            toolbarHeight: 44,
+            toolbarHeight: 45,
             backgroundColor: Colors.transparent,
             automaticallyImplyLeading: false,
-            shadowColor: const Color(0xffFEFEFE).withAlpha(1),
-            //elevation: 0.1,
+            shadowColor: Colors.grey.withAlpha(1),
             title: Row(
               children: [
                 IconButton(
@@ -166,65 +159,85 @@ class _PostPageState extends State<PostPage> {
                   right: 0,
                   bottom: 0,
                   child: Opacity(
-                    opacity: 0.9,
+                    opacity: 0.95,
                     child: Container(
                       color: Colors.white,
-                      height: 55,
-                      child: Row(
-                        //crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          TextButton.icon(
-                              style: TextButton.styleFrom(
-                                  primary: Colors.white, elevation: 0),
-                              onPressed: () {
-                                setState(() {
-                                  likesPressed = !likesPressed;
-                                });
-                              },
-                              icon: likesPressed
-                                  ? const Icon(
-                                      Icons.favorite_border_outlined,
-                                      color: Colors.black,
-                                    )
-                                  : const Icon(Icons.favorite,
-                                      color: Colors.indigoAccent),
-                              label: likesPressed
-                                  ? const Text(
-                                      '0',
-                                      style: TextStyle(color: Colors.black),
-                                    )
-                                  : const Text(
-                                      '1',
-                                      style: TextStyle(color: Colors.black),
-                                    )),
-                          IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Ionicons.share_social_outline)),
-                          TextButton.icon(
-                              style: TextButton.styleFrom(
-                                  primary: Colors.white, elevation: 0),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      child: CommentPage(
-                                        postId: widget.id,
+                      height: 50,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Row(
+                          //crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            TextButton.icon(
+                                style:
+                                    TextButton.styleFrom(primary: Colors.white),
+                                onPressed: () {
+                                  setState(() {
+                                    likesPressed = !likesPressed;
+                                  });
+                                },
+                                icon: likesPressed
+                                    ? const Icon(
+                                        Icons.favorite_border_outlined,
+                                        color: Colors.black,
+                                        size: 30,
+                                      )
+                                    : Icon(
+                                        Icons.favorite,
+                                        color: Colors.indigo.shade700,
+                                        size: 30,
                                       ),
-                                      type: PageTransitionType
-                                          .rightToLeftWithFade,
-                                    ));
+                                label: likesPressed
+                                    ? const Text(
+                                        '0',
+                                        style: TextStyle(color: Colors.black),
+                                      )
+                                    : const Text(
+                                        '1',
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 16),
+                                      )),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Ionicons.share_social_outline,
+                                    size: 28,
+                                  )),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 200),
+                              child: TextButton.icon(
+                                  style: TextButton.styleFrom(
+                                      primary: Colors.white, elevation: 0),
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          child: CommentPage(
+                                            postId: widget.id,
+                                          ),
+                                          type: PageTransitionType
+                                              .rightToLeftWithFade,
+                                        ));
 
-                                //navigator로 Comment 창으로 이동
-                              },
-                              icon: const Icon(
-                                Ionicons.chatbubble_outline,
-                                color: Colors.black,
-                              ),
-                              label: Text(
-                                commentViewModel.state.model.length.toString(),
-                                style: const TextStyle(color: Colors.black),
-                              )),
-                        ],
+                                    //navigator로 Comment 창으로 이동
+                                  },
+                                  icon: const Icon(
+                                    Ionicons.chatbubble_outline,
+                                    color: Colors.black,
+                                    size: 30,
+                                  ),
+                                  label: Text(
+                                    commentViewModel.state.model.length
+                                        .toString(),
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 16),
+                                  )),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
