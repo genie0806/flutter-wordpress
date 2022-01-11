@@ -13,12 +13,14 @@ class GoogleSocialLogin {
   SocialLoginApi socialLoginApi = SocialLoginApi();
   GoogleSignIn googleSignIn = GoogleSignIn();
 
-  Future<bool> call(String userName) async {
+  Future<bool> call(
+      String userName, String displayName, String photoUrl) async {
     googleAccount = await googleSignIn.signIn();
     socialUserModel = SocialUserModel(
         displayName: googleAccount?.displayName ?? '',
         email: googleAccount?.email ?? '',
         photoUrl: googleAccount?.photoUrl ?? '');
-    return repository.getSocialLogin(socialUserModel?.email ?? '');
+    return repository.getSocialLogin(socialUserModel?.email ?? '',
+        socialUserModel?.displayName ?? '', socialUserModel?.photoUrl ?? '');
   }
 }
