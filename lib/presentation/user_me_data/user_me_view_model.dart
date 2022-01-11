@@ -5,6 +5,7 @@ import 'package:virtue_test/core/result.dart';
 
 import 'package:virtue_test/domain/use_case/user_me_use_case/get_user_me_use_case.dart';
 import 'package:virtue_test/domain/use_case/user_me_use_case/user_me_use_cases.dart';
+import 'package:virtue_test/presentation/user_me_data/user_me_event.dart';
 import 'package:virtue_test/presentation/user_me_data/user_me_state.dart';
 import 'package:virtue_test/presentation/user_me_data/user_me_ui_event.dart';
 
@@ -20,8 +21,8 @@ class UserMeViewModel with ChangeNotifier {
   final _eventController = StreamController<UserMeUiEvent>.broadcast();
   Stream<UserMeUiEvent> get eventStream => _eventController.stream;
 
-  Future<void> fetchUserMe() async {
-    final result = await useCases.getUserMeUseCase();
+  Future<void> fetchGetProfile(username, password) async {
+    final result = await useCases.getMyProfileUseCase(username, password);
     result.when(
       success: (resultUserMe) {
         _state = _state.copyWith(model: resultUserMe);
@@ -33,5 +34,20 @@ class UserMeViewModel with ChangeNotifier {
             .add(const UserMeUiEvent.showToast('유저정보를 가져올 수 없습니다.'));
       },
     );
+  }
+
+  void onEvent(UserMeEvent event) async {
+    event.when(
+      storeUsername: (username) {
+        _state = state.copyWith(username: username);
+      },
+      storePassword: (password) {
+        _state = state.copyWith(password: password);
+      },
+      getProfileUser: (username, password) async {
+        return await useCases.getMyProfileUseCase(username, password);
+      },
+    );
+    notifyListeners();
   }
 }

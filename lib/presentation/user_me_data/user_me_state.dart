@@ -7,5 +7,7 @@ part 'user_me_state.freezed.dart';
 class UserMeState with _$UserMeState {
   factory UserMeState({
     UserMeModel? model,
+    @Default("") String username,
+    @Default("") String password,
   }) = _UserMeState;
 }

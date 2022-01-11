@@ -9,6 +9,8 @@ import 'package:virtue_test/presentation/login_user_page/login_user_event.dart';
 import 'package:virtue_test/presentation/login_user_page/login_user_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
+import 'package:virtue_test/presentation/user_me_data/user_me_event.dart';
+import 'package:virtue_test/presentation/user_me_data/user_me_view_model.dart';
 
 class LoginUserPage extends StatefulWidget {
   const LoginUserPage({Key? key}) : super(key: key);
@@ -75,6 +77,8 @@ class _LoginUserPageState extends State<LoginUserPage> {
 
     final viewModel = context.watch<LoginUserViewModel>();
     final state = viewModel.state;
+    final profileViewModel = context.watch<UserMeViewModel>();
+    final profileState = profileViewModel.state;
     return Container(
       color: Colors.transparent,
       child: SafeArea(
@@ -138,10 +142,13 @@ class _LoginUserPageState extends State<LoginUserPage> {
                           },
                           onChanged: (val) {
                             viewModel.onEvent(StoreUsername(val));
+                            profileViewModel.onEvent(StoreProfileUser(val));
                           },
                           onSaved: (value) {
                             viewModel.onEvent(
                                 StoreUsername(value.toString().trim()));
+                            profileViewModel.onEvent(
+                                StoreProfileUser(value.toString().trim()));
                           },
                           cursorColor: const Color(0xff405376),
                           style: const TextStyle(
@@ -167,10 +174,13 @@ class _LoginUserPageState extends State<LoginUserPage> {
                           },
                           onChanged: (val) {
                             viewModel.onEvent(StorePassword(val));
+                            profileViewModel.onEvent(StoreProfilePassword(val));
                           },
                           onSaved: (value) {
                             viewModel.onEvent(
                                 StorePassword(value.toString().trim()));
+                            profileViewModel.onEvent(
+                                StoreProfilePassword(value.toString().trim()));
                           },
                           cursorColor: const Color(0xff405376),
                           style: const TextStyle(
@@ -188,6 +198,8 @@ class _LoginUserPageState extends State<LoginUserPage> {
                           if (validateAndSave()) {
                             viewModel.onEvent(LoginUserEvent.loginUser(
                                 state.username, state.password));
+                            profileViewModel.onEvent(UserMeEvent.getProfileUser(
+                                profileState.username, profileState.password));
                           }
                         },
                         child: const Text(

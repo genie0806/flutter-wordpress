@@ -7,7 +7,7 @@ class GetUserMeUseCase {
 
   GetUserMeUseCase(this.repository);
 
-  Future<Result<UserMeModel>> call() async {
-    return await repository.getUserMe();
+  Future<Result<UserMeModel>> call(token) async {
+    return await repository.getUserMe(token);
   }
 }

@@ -29,6 +29,7 @@ import 'package:virtue_test/domain/use_case/social_login_use_case.dart/login_use
 import 'package:virtue_test/domain/use_case/post_use_case/get_post_list_use_case.dart';
 import 'package:virtue_test/domain/use_case/post_use_case/get_post_use_case.dart';
 import 'package:virtue_test/domain/use_case/post_use_case/post_use_cases.dart';
+import 'package:virtue_test/domain/use_case/user_me_use_case/get_my_profile_use_case.dart';
 import 'package:virtue_test/domain/use_case/user_me_use_case/get_user_me_use_case.dart';
 import 'package:virtue_test/domain/use_case/user_me_use_case/user_me_use_cases.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
@@ -81,8 +82,10 @@ Future<List<SingleChildWidget>> getProviders() async {
 //UserMe에 관련된 DI
   final userMeData = UserMeApi();
   final userMeRepository = UserMeRepositoryImpl(userMeData);
-  final userMeUseCases =
-      UserMeUseCases(getUserMeUseCase: GetUserMeUseCase(userMeRepository));
+  final userMeUseCases = UserMeUseCases(
+      getUserMeUseCase: GetUserMeUseCase(userMeRepository),
+      getMyProfileUseCase:
+          GetMyProfileUseCase(loginUserRepository, userMeRepository));
 
   return [
     //Post의 관련된 DI

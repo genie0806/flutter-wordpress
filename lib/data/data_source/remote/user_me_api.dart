@@ -7,8 +7,8 @@ import 'dart:convert' as convert;
 String baseUrl = dotenv.get('BASE_URL');
 
 class UserMeApi {
-  Future<Result<UserMeModel>> fetchUserMe() async {
-    Map<String, String> _urlHeader = {'Authorization': 'Bearer '};
+  Future<Result<UserMeModel>> fetchUserMe(token) async {
+    Map<String, String> _urlHeader = {'Authorization': 'Bearer $token'};
     try {
       final response = await http.get(
         Uri.parse(baseUrl + 'users/me'),
