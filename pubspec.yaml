@@ -50,7 +50,7 @@ dependencies:
   flutter_html: ^2.2.1
   colorful_safe_area: ^0.3.0
   page_transition: ^2.0.4
-  share_plus: ^3.0.4
+  
   
   
 
