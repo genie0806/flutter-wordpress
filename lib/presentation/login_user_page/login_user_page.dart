@@ -198,8 +198,6 @@ class _LoginUserPageState extends State<LoginUserPage> {
                           if (validateAndSave()) {
                             viewModel.onEvent(LoginUserEvent.loginUser(
                                 state.username, state.password));
-                            profileViewModel.onEvent(UserMeEvent.getProfileUser(
-                                profileState.username, profileState.password));
                           }
                         },
                         child: const Text(
