@@ -1,13 +1,13 @@
-abstract class SecureDataRepository {
-  Future<String> getToken();
+abstract class AppConfigRepository {
+  Future<String?> getToken();
   //토큰을 가져올때 시간이 걸릴수있으니 Future로
 
-  void setToken(String token);
+  void setToken(String? token);
   //토큰을 셋팅할 때
 
   void setAutoLogin(bool isAutoLogin);
 
-  bool isAutoLogin();
+  Future<bool> isAutoLogin();
 }
 
 

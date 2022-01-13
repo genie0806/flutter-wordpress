@@ -1,10 +1,10 @@
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:virtue_test/domain/repository/social_login_repository.dart';
 
-class GoogleSocialLogout {
+class GoogleSocialLogoutUseCase {
   SocialLoginRepository repository;
 
-  GoogleSocialLogout(this.repository);
+  GoogleSocialLogoutUseCase(this.repository);
 
   GoogleSignInAccount? googleAccount;
   final GoogleSignIn googleSignIn = GoogleSignIn();

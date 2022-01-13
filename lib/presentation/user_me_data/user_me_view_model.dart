@@ -45,7 +45,7 @@ class UserMeViewModel with ChangeNotifier {
         _state = state.copyWith(password: password);
       },
       getProfileUser: (username, password) async {
-        return await useCases.getMyProfileUseCase(username, password);
+        final result = useCases.getMyProfileUseCase(username, password);
       },
     );
     notifyListeners();

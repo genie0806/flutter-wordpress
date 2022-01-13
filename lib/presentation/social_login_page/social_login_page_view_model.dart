@@ -17,10 +17,13 @@ class SocialLoginViewModel with ChangeNotifier {
 
   SocialUserModel? socialUserModel;
 
-  Future<void> googleLogin() async {
-    await useCases.getSocialLogin(socialUserModel?.email ?? '',
+  Future<bool> isLogined() async {
+    return useCases.getLoginStatusUseCase();
+  }
+
+  Future<bool> googleLogin() async {
+    return await useCases.getSocialLogin(socialUserModel?.email ?? '',
         socialUserModel?.displayName ?? '', socialUserModel?.photoUrl ?? '');
-    notifyListeners();
   }
 
   Future<void> googleLogout() async {
