@@ -50,6 +50,8 @@ dependencies:
   flutter_html: ^2.2.1
   colorful_safe_area: ^0.3.0
   page_transition: ^2.0.4
+  flutter_secure_storage: ^5.0.2
+  flutter_secure_storage_web: ^1.0.2
   
   
   
