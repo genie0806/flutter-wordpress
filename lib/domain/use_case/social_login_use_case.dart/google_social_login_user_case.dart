@@ -1,3 +1,4 @@
+import 'package:virtue_test/core/result.dart';
 import 'package:virtue_test/data/data_source/remote/social_login_api.dart';
 import 'package:virtue_test/domain/model/social_login_model/social_user_model.dart';
 import 'package:virtue_test/domain/repository/app_config_repository.dart';
@@ -19,9 +20,12 @@ class GoogleSocialLoginUseCase {
   Future<bool> call(String userName) async {
     googleAccount = await googleSignIn.signIn();
     socialUserModel = SocialUserModel(email: googleAccount?.email ?? '');
-    return repository.getSocialLogin(socialUserModel?.email ?? '', (token) {
-      _appConfigRepository.setToken(token);
-      _appConfigRepository.setAutoLogin(true);
-    });
+    return await repository.getSocialLogin(
+      socialUserModel?.email ?? '',
+      (token) {
+        _appConfigRepository.setToken(token);
+        _appConfigRepository.setAutoLogin(true);
+      },
+    );
   }
 }
