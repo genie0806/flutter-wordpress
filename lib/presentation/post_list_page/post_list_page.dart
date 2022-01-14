@@ -13,6 +13,7 @@ import 'package:virtue_test/presentation/post_list_page/components/skeleton_post
 import 'package:virtue_test/presentation/post_list_page/post_list_page_event.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
 import 'package:virtue_test/presentation/post_page/post_page.dart';
+import 'package:virtue_test/presentation/social_login_page/social_login_view_model.dart';
 import 'package:virtue_test/presentation/user_me_data/user_me_view_model.dart';
 
 class PostListPage extends StatefulWidget {
@@ -57,6 +58,7 @@ class _PostListPageState extends State<PostListPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<PostListPageViewModel>();
+    final logViewModel = context.watch<SocialLoginViewModel>();
     return ColorfulSafeArea(
         color: Colors.white,
         child: WillPopScope(

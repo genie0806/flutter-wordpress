@@ -9,10 +9,9 @@ class GoogleSocialLogoutUseCase {
   GoogleSignInAccount? googleAccount;
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
-  Future<bool> call(
-      String userName, String displayName, String photoUrl) async {
+  Future<bool> call(String userName) async {
     googleAccount = await googleSignIn.signOut();
 
-    return repository.getSocialLogout(userName, displayName, photoUrl);
+    return repository.getSocialLogout(userName);
   }
 }

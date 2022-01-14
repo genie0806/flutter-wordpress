@@ -6,19 +6,15 @@ String socialApiEnd = dotenv.get('SOCIAL_API_END');
 
 class SocialLoginApi {
   final client = http.Client();
-  Future<http.Response> fetchSocialLogin(
-      String userName, String displayName, String photoUrl) async {
+  Future<http.Response> fetchSocialLogin(String userName) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/x-www-form-urlencoded'
     };
     Uri url = Uri.https(scoailApiUrl, socialApiEnd);
 
-    final response = await client.post(url, headers: requestHeaders, body: {
-      "username": userName,
-      "nickname": displayName,
-      "avatar_urls": photoUrl,
-      "social_login": "true"
-    });
+    final response = await client.post(url,
+        headers: requestHeaders,
+        body: {"username": userName, "social_login": "true"});
     if (response.statusCode == 200) {
       print(response.body);
     }

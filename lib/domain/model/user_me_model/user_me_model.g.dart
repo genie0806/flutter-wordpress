@@ -10,11 +10,11 @@ _$_UserMeModel _$$_UserMeModelFromJson(Map<String, dynamic> json) =>
     _$_UserMeModel(
       id: json['id'] as int?,
       username: json['username'] as String?,
-      firstName: json['first_Name'] as String?,
-      lastName: json['last_Name'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
       email: json['email'] as String?,
       nickname: json['nickname'] as String?,
-      avatarUrls: json['author_avatar_urls']["96"] as String?,
+      avatarUrls: json['avatarUrls'] as String?,
     );
 
 Map<String, dynamic> _$$_UserMeModelToJson(_$_UserMeModel instance) =>

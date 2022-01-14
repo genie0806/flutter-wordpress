@@ -10,12 +10,10 @@ class SocialLoginRepositoryImpl implements SocialLoginRepository {
   );
 
   @override
-  Future<bool> getSocialLogin(String userName, String displayName,
-      String photoUrl, Function(String? token) callback) async {
+  Future<bool> getSocialLogin(
+      String userName, Function(String? token) callback) async {
     final response = await socialLoginApi.fetchSocialLogin(
       userName,
-      displayName,
-      photoUrl,
     );
 
     callback(jsonDecode(response.body)['data']['token']);
@@ -24,10 +22,8 @@ class SocialLoginRepositoryImpl implements SocialLoginRepository {
   }
 
   @override
-  Future<bool> getSocialLogout(
-      String userName, String displayName, String photoUrl) async {
-    final response =
-        await socialLoginApi.fetchSocialLogin(userName, displayName, photoUrl);
+  Future<bool> getSocialLogout(String userName) async {
+    final response = await socialLoginApi.fetchSocialLogin(userName);
     return response.statusCode == 200 ? true : false;
   }
 }

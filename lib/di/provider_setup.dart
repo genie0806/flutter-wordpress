@@ -39,7 +39,7 @@ import 'package:virtue_test/domain/use_case/user_me_use_case/user_me_use_cases.d
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_page_view_model.dart';
 import 'package:virtue_test/presentation/login_user_page/login_user_view_model.dart';
-import 'package:virtue_test/presentation/social_login_page/social_login_page_view_model.dart';
+import 'package:virtue_test/presentation/social_login_page/social_login_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
 import 'package:virtue_test/presentation/post_page/post_page_view_model.dart';
 import 'package:virtue_test/presentation/user_me_data/user_me_view_model.dart';

@@ -16,17 +16,10 @@ class GoogleSocialLoginUseCase {
   SocialLoginApi socialLoginApi = SocialLoginApi();
   GoogleSignIn googleSignIn = GoogleSignIn();
 
-  Future<bool> call(
-      String userName, String displayName, String photoUrl) async {
+  Future<bool> call(String userName) async {
     googleAccount = await googleSignIn.signIn();
-    socialUserModel = SocialUserModel(
-        displayName: googleAccount?.displayName ?? '',
-        email: googleAccount?.email ?? '',
-        photoUrl: googleAccount?.photoUrl ?? '');
-    return repository.getSocialLogin(
-        socialUserModel?.email ?? '',
-        socialUserModel?.displayName ?? '',
-        socialUserModel?.photoUrl ?? '', (token) {
+    socialUserModel = SocialUserModel(email: googleAccount?.email ?? '');
+    return repository.getSocialLogin(socialUserModel?.email ?? '', (token) {
       _appConfigRepository.setToken(token);
       _appConfigRepository.setAutoLogin(true);
     });
