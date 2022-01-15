@@ -17,13 +17,13 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SocialLoginUiEventTearOff {
   const _$SocialLoginUiEventTearOff();
 
-  SocialLoginSuccessToast loginSuccessToast(String message) {
+  SocialLoginSuccessToast loginSuccessToast(bool message) {
     return SocialLoginSuccessToast(
       message,
     );
   }
 
-  SocialLoginErrorToast loginErrorToast(String message) {
+  SocialLoginErrorToast loginErrorToast(bool message) {
     return SocialLoginErrorToast(
       message,
     );
@@ -35,24 +35,24 @@ const $SocialLoginUiEvent = _$SocialLoginUiEventTearOff();
 
 /// @nodoc
 mixin _$SocialLoginUiEvent {
-  String get message => throw _privateConstructorUsedError;
+  bool get message => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message) loginSuccessToast,
-    required TResult Function(String message) loginErrorToast,
+    required TResult Function(bool message) loginSuccessToast,
+    required TResult Function(bool message) loginErrorToast,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String message)? loginSuccessToast,
-    TResult Function(String message)? loginErrorToast,
+    TResult Function(bool message)? loginSuccessToast,
+    TResult Function(bool message)? loginErrorToast,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? loginSuccessToast,
-    TResult Function(String message)? loginErrorToast,
+    TResult Function(bool message)? loginSuccessToast,
+    TResult Function(bool message)? loginErrorToast,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -86,7 +86,7 @@ abstract class $SocialLoginUiEventCopyWith<$Res> {
   factory $SocialLoginUiEventCopyWith(
           SocialLoginUiEvent value, $Res Function(SocialLoginUiEvent) then) =
       _$SocialLoginUiEventCopyWithImpl<$Res>;
-  $Res call({String message});
+  $Res call({bool message});
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class _$SocialLoginUiEventCopyWithImpl<$Res>
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
     ));
   }
 }
@@ -118,7 +118,7 @@ abstract class $SocialLoginSuccessToastCopyWith<$Res>
           $Res Function(SocialLoginSuccessToast) then) =
       _$SocialLoginSuccessToastCopyWithImpl<$Res>;
   @override
-  $Res call({String message});
+  $Res call({bool message});
 }
 
 /// @nodoc
@@ -140,7 +140,7 @@ class _$SocialLoginSuccessToastCopyWithImpl<$Res>
       message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
     ));
   }
 }
@@ -151,7 +151,7 @@ class _$SocialLoginSuccessToast implements SocialLoginSuccessToast {
   const _$SocialLoginSuccessToast(this.message);
 
   @override
-  final String message;
+  final bool message;
 
   @override
   String toString() {
@@ -179,8 +179,8 @@ class _$SocialLoginSuccessToast implements SocialLoginSuccessToast {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message) loginSuccessToast,
-    required TResult Function(String message) loginErrorToast,
+    required TResult Function(bool message) loginSuccessToast,
+    required TResult Function(bool message) loginErrorToast,
   }) {
     return loginSuccessToast(message);
   }
@@ -188,8 +188,8 @@ class _$SocialLoginSuccessToast implements SocialLoginSuccessToast {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String message)? loginSuccessToast,
-    TResult Function(String message)? loginErrorToast,
+    TResult Function(bool message)? loginSuccessToast,
+    TResult Function(bool message)? loginErrorToast,
   }) {
     return loginSuccessToast?.call(message);
   }
@@ -197,8 +197,8 @@ class _$SocialLoginSuccessToast implements SocialLoginSuccessToast {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? loginSuccessToast,
-    TResult Function(String message)? loginErrorToast,
+    TResult Function(bool message)? loginSuccessToast,
+    TResult Function(bool message)? loginErrorToast,
     required TResult orElse(),
   }) {
     if (loginSuccessToast != null) {
@@ -240,11 +240,11 @@ class _$SocialLoginSuccessToast implements SocialLoginSuccessToast {
 }
 
 abstract class SocialLoginSuccessToast implements SocialLoginUiEvent {
-  const factory SocialLoginSuccessToast(String message) =
+  const factory SocialLoginSuccessToast(bool message) =
       _$SocialLoginSuccessToast;
 
   @override
-  String get message;
+  bool get message;
   @override
   @JsonKey(ignore: true)
   $SocialLoginSuccessToastCopyWith<SocialLoginSuccessToast> get copyWith =>
@@ -258,7 +258,7 @@ abstract class $SocialLoginErrorToastCopyWith<$Res>
           $Res Function(SocialLoginErrorToast) then) =
       _$SocialLoginErrorToastCopyWithImpl<$Res>;
   @override
-  $Res call({String message});
+  $Res call({bool message});
 }
 
 /// @nodoc
@@ -280,7 +280,7 @@ class _$SocialLoginErrorToastCopyWithImpl<$Res>
       message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
     ));
   }
 }
@@ -291,7 +291,7 @@ class _$SocialLoginErrorToast implements SocialLoginErrorToast {
   const _$SocialLoginErrorToast(this.message);
 
   @override
-  final String message;
+  final bool message;
 
   @override
   String toString() {
@@ -319,8 +319,8 @@ class _$SocialLoginErrorToast implements SocialLoginErrorToast {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message) loginSuccessToast,
-    required TResult Function(String message) loginErrorToast,
+    required TResult Function(bool message) loginSuccessToast,
+    required TResult Function(bool message) loginErrorToast,
   }) {
     return loginErrorToast(message);
   }
@@ -328,8 +328,8 @@ class _$SocialLoginErrorToast implements SocialLoginErrorToast {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String message)? loginSuccessToast,
-    TResult Function(String message)? loginErrorToast,
+    TResult Function(bool message)? loginSuccessToast,
+    TResult Function(bool message)? loginErrorToast,
   }) {
     return loginErrorToast?.call(message);
   }
@@ -337,8 +337,8 @@ class _$SocialLoginErrorToast implements SocialLoginErrorToast {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? loginSuccessToast,
-    TResult Function(String message)? loginErrorToast,
+    TResult Function(bool message)? loginSuccessToast,
+    TResult Function(bool message)? loginErrorToast,
     required TResult orElse(),
   }) {
     if (loginErrorToast != null) {
@@ -380,10 +380,10 @@ class _$SocialLoginErrorToast implements SocialLoginErrorToast {
 }
 
 abstract class SocialLoginErrorToast implements SocialLoginUiEvent {
-  const factory SocialLoginErrorToast(String message) = _$SocialLoginErrorToast;
+  const factory SocialLoginErrorToast(bool message) = _$SocialLoginErrorToast;
 
   @override
-  String get message;
+  bool get message;
   @override
   @JsonKey(ignore: true)
   $SocialLoginErrorToastCopyWith<SocialLoginErrorToast> get copyWith =>

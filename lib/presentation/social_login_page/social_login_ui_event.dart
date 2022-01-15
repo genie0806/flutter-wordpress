@@ -4,8 +4,8 @@ part 'social_login_ui_event.freezed.dart';
 
 @freezed
 abstract class SocialLoginUiEvent with _$SocialLoginUiEvent {
-  const factory SocialLoginUiEvent.loginSuccessToast(String message) =
+  const factory SocialLoginUiEvent.loginSuccessToast(bool message) =
       SocialLoginSuccessToast;
-  const factory SocialLoginUiEvent.loginErrorToast(String message) =
+  const factory SocialLoginUiEvent.loginErrorToast(bool message) =
       SocialLoginErrorToast;
 }

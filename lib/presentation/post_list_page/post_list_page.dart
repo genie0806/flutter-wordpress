@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:page_transition/page_transition.dart';
@@ -54,6 +55,8 @@ class _PostListPageState extends State<PostListPage> {
     streamSubscription?.cancel();
     super.dispose();
   }
+
+  GoogleSignIn googleSignIn = GoogleSignIn();
 
   @override
   Widget build(BuildContext context) {

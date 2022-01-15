@@ -8,6 +8,14 @@ abstract class AppConfigRepository {
   void setAutoLogin(bool isAutoLogin);
 
   Future<bool> isAutoLogin();
+
+  Future<String> getEmail();
+
+  void setEmail(String email);
+
+  Future<String> getPassword();
+
+  void setPassword(String password);
 }
 
 
