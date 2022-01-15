@@ -31,4 +31,24 @@ class AppConfigRepositoryImpl implements AppConfigRepository {
     _dataSource.setValue('token', token);
   }
   //key값으로 token으로 해준다.
+
+  @override
+  Future<String?> getUsername() {
+    return _dataSource.getValue('username');
+  }
+
+  @override
+  Future<String?> getPassword() {
+    return _dataSource.getValue('password');
+  }
+
+  @override
+  void setUsername(String username) {
+    _dataSource.setValue('username', username);
+  }
+
+  @override
+  void setPassword(String password) {
+    _dataSource.setValue('password', password);
+  }
 }

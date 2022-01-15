@@ -9,11 +9,11 @@ abstract class AppConfigRepository {
 
   Future<bool> isAutoLogin();
 
-  Future<String> getEmail();
+  Future<String?> getUsername();
 
-  void setEmail(String email);
+  void setUsername(String username);
 
-  Future<String> getPassword();
+  Future<String?> getPassword();
 
   void setPassword(String password);
 }

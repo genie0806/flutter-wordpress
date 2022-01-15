@@ -17,6 +17,8 @@ class GetLoginUserUseCase {
       //responseModel.data.token;
       _appConfigRepository.setAutoLogin(true);
       _appConfigRepository.setToken(responseModel.data?.token);
+      _appConfigRepository.setUsername(username);
+      _appConfigRepository.setUsername(password);
 
       return Result.success(responseModel.message ?? '');
     }, error: (message) {
