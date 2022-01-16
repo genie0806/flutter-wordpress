@@ -3,7 +3,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
-import 'package:virtue_test/core/result.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_page.dart';
 import 'package:virtue_test/presentation/login_user_page/login_user_page.dart';
 import 'package:virtue_test/presentation/social_login_page/social_login_view_model.dart';

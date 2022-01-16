@@ -1,9 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:virtue_test/core/result.dart';
-
-import 'package:virtue_test/domain/use_case/user_me_use_case/get_user_me_use_case.dart';
 import 'package:virtue_test/domain/use_case/user_me_use_case/user_me_use_cases.dart';
 import 'package:virtue_test/presentation/user_me_data/user_me_event.dart';
 import 'package:virtue_test/presentation/user_me_data/user_me_state.dart';
@@ -21,8 +18,8 @@ class UserMeViewModel with ChangeNotifier {
   final _eventController = StreamController<UserMeUiEvent>.broadcast();
   Stream<UserMeUiEvent> get eventStream => _eventController.stream;
 
-  Future<void> fetchGetProfile(username, password) async {
-    final result = await useCases.getMyProfileUseCase(username, password);
+  Future<void> fetchGetProfile() async {
+    final result = await useCases.getMyProfileUseCase();
     result.when(
       success: (resultUserMe) {
         _state = _state.copyWith(model: resultUserMe);
@@ -45,7 +42,7 @@ class UserMeViewModel with ChangeNotifier {
         _state = state.copyWith(password: password);
       },
       getProfileUser: (username, password) async {
-        final result = useCases.getMyProfileUseCase(username, password);
+        return await useCases.getMyProfileUseCase();
       },
     );
     notifyListeners();

@@ -9,7 +9,7 @@ import 'package:virtue_test/data/data_source/remote/simple_post_api.dart';
 import 'package:virtue_test/data/data_source/remote/simple_post_list_api.dart';
 import 'package:virtue_test/data/data_source/remote/social_login_api.dart';
 import 'package:virtue_test/data/data_source/remote/user_me_api.dart';
-import 'package:virtue_test/data/respository/app_config_Repository_impl.dart';
+import 'package:virtue_test/data/respository/app_config_repository_impl.dart';
 import 'package:virtue_test/data/respository/comment_get_repository_impl.dart';
 import 'package:virtue_test/data/respository/create_comment_repository_impl.dart';
 import 'package:virtue_test/data/respository/create_user_repository_impl.dart';
@@ -18,7 +18,6 @@ import 'package:virtue_test/data/respository/simple_post_list_repository_impl.da
 import 'package:virtue_test/data/respository/simple_post_repository_impl.dart';
 import 'package:virtue_test/data/respository/social_login_repository_impl.dart';
 import 'package:virtue_test/data/respository/user_me_repostiory_impl.dart';
-import 'package:virtue_test/domain/repository/app_config_repository.dart';
 import 'package:virtue_test/domain/use_case/comment_get_use_case/comment_use_cases.dart';
 import 'package:virtue_test/domain/use_case/comment_get_use_case/create_comment_use_case.dart';
 import 'package:virtue_test/domain/use_case/comment_get_use_case/get_comment_use_case.dart';
@@ -94,6 +93,7 @@ Future<List<SingleChildWidget>> getProviders() async {
   final userMeData = UserMeApi();
   final userMeRepository = UserMeRepositoryImpl(userMeData);
   final userMeUseCases = UserMeUseCases(
+      getLoginStatusUseCase: GetLoginStatusUseCase(appConfingRepository),
       getUserMeUseCase: GetUserMeUseCase(userMeRepository),
       getMyProfileUseCase: GetMyProfileUseCase(
           loginUserRepository, userMeRepository, appConfingRepository));

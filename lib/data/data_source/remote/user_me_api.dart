@@ -8,13 +8,12 @@ String baseUrl = dotenv.get('BASE_URL');
 
 class UserMeApi {
   Future<Result<UserMeModel>> fetchUserMe(token) async {
-    Map<String, String> _urlHeader = {'Authorization': 'Bearer $token'};
     try {
       final response = await http.get(
-        Uri.parse(baseUrl + 'users/me'),
-        headers: _urlHeader,
+        Uri.parse("https://virtureart.shop/index.php/wp-json/wp/v2/users/me"),
+        headers: {'Authorization': '$token'},
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode >= 200 && response.statusCode < 300) {
         return Result.success(
             UserMeModel.fromJson(convert.jsonDecode(response.body)));
       } else {

@@ -44,9 +44,6 @@ class _PostListPageState extends State<PostListPage> {
           const ReloadPage();
         });
       });
-
-      final profileViewModel = context.read<UserMeViewModel>();
-      print(profileViewModel.state.model?.email);
     });
   }
 
@@ -61,7 +58,6 @@ class _PostListPageState extends State<PostListPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<PostListPageViewModel>();
-    final logViewModel = context.watch<SocialLoginViewModel>();
     return ColorfulSafeArea(
         color: Colors.white,
         child: WillPopScope(

@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:virtue_test/core/result.dart';
 import 'package:virtue_test/data/data_source/remote/social_login_api.dart';
 import 'package:virtue_test/domain/repository/social_login_repository.dart';
 
