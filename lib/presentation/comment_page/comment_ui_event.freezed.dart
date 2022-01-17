@@ -22,6 +22,18 @@ class _$CommentPageUiEventTearOff {
       message,
     );
   }
+
+  RegisterSuccessToast registerSuccessToast(String message) {
+    return RegisterSuccessToast(
+      message,
+    );
+  }
+
+  RegisterErrorToast registerErrorToast(String message) {
+    return RegisterErrorToast(
+      message,
+    );
+  }
 }
 
 /// @nodoc
@@ -34,32 +46,44 @@ mixin _$CommentPageUiEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) showToast,
+    required TResult Function(String message) registerSuccessToast,
+    required TResult Function(String message) registerErrorToast,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String message)? showToast,
+    TResult Function(String message)? registerSuccessToast,
+    TResult Function(String message)? registerErrorToast,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? showToast,
+    TResult Function(String message)? registerSuccessToast,
+    TResult Function(String message)? registerErrorToast,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ShowToast value) showToast,
+    required TResult Function(RegisterSuccessToast value) registerSuccessToast,
+    required TResult Function(RegisterErrorToast value) registerErrorToast,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ShowToast value)? showToast,
+    TResult Function(RegisterSuccessToast value)? registerSuccessToast,
+    TResult Function(RegisterErrorToast value)? registerErrorToast,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ShowToast value)? showToast,
+    TResult Function(RegisterSuccessToast value)? registerSuccessToast,
+    TResult Function(RegisterErrorToast value)? registerErrorToast,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -165,6 +189,8 @@ class _$ShowToast implements ShowToast {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) showToast,
+    required TResult Function(String message) registerSuccessToast,
+    required TResult Function(String message) registerErrorToast,
   }) {
     return showToast(message);
   }
@@ -173,6 +199,8 @@ class _$ShowToast implements ShowToast {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String message)? showToast,
+    TResult Function(String message)? registerSuccessToast,
+    TResult Function(String message)? registerErrorToast,
   }) {
     return showToast?.call(message);
   }
@@ -181,6 +209,8 @@ class _$ShowToast implements ShowToast {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? showToast,
+    TResult Function(String message)? registerSuccessToast,
+    TResult Function(String message)? registerErrorToast,
     required TResult orElse(),
   }) {
     if (showToast != null) {
@@ -193,6 +223,8 @@ class _$ShowToast implements ShowToast {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ShowToast value) showToast,
+    required TResult Function(RegisterSuccessToast value) registerSuccessToast,
+    required TResult Function(RegisterErrorToast value) registerErrorToast,
   }) {
     return showToast(this);
   }
@@ -201,6 +233,8 @@ class _$ShowToast implements ShowToast {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ShowToast value)? showToast,
+    TResult Function(RegisterSuccessToast value)? registerSuccessToast,
+    TResult Function(RegisterErrorToast value)? registerErrorToast,
   }) {
     return showToast?.call(this);
   }
@@ -209,6 +243,8 @@ class _$ShowToast implements ShowToast {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ShowToast value)? showToast,
+    TResult Function(RegisterSuccessToast value)? registerSuccessToast,
+    TResult Function(RegisterErrorToast value)? registerErrorToast,
     required TResult orElse(),
   }) {
     if (showToast != null) {
@@ -226,5 +262,294 @@ abstract class ShowToast implements CommentPageUiEvent {
   @override
   @JsonKey(ignore: true)
   $ShowToastCopyWith<ShowToast> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RegisterSuccessToastCopyWith<$Res>
+    implements $CommentPageUiEventCopyWith<$Res> {
+  factory $RegisterSuccessToastCopyWith(RegisterSuccessToast value,
+          $Res Function(RegisterSuccessToast) then) =
+      _$RegisterSuccessToastCopyWithImpl<$Res>;
+  @override
+  $Res call({String message});
+}
+
+/// @nodoc
+class _$RegisterSuccessToastCopyWithImpl<$Res>
+    extends _$CommentPageUiEventCopyWithImpl<$Res>
+    implements $RegisterSuccessToastCopyWith<$Res> {
+  _$RegisterSuccessToastCopyWithImpl(
+      RegisterSuccessToast _value, $Res Function(RegisterSuccessToast) _then)
+      : super(_value, (v) => _then(v as RegisterSuccessToast));
+
+  @override
+  RegisterSuccessToast get _value => super._value as RegisterSuccessToast;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(RegisterSuccessToast(
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RegisterSuccessToast implements RegisterSuccessToast {
+  const _$RegisterSuccessToast(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'CommentPageUiEvent.registerSuccessToast(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is RegisterSuccessToast &&
+            const DeepCollectionEquality().equals(other.message, message));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+
+  @JsonKey(ignore: true)
+  @override
+  $RegisterSuccessToastCopyWith<RegisterSuccessToast> get copyWith =>
+      _$RegisterSuccessToastCopyWithImpl<RegisterSuccessToast>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message) showToast,
+    required TResult Function(String message) registerSuccessToast,
+    required TResult Function(String message) registerErrorToast,
+  }) {
+    return registerSuccessToast(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String message)? showToast,
+    TResult Function(String message)? registerSuccessToast,
+    TResult Function(String message)? registerErrorToast,
+  }) {
+    return registerSuccessToast?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message)? showToast,
+    TResult Function(String message)? registerSuccessToast,
+    TResult Function(String message)? registerErrorToast,
+    required TResult orElse(),
+  }) {
+    if (registerSuccessToast != null) {
+      return registerSuccessToast(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ShowToast value) showToast,
+    required TResult Function(RegisterSuccessToast value) registerSuccessToast,
+    required TResult Function(RegisterErrorToast value) registerErrorToast,
+  }) {
+    return registerSuccessToast(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ShowToast value)? showToast,
+    TResult Function(RegisterSuccessToast value)? registerSuccessToast,
+    TResult Function(RegisterErrorToast value)? registerErrorToast,
+  }) {
+    return registerSuccessToast?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ShowToast value)? showToast,
+    TResult Function(RegisterSuccessToast value)? registerSuccessToast,
+    TResult Function(RegisterErrorToast value)? registerErrorToast,
+    required TResult orElse(),
+  }) {
+    if (registerSuccessToast != null) {
+      return registerSuccessToast(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RegisterSuccessToast implements CommentPageUiEvent {
+  const factory RegisterSuccessToast(String message) = _$RegisterSuccessToast;
+
+  @override
+  String get message;
+  @override
+  @JsonKey(ignore: true)
+  $RegisterSuccessToastCopyWith<RegisterSuccessToast> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RegisterErrorToastCopyWith<$Res>
+    implements $CommentPageUiEventCopyWith<$Res> {
+  factory $RegisterErrorToastCopyWith(
+          RegisterErrorToast value, $Res Function(RegisterErrorToast) then) =
+      _$RegisterErrorToastCopyWithImpl<$Res>;
+  @override
+  $Res call({String message});
+}
+
+/// @nodoc
+class _$RegisterErrorToastCopyWithImpl<$Res>
+    extends _$CommentPageUiEventCopyWithImpl<$Res>
+    implements $RegisterErrorToastCopyWith<$Res> {
+  _$RegisterErrorToastCopyWithImpl(
+      RegisterErrorToast _value, $Res Function(RegisterErrorToast) _then)
+      : super(_value, (v) => _then(v as RegisterErrorToast));
+
+  @override
+  RegisterErrorToast get _value => super._value as RegisterErrorToast;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(RegisterErrorToast(
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RegisterErrorToast implements RegisterErrorToast {
+  const _$RegisterErrorToast(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'CommentPageUiEvent.registerErrorToast(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is RegisterErrorToast &&
+            const DeepCollectionEquality().equals(other.message, message));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+
+  @JsonKey(ignore: true)
+  @override
+  $RegisterErrorToastCopyWith<RegisterErrorToast> get copyWith =>
+      _$RegisterErrorToastCopyWithImpl<RegisterErrorToast>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message) showToast,
+    required TResult Function(String message) registerSuccessToast,
+    required TResult Function(String message) registerErrorToast,
+  }) {
+    return registerErrorToast(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String message)? showToast,
+    TResult Function(String message)? registerSuccessToast,
+    TResult Function(String message)? registerErrorToast,
+  }) {
+    return registerErrorToast?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message)? showToast,
+    TResult Function(String message)? registerSuccessToast,
+    TResult Function(String message)? registerErrorToast,
+    required TResult orElse(),
+  }) {
+    if (registerErrorToast != null) {
+      return registerErrorToast(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ShowToast value) showToast,
+    required TResult Function(RegisterSuccessToast value) registerSuccessToast,
+    required TResult Function(RegisterErrorToast value) registerErrorToast,
+  }) {
+    return registerErrorToast(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ShowToast value)? showToast,
+    TResult Function(RegisterSuccessToast value)? registerSuccessToast,
+    TResult Function(RegisterErrorToast value)? registerErrorToast,
+  }) {
+    return registerErrorToast?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ShowToast value)? showToast,
+    TResult Function(RegisterSuccessToast value)? registerSuccessToast,
+    TResult Function(RegisterErrorToast value)? registerErrorToast,
+    required TResult orElse(),
+  }) {
+    if (registerErrorToast != null) {
+      return registerErrorToast(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RegisterErrorToast implements CommentPageUiEvent {
+  const factory RegisterErrorToast(String message) = _$RegisterErrorToast;
+
+  @override
+  String get message;
+  @override
+  @JsonKey(ignore: true)
+  $RegisterErrorToastCopyWith<RegisterErrorToast> get copyWith =>
       throw _privateConstructorUsedError;
 }

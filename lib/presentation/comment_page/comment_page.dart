@@ -150,7 +150,29 @@ class _CommentPageState extends State<CommentPage> {
                             fontSize: 16,
                             color: Colors.black,
                           ),
-                          decoration: textInputDeco('댓글을 입력해주세요'),
+                          decoration: InputDecoration(
+                              isDense: true,
+                              contentPadding:
+                                  const EdgeInsets.fromLTRB(15, 29, 0, 0),
+                              hintText: '댓글을 입력해주세요',
+                              hintStyle: TextStyle(
+                                  fontSize: 16, color: Colors.grey.shade400),
+                              enabledBorder: activeInputBorder(),
+                              focusedBorder: activeInputBorder(),
+                              errorBorder: errorInputBorder(),
+                              focusedErrorBorder: errorInputBorder(),
+                              errorStyle: const TextStyle(
+                                  color: Colors.redAccent, fontSize: 13),
+                              suffixIcon: TextButton(
+                                child: const Text(
+                                  '등록',
+                                  style: TextStyle(
+                                      color: Color(0xff405479),
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                onPressed: () {},
+                              )),
                         ),
                       ),
                     ),

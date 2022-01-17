@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:virtue_test/domain/model/simple_post_model/simple_post_model.dart';
 import 'package:virtue_test/domain/use_case/comment_get_use_case/comment_use_cases.dart';
 import 'package:virtue_test/domain/util/system_navigator_double.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
@@ -15,7 +13,6 @@ import 'package:virtue_test/presentation/post_list_page/components/skeleton_post
 import 'package:virtue_test/presentation/post_list_page/post_list_page_event.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
 import 'package:virtue_test/presentation/post_page/post_page.dart';
-import 'package:virtue_test/presentation/social_login_page/social_login_view_model.dart';
 import 'package:virtue_test/presentation/user_me_data/user_me_view_model.dart';
 
 class PostListPage extends StatefulWidget {
@@ -48,6 +45,8 @@ class _PostListPageState extends State<PostListPage> {
       context.read<UserMeViewModel>().fetchGetProfile();
       final userViewModel = context.read<UserMeViewModel>();
       print(userViewModel.state.model?.email);
+
+      
     });
   }
 
@@ -56,8 +55,6 @@ class _PostListPageState extends State<PostListPage> {
     streamSubscription?.cancel();
     super.dispose();
   }
-
-  GoogleSignIn googleSignIn = GoogleSignIn();
 
   @override
   Widget build(BuildContext context) {

@@ -7,5 +7,6 @@ part 'comment_page_state.freezed.dart';
 class CommentPageState with _$CommentPageState {
   factory CommentPageState({
     @Default([]) List<CommentGetModel> model,
+    required CommentGetModel commentModel,
   }) = _CommentPageState;
 }

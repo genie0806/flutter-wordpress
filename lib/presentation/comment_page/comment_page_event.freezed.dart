@@ -22,6 +22,10 @@ class _$CommentPageEventTearOff {
       content,
     );
   }
+
+  RegisterComment registerComment() {
+    return const RegisterComment();
+  }
 }
 
 /// @nodoc
@@ -29,43 +33,43 @@ const $CommentPageEvent = _$CommentPageEventTearOff();
 
 /// @nodoc
 mixin _$CommentPageEvent {
-  String get content => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String content) storeContent,
+    required TResult Function() registerComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String content)? storeContent,
+    TResult Function()? registerComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String content)? storeContent,
+    TResult Function()? registerComment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(StoreContent value) storeContent,
+    required TResult Function(RegisterComment value) registerComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(StoreContent value)? storeContent,
+    TResult Function(RegisterComment value)? registerComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StoreContent value)? storeContent,
+    TResult Function(RegisterComment value)? registerComment,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $CommentPageEventCopyWith<CommentPageEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -74,7 +78,6 @@ abstract class $CommentPageEventCopyWith<$Res> {
   factory $CommentPageEventCopyWith(
           CommentPageEvent value, $Res Function(CommentPageEvent) then) =
       _$CommentPageEventCopyWithImpl<$Res>;
-  $Res call({String content});
 }
 
 /// @nodoc
@@ -85,27 +88,13 @@ class _$CommentPageEventCopyWithImpl<$Res>
   final CommentPageEvent _value;
   // ignore: unused_field
   final $Res Function(CommentPageEvent) _then;
-
-  @override
-  $Res call({
-    Object? content = freezed,
-  }) {
-    return _then(_value.copyWith(
-      content: content == freezed
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $StoreContentCopyWith<$Res>
-    implements $CommentPageEventCopyWith<$Res> {
+abstract class $StoreContentCopyWith<$Res> {
   factory $StoreContentCopyWith(
           StoreContent value, $Res Function(StoreContent) then) =
       _$StoreContentCopyWithImpl<$Res>;
-  @override
   $Res call({String content});
 }
 
@@ -167,6 +156,7 @@ class _$StoreContent implements StoreContent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String content) storeContent,
+    required TResult Function() registerComment,
   }) {
     return storeContent(content);
   }
@@ -175,6 +165,7 @@ class _$StoreContent implements StoreContent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String content)? storeContent,
+    TResult Function()? registerComment,
   }) {
     return storeContent?.call(content);
   }
@@ -183,6 +174,7 @@ class _$StoreContent implements StoreContent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String content)? storeContent,
+    TResult Function()? registerComment,
     required TResult orElse(),
   }) {
     if (storeContent != null) {
@@ -195,6 +187,7 @@ class _$StoreContent implements StoreContent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(StoreContent value) storeContent,
+    required TResult Function(RegisterComment value) registerComment,
   }) {
     return storeContent(this);
   }
@@ -203,6 +196,7 @@ class _$StoreContent implements StoreContent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(StoreContent value)? storeContent,
+    TResult Function(RegisterComment value)? registerComment,
   }) {
     return storeContent?.call(this);
   }
@@ -211,6 +205,7 @@ class _$StoreContent implements StoreContent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StoreContent value)? storeContent,
+    TResult Function(RegisterComment value)? registerComment,
     required TResult orElse(),
   }) {
     if (storeContent != null) {
@@ -223,10 +218,113 @@ class _$StoreContent implements StoreContent {
 abstract class StoreContent implements CommentPageEvent {
   const factory StoreContent(String content) = _$StoreContent;
 
-  @override
   String get content;
-  @override
   @JsonKey(ignore: true)
   $StoreContentCopyWith<StoreContent> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RegisterCommentCopyWith<$Res> {
+  factory $RegisterCommentCopyWith(
+          RegisterComment value, $Res Function(RegisterComment) then) =
+      _$RegisterCommentCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$RegisterCommentCopyWithImpl<$Res>
+    extends _$CommentPageEventCopyWithImpl<$Res>
+    implements $RegisterCommentCopyWith<$Res> {
+  _$RegisterCommentCopyWithImpl(
+      RegisterComment _value, $Res Function(RegisterComment) _then)
+      : super(_value, (v) => _then(v as RegisterComment));
+
+  @override
+  RegisterComment get _value => super._value as RegisterComment;
+}
+
+/// @nodoc
+
+class _$RegisterComment implements RegisterComment {
+  const _$RegisterComment();
+
+  @override
+  String toString() {
+    return 'CommentPageEvent.registerComment()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is RegisterComment);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String content) storeContent,
+    required TResult Function() registerComment,
+  }) {
+    return registerComment();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String content)? storeContent,
+    TResult Function()? registerComment,
+  }) {
+    return registerComment?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String content)? storeContent,
+    TResult Function()? registerComment,
+    required TResult orElse(),
+  }) {
+    if (registerComment != null) {
+      return registerComment();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StoreContent value) storeContent,
+    required TResult Function(RegisterComment value) registerComment,
+  }) {
+    return registerComment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(StoreContent value)? storeContent,
+    TResult Function(RegisterComment value)? registerComment,
+  }) {
+    return registerComment?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StoreContent value)? storeContent,
+    TResult Function(RegisterComment value)? registerComment,
+    required TResult orElse(),
+  }) {
+    if (registerComment != null) {
+      return registerComment(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RegisterComment implements CommentPageEvent {
+  const factory RegisterComment() = _$RegisterComment;
 }
