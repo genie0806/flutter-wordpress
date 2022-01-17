@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:virtue_test/domain/use_case/comment_get_use_case/comment_use_cases.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page_view_model.dart';
@@ -213,7 +214,7 @@ class _PostPageState extends State<PostPage> {
                                   )),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 200),
+                              padding: const EdgeInsets.only(left: 190),
                               child: TextButton.icon(
                                   style: TextButton.styleFrom(
                                       primary: Colors.white, elevation: 0),
@@ -221,8 +222,16 @@ class _PostPageState extends State<PostPage> {
                                     Navigator.push(
                                         context,
                                         PageTransition(
-                                          child: CommentPage(
-                                            postId: widget.id,
+                                          child: ChangeNotifierProvider(
+                                            create: (context) {
+                                              final useCases = context
+                                                  .read<CommentGetUseCases>();
+                                              return CommentPageViewModel(
+                                                  useCases);
+                                            },
+                                            child: CommentPage(
+                                              postId: widget.id,
+                                            ),
                                           ),
                                           type: PageTransitionType
                                               .rightToLeftWithFade,

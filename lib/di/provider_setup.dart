@@ -116,5 +116,7 @@ Future<List<SingleChildWidget>> getProviders() async {
         create: (context) => CommentPageViewModel(commentUseCases)),
     ChangeNotifierProvider<UserMeViewModel>(
         create: (context) => UserMeViewModel(userMeUseCases)),
+    //CommentViewModel init을 위한 Provider
+    Provider<CommentGetUseCases>(create: (_) => commentUseCases),
   ];
 }

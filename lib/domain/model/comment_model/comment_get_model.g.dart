@@ -9,9 +9,9 @@ part of 'comment_get_model.dart';
 _$_CommentGetmodel _$$_CommentGetmodelFromJson(Map<String, dynamic> json) =>
     _$_CommentGetmodel(
       id: json['id'] as int?,
-      author: json['author'] as String?,
-      avatar: json['avatar'] as String?,
-      content: json['content'] as String?,
+      author: json['author_name'] as String?,
+      avatar: json['author_avatar_urls']["96"] as String?,
+      content: json["content"]["rendered"] as String?,
       date: json['date'] as String?,
       postId: json['postId'] as int?,
     );

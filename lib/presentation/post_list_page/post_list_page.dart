@@ -7,6 +7,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:virtue_test/domain/model/simple_post_model/simple_post_model.dart';
+import 'package:virtue_test/domain/use_case/comment_get_use_case/comment_use_cases.dart';
 import 'package:virtue_test/domain/util/system_navigator_double.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/components/card_view_item.dart';
@@ -209,7 +210,13 @@ class _PostListPageState extends State<PostListPage> {
                                         bool? result = await Navigator.push(
                                             context,
                                             PageTransition(
-                                              child: PostPage(id: e.id!),
+                                              child: ChangeNotifierProvider(
+                                                create: (context) {
+                                                  final useCases = context.read<CommentGetUseCases>()
+                                                  return CommentPageViewModel(useCases)
+                                                  }
+                                                child: PostPage(id: e.id!,),
+                                                 ),
                                               type: PageTransitionType
                                                   .rightToLeftWithFade,
                                             ));
