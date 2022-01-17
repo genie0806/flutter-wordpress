@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/src/provider.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_event.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/comment_page/components/comment_form_filed.dart';
 import 'package:virtue_test/presentation/comment_page/components/comment_text_form_field.dart';
+import 'package:virtue_test/presentation/user_me_data/user_me_view_model.dart';
 
 class CommentPage extends StatefulWidget {
   final int postId;
@@ -28,12 +30,23 @@ class _CommentPageState extends State<CommentPage> {
       final viewModel = context.read<CommentPageViewModel>();
       context.read<CommentPageViewModel>().fetchCommentPage(widget.postId);
       streamSubscription = viewModel.eventStream.listen((event) {
-        event.when(
-            showToast: (String message) {
-              return '오류입니다';
-            },
-            registerErrorToast: (String message) {},
-            registerSuccessToast: (String message) {});
+        event.when(showToast: (String message) {
+          return '오류입니다';
+        }, registerErrorToast: (String message) {
+          Fluttertoast.showToast(
+              msg: "댓글 등록 성공",
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: const Color(0xff6E6E6E),
+              fontSize: 20,
+              toastLength: Toast.LENGTH_SHORT);
+        }, registerSuccessToast: (String message) {
+          Fluttertoast.showToast(
+              msg: "댓글 등록 실패",
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: const Color(0xff6E6E6E),
+              fontSize: 20,
+              toastLength: Toast.LENGTH_SHORT);
+        });
       });
     });
   }
@@ -47,8 +60,8 @@ class _CommentPageState extends State<CommentPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<CommentPageViewModel>();
-    final state = viewModel.state;
     final model = viewModel.state.model;
+    final profileViewModel = context.watch<UserMeViewModel>();
     bool validateAndSave() {
       final form = globalKey.currentState;
       if (form?.validate() ?? true) {
@@ -159,6 +172,11 @@ class _CommentPageState extends State<CommentPage> {
                           },
                           onChanged: (val) {
                             viewModel.onEvent(StoreContent(val));
+                            viewModel.onEvent(StoreEmail(
+                                profileViewModel.state.model?.email ?? ''));
+                            viewModel.onEvent(StorePostId(widget.postId));
+                            viewModel.onEvent(StoreNickname(
+                                profileViewModel.state.model?.nickname ?? ""));
                           },
                           cursorColor: const Color(0xff405376),
                           style: const TextStyle(
@@ -187,9 +205,10 @@ class _CommentPageState extends State<CommentPage> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 onPressed: () {
+                                  FocusScope.of(context)
+                                      .requestFocus(FocusNode());
                                   if (validateAndSave()) {
-                                    viewModel.onEvent(
-                                        CommentPageEvent.registerComment());
+                                    viewModel.onEvent(const RegisterComment());
                                   }
                                 },
                               )),

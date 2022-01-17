@@ -12,11 +12,18 @@ Map<String, String> _urlHeader = {
 class CreateCommentApi {
   Future<Result<CommentGetModel>> createComment(CommentGetModel comment) async {
     try {
-      final response = await http.post(
-        Uri.parse(baseUrl + 'comments'),
-        headers: _urlHeader,
-        body: comment.toJson(),
-      );
+      final response =
+          await http.post(Uri.parse(baseUrl + 'comments'), headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+      }, body: {
+        "post": comment.post,
+        "content": comment.content,
+        "author_email": comment.email,
+        "author_name": comment.author
+      }
+              //comment.toJson(),
+              );
       if (response.statusCode >= 200 && response.statusCode < 300) {
         return Result.success(
             CommentGetModel.fromJson(convert.jsonDecode(response.body)));
