@@ -18,6 +18,7 @@ class CommentPage extends StatefulWidget {
 }
 
 class _CommentPageState extends State<CommentPage> {
+  final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   StreamSubscription? streamSubscription;
 
   @override
@@ -27,9 +28,12 @@ class _CommentPageState extends State<CommentPage> {
       final viewModel = context.read<CommentPageViewModel>();
       context.read<CommentPageViewModel>().fetchCommentPage(widget.postId);
       streamSubscription = viewModel.eventStream.listen((event) {
-        event.when(showToast: (String message) {
-          return '오류입니다';
-        });
+        event.when(
+            showToast: (String message) {
+              return '오류입니다';
+            },
+            registerErrorToast: (String message) {},
+            registerSuccessToast: (String message) {});
       });
     });
   }
@@ -43,7 +47,18 @@ class _CommentPageState extends State<CommentPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<CommentPageViewModel>();
+    final state = viewModel.state;
     final model = viewModel.state.model;
+    bool validateAndSave() {
+      final form = globalKey.currentState;
+      if (form?.validate() ?? true) {
+        form?.save();
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -171,7 +186,12 @@ class _CommentPageState extends State<CommentPage> {
                                       fontSize: 17,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  if (validateAndSave()) {
+                                    viewModel.onEvent(
+                                        CommentPageEvent.registerComment());
+                                  }
+                                },
                               )),
                         ),
                       ),

@@ -23,6 +23,24 @@ class _$CommentPageEventTearOff {
     );
   }
 
+  StoreEmail storeEmail(String email) {
+    return StoreEmail(
+      email,
+    );
+  }
+
+  StorePostId storePostId(int postId) {
+    return StorePostId(
+      postId,
+    );
+  }
+
+  StoreNickname storeNickname(String nickname) {
+    return StoreNickname(
+      nickname,
+    );
+  }
+
   RegisterComment registerComment() {
     return const RegisterComment();
   }
@@ -36,18 +54,27 @@ mixin _$CommentPageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String content) storeContent,
+    required TResult Function(String email) storeEmail,
+    required TResult Function(int postId) storePostId,
+    required TResult Function(String nickname) storeNickname,
     required TResult Function() registerComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String content)? storeContent,
+    TResult Function(String email)? storeEmail,
+    TResult Function(int postId)? storePostId,
+    TResult Function(String nickname)? storeNickname,
     TResult Function()? registerComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String content)? storeContent,
+    TResult Function(String email)? storeEmail,
+    TResult Function(int postId)? storePostId,
+    TResult Function(String nickname)? storeNickname,
     TResult Function()? registerComment,
     required TResult orElse(),
   }) =>
@@ -55,18 +82,27 @@ mixin _$CommentPageEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(StoreContent value) storeContent,
+    required TResult Function(StoreEmail value) storeEmail,
+    required TResult Function(StorePostId value) storePostId,
+    required TResult Function(StoreNickname value) storeNickname,
     required TResult Function(RegisterComment value) registerComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(StoreContent value)? storeContent,
+    TResult Function(StoreEmail value)? storeEmail,
+    TResult Function(StorePostId value)? storePostId,
+    TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StoreContent value)? storeContent,
+    TResult Function(StoreEmail value)? storeEmail,
+    TResult Function(StorePostId value)? storePostId,
+    TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
     required TResult orElse(),
   }) =>
@@ -156,6 +192,9 @@ class _$StoreContent implements StoreContent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String content) storeContent,
+    required TResult Function(String email) storeEmail,
+    required TResult Function(int postId) storePostId,
+    required TResult Function(String nickname) storeNickname,
     required TResult Function() registerComment,
   }) {
     return storeContent(content);
@@ -165,6 +204,9 @@ class _$StoreContent implements StoreContent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String content)? storeContent,
+    TResult Function(String email)? storeEmail,
+    TResult Function(int postId)? storePostId,
+    TResult Function(String nickname)? storeNickname,
     TResult Function()? registerComment,
   }) {
     return storeContent?.call(content);
@@ -174,6 +216,9 @@ class _$StoreContent implements StoreContent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String content)? storeContent,
+    TResult Function(String email)? storeEmail,
+    TResult Function(int postId)? storePostId,
+    TResult Function(String nickname)? storeNickname,
     TResult Function()? registerComment,
     required TResult orElse(),
   }) {
@@ -187,6 +232,9 @@ class _$StoreContent implements StoreContent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(StoreContent value) storeContent,
+    required TResult Function(StoreEmail value) storeEmail,
+    required TResult Function(StorePostId value) storePostId,
+    required TResult Function(StoreNickname value) storeNickname,
     required TResult Function(RegisterComment value) registerComment,
   }) {
     return storeContent(this);
@@ -196,6 +244,9 @@ class _$StoreContent implements StoreContent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(StoreContent value)? storeContent,
+    TResult Function(StoreEmail value)? storeEmail,
+    TResult Function(StorePostId value)? storePostId,
+    TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
   }) {
     return storeContent?.call(this);
@@ -205,6 +256,9 @@ class _$StoreContent implements StoreContent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StoreContent value)? storeContent,
+    TResult Function(StoreEmail value)? storeEmail,
+    TResult Function(StorePostId value)? storePostId,
+    TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
     required TResult orElse(),
   }) {
@@ -221,6 +275,461 @@ abstract class StoreContent implements CommentPageEvent {
   String get content;
   @JsonKey(ignore: true)
   $StoreContentCopyWith<StoreContent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StoreEmailCopyWith<$Res> {
+  factory $StoreEmailCopyWith(
+          StoreEmail value, $Res Function(StoreEmail) then) =
+      _$StoreEmailCopyWithImpl<$Res>;
+  $Res call({String email});
+}
+
+/// @nodoc
+class _$StoreEmailCopyWithImpl<$Res>
+    extends _$CommentPageEventCopyWithImpl<$Res>
+    implements $StoreEmailCopyWith<$Res> {
+  _$StoreEmailCopyWithImpl(StoreEmail _value, $Res Function(StoreEmail) _then)
+      : super(_value, (v) => _then(v as StoreEmail));
+
+  @override
+  StoreEmail get _value => super._value as StoreEmail;
+
+  @override
+  $Res call({
+    Object? email = freezed,
+  }) {
+    return _then(StoreEmail(
+      email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$StoreEmail implements StoreEmail {
+  const _$StoreEmail(this.email);
+
+  @override
+  final String email;
+
+  @override
+  String toString() {
+    return 'CommentPageEvent.storeEmail(email: $email)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is StoreEmail &&
+            const DeepCollectionEquality().equals(other.email, email));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(email));
+
+  @JsonKey(ignore: true)
+  @override
+  $StoreEmailCopyWith<StoreEmail> get copyWith =>
+      _$StoreEmailCopyWithImpl<StoreEmail>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String content) storeContent,
+    required TResult Function(String email) storeEmail,
+    required TResult Function(int postId) storePostId,
+    required TResult Function(String nickname) storeNickname,
+    required TResult Function() registerComment,
+  }) {
+    return storeEmail(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String content)? storeContent,
+    TResult Function(String email)? storeEmail,
+    TResult Function(int postId)? storePostId,
+    TResult Function(String nickname)? storeNickname,
+    TResult Function()? registerComment,
+  }) {
+    return storeEmail?.call(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String content)? storeContent,
+    TResult Function(String email)? storeEmail,
+    TResult Function(int postId)? storePostId,
+    TResult Function(String nickname)? storeNickname,
+    TResult Function()? registerComment,
+    required TResult orElse(),
+  }) {
+    if (storeEmail != null) {
+      return storeEmail(email);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StoreContent value) storeContent,
+    required TResult Function(StoreEmail value) storeEmail,
+    required TResult Function(StorePostId value) storePostId,
+    required TResult Function(StoreNickname value) storeNickname,
+    required TResult Function(RegisterComment value) registerComment,
+  }) {
+    return storeEmail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(StoreContent value)? storeContent,
+    TResult Function(StoreEmail value)? storeEmail,
+    TResult Function(StorePostId value)? storePostId,
+    TResult Function(StoreNickname value)? storeNickname,
+    TResult Function(RegisterComment value)? registerComment,
+  }) {
+    return storeEmail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StoreContent value)? storeContent,
+    TResult Function(StoreEmail value)? storeEmail,
+    TResult Function(StorePostId value)? storePostId,
+    TResult Function(StoreNickname value)? storeNickname,
+    TResult Function(RegisterComment value)? registerComment,
+    required TResult orElse(),
+  }) {
+    if (storeEmail != null) {
+      return storeEmail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class StoreEmail implements CommentPageEvent {
+  const factory StoreEmail(String email) = _$StoreEmail;
+
+  String get email;
+  @JsonKey(ignore: true)
+  $StoreEmailCopyWith<StoreEmail> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StorePostIdCopyWith<$Res> {
+  factory $StorePostIdCopyWith(
+          StorePostId value, $Res Function(StorePostId) then) =
+      _$StorePostIdCopyWithImpl<$Res>;
+  $Res call({int postId});
+}
+
+/// @nodoc
+class _$StorePostIdCopyWithImpl<$Res>
+    extends _$CommentPageEventCopyWithImpl<$Res>
+    implements $StorePostIdCopyWith<$Res> {
+  _$StorePostIdCopyWithImpl(
+      StorePostId _value, $Res Function(StorePostId) _then)
+      : super(_value, (v) => _then(v as StorePostId));
+
+  @override
+  StorePostId get _value => super._value as StorePostId;
+
+  @override
+  $Res call({
+    Object? postId = freezed,
+  }) {
+    return _then(StorePostId(
+      postId == freezed
+          ? _value.postId
+          : postId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$StorePostId implements StorePostId {
+  const _$StorePostId(this.postId);
+
+  @override
+  final int postId;
+
+  @override
+  String toString() {
+    return 'CommentPageEvent.storePostId(postId: $postId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is StorePostId &&
+            const DeepCollectionEquality().equals(other.postId, postId));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(postId));
+
+  @JsonKey(ignore: true)
+  @override
+  $StorePostIdCopyWith<StorePostId> get copyWith =>
+      _$StorePostIdCopyWithImpl<StorePostId>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String content) storeContent,
+    required TResult Function(String email) storeEmail,
+    required TResult Function(int postId) storePostId,
+    required TResult Function(String nickname) storeNickname,
+    required TResult Function() registerComment,
+  }) {
+    return storePostId(postId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String content)? storeContent,
+    TResult Function(String email)? storeEmail,
+    TResult Function(int postId)? storePostId,
+    TResult Function(String nickname)? storeNickname,
+    TResult Function()? registerComment,
+  }) {
+    return storePostId?.call(postId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String content)? storeContent,
+    TResult Function(String email)? storeEmail,
+    TResult Function(int postId)? storePostId,
+    TResult Function(String nickname)? storeNickname,
+    TResult Function()? registerComment,
+    required TResult orElse(),
+  }) {
+    if (storePostId != null) {
+      return storePostId(postId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StoreContent value) storeContent,
+    required TResult Function(StoreEmail value) storeEmail,
+    required TResult Function(StorePostId value) storePostId,
+    required TResult Function(StoreNickname value) storeNickname,
+    required TResult Function(RegisterComment value) registerComment,
+  }) {
+    return storePostId(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(StoreContent value)? storeContent,
+    TResult Function(StoreEmail value)? storeEmail,
+    TResult Function(StorePostId value)? storePostId,
+    TResult Function(StoreNickname value)? storeNickname,
+    TResult Function(RegisterComment value)? registerComment,
+  }) {
+    return storePostId?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StoreContent value)? storeContent,
+    TResult Function(StoreEmail value)? storeEmail,
+    TResult Function(StorePostId value)? storePostId,
+    TResult Function(StoreNickname value)? storeNickname,
+    TResult Function(RegisterComment value)? registerComment,
+    required TResult orElse(),
+  }) {
+    if (storePostId != null) {
+      return storePostId(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class StorePostId implements CommentPageEvent {
+  const factory StorePostId(int postId) = _$StorePostId;
+
+  int get postId;
+  @JsonKey(ignore: true)
+  $StorePostIdCopyWith<StorePostId> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StoreNicknameCopyWith<$Res> {
+  factory $StoreNicknameCopyWith(
+          StoreNickname value, $Res Function(StoreNickname) then) =
+      _$StoreNicknameCopyWithImpl<$Res>;
+  $Res call({String nickname});
+}
+
+/// @nodoc
+class _$StoreNicknameCopyWithImpl<$Res>
+    extends _$CommentPageEventCopyWithImpl<$Res>
+    implements $StoreNicknameCopyWith<$Res> {
+  _$StoreNicknameCopyWithImpl(
+      StoreNickname _value, $Res Function(StoreNickname) _then)
+      : super(_value, (v) => _then(v as StoreNickname));
+
+  @override
+  StoreNickname get _value => super._value as StoreNickname;
+
+  @override
+  $Res call({
+    Object? nickname = freezed,
+  }) {
+    return _then(StoreNickname(
+      nickname == freezed
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$StoreNickname implements StoreNickname {
+  const _$StoreNickname(this.nickname);
+
+  @override
+  final String nickname;
+
+  @override
+  String toString() {
+    return 'CommentPageEvent.storeNickname(nickname: $nickname)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is StoreNickname &&
+            const DeepCollectionEquality().equals(other.nickname, nickname));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(nickname));
+
+  @JsonKey(ignore: true)
+  @override
+  $StoreNicknameCopyWith<StoreNickname> get copyWith =>
+      _$StoreNicknameCopyWithImpl<StoreNickname>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String content) storeContent,
+    required TResult Function(String email) storeEmail,
+    required TResult Function(int postId) storePostId,
+    required TResult Function(String nickname) storeNickname,
+    required TResult Function() registerComment,
+  }) {
+    return storeNickname(nickname);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String content)? storeContent,
+    TResult Function(String email)? storeEmail,
+    TResult Function(int postId)? storePostId,
+    TResult Function(String nickname)? storeNickname,
+    TResult Function()? registerComment,
+  }) {
+    return storeNickname?.call(nickname);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String content)? storeContent,
+    TResult Function(String email)? storeEmail,
+    TResult Function(int postId)? storePostId,
+    TResult Function(String nickname)? storeNickname,
+    TResult Function()? registerComment,
+    required TResult orElse(),
+  }) {
+    if (storeNickname != null) {
+      return storeNickname(nickname);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StoreContent value) storeContent,
+    required TResult Function(StoreEmail value) storeEmail,
+    required TResult Function(StorePostId value) storePostId,
+    required TResult Function(StoreNickname value) storeNickname,
+    required TResult Function(RegisterComment value) registerComment,
+  }) {
+    return storeNickname(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(StoreContent value)? storeContent,
+    TResult Function(StoreEmail value)? storeEmail,
+    TResult Function(StorePostId value)? storePostId,
+    TResult Function(StoreNickname value)? storeNickname,
+    TResult Function(RegisterComment value)? registerComment,
+  }) {
+    return storeNickname?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StoreContent value)? storeContent,
+    TResult Function(StoreEmail value)? storeEmail,
+    TResult Function(StorePostId value)? storePostId,
+    TResult Function(StoreNickname value)? storeNickname,
+    TResult Function(RegisterComment value)? registerComment,
+    required TResult orElse(),
+  }) {
+    if (storeNickname != null) {
+      return storeNickname(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class StoreNickname implements CommentPageEvent {
+  const factory StoreNickname(String nickname) = _$StoreNickname;
+
+  String get nickname;
+  @JsonKey(ignore: true)
+  $StoreNicknameCopyWith<StoreNickname> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -266,6 +775,9 @@ class _$RegisterComment implements RegisterComment {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String content) storeContent,
+    required TResult Function(String email) storeEmail,
+    required TResult Function(int postId) storePostId,
+    required TResult Function(String nickname) storeNickname,
     required TResult Function() registerComment,
   }) {
     return registerComment();
@@ -275,6 +787,9 @@ class _$RegisterComment implements RegisterComment {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String content)? storeContent,
+    TResult Function(String email)? storeEmail,
+    TResult Function(int postId)? storePostId,
+    TResult Function(String nickname)? storeNickname,
     TResult Function()? registerComment,
   }) {
     return registerComment?.call();
@@ -284,6 +799,9 @@ class _$RegisterComment implements RegisterComment {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String content)? storeContent,
+    TResult Function(String email)? storeEmail,
+    TResult Function(int postId)? storePostId,
+    TResult Function(String nickname)? storeNickname,
     TResult Function()? registerComment,
     required TResult orElse(),
   }) {
@@ -297,6 +815,9 @@ class _$RegisterComment implements RegisterComment {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(StoreContent value) storeContent,
+    required TResult Function(StoreEmail value) storeEmail,
+    required TResult Function(StorePostId value) storePostId,
+    required TResult Function(StoreNickname value) storeNickname,
     required TResult Function(RegisterComment value) registerComment,
   }) {
     return registerComment(this);
@@ -306,6 +827,9 @@ class _$RegisterComment implements RegisterComment {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(StoreContent value)? storeContent,
+    TResult Function(StoreEmail value)? storeEmail,
+    TResult Function(StorePostId value)? storePostId,
+    TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
   }) {
     return registerComment?.call(this);
@@ -315,6 +839,9 @@ class _$RegisterComment implements RegisterComment {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StoreContent value)? storeContent,
+    TResult Function(StoreEmail value)? storeEmail,
+    TResult Function(StorePostId value)? storePostId,
+    TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
     required TResult orElse(),
   }) {

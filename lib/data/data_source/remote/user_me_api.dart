@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:virtue_test/core/result.dart';
 import 'package:virtue_test/domain/model/user_me_model/user_me_model.dart';

@@ -13,7 +13,8 @@ _$_CommentGetmodel _$$_CommentGetmodelFromJson(Map<String, dynamic> json) =>
       avatar: json['author_avatar_urls']["96"] as String?,
       content: json["content"]["rendered"] as String?,
       date: json['date'] as String?,
-      postId: json['postId'] as int?,
+      post: json['post'] as int?,
+      email: json['email'] as String?,
     );
 
 Map<String, dynamic> _$$_CommentGetmodelToJson(_$_CommentGetmodel instance) =>
@@ -23,5 +24,6 @@ Map<String, dynamic> _$$_CommentGetmodelToJson(_$_CommentGetmodel instance) =>
       'avatar': instance.avatar,
       'content': instance.content,
       'date': instance.date,
-      'postId': instance.postId,
+      'postId': instance.post,
+      'email': instance.email,
     };

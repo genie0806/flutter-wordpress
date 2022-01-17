@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:virtue_test/domain/model/comment_model/comment_get_model.dart';
 import 'package:virtue_test/domain/use_case/comment_get_use_case/comment_use_cases.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_state.dart';
 import 'package:virtue_test/core/result.dart';
@@ -13,16 +14,34 @@ class CommentPageViewModel with ChangeNotifier {
     this.useCases,
   );
 
-  CommentPageState _state = CommentPageState();
+  CommentPageState _state = CommentPageState(commentModel: CommentGetModel());
   CommentPageState get state => _state;
 
-  final _eventController = StreamController<CommentPageUiEvent>.broadcast();
-  Stream<CommentPageUiEvent> get eventStream => _eventController.stream;
+  final _uiEventController = StreamController<CommentPageUiEvent>.broadcast();
+  Stream<CommentPageUiEvent> get eventStream => _uiEventController.stream;
 
   void onEvent(CommentPageEvent event) {
     event.when(storeContent: (content) {
-      _state = state.copyWith(model: state.model);
+      _state = state.copyWith(
+          commentModel: state.commentModel.copyWith(content: content));
+    }, storeEmail: (email) {
+      _state = state.copyWith(
+          commentModel: state.commentModel.copyWith(email: email));
+    }, storeNickname: (nickname) {
+      _state = state.copyWith(
+          commentModel: state.commentModel.copyWith(author: nickname));
+    }, storePostId: (postId) {
+      _state = state.copyWith(
+          commentModel: state.commentModel.copyWith(post: postId));
+    }, registerComment: () async {
+      final result = await useCases.createCommentUseCase(state.commentModel);
+      result.when(success: (message) {
+        _uiEventController.add(RegisterSuccessToast(message));
+      }, error: (message) {
+        _uiEventController.add(RegisterErrorToast(message));
+      });
     });
+    notifyListeners();
   }
 
   Future refreshList(int id) async {
@@ -39,7 +58,8 @@ class CommentPageViewModel with ChangeNotifier {
       },
       error: (e) {
         print((result as Error).message.toString());
-        _eventController.add(const CommentPageUiEvent.showToast('네트워크 에러 입니다'));
+        _uiEventController
+            .add(const CommentPageUiEvent.showToast('네트워크 에러 입니다'));
       },
     );
   }
