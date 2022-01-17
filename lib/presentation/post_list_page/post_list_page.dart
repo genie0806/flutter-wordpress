@@ -44,6 +44,9 @@ class _PostListPageState extends State<PostListPage> {
           const ReloadPage();
         });
       });
+      context.read<UserMeViewModel>().fetchGetProfile();
+      final userViewModel = context.read<UserMeViewModel>();
+      print(userViewModel.state.model?.email);
     });
   }
 
@@ -58,6 +61,7 @@ class _PostListPageState extends State<PostListPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<PostListPageViewModel>();
+    final userViewModel = context.watch<UserMeViewModel>();
     return ColorfulSafeArea(
         color: Colors.white,
         child: WillPopScope(
@@ -223,7 +227,7 @@ class _PostListPageState extends State<PostListPage> {
                       ),
                     ),
                   ),
-                  const Text('다다'),
+                  Text(userViewModel.state.model?.email ?? ""),
                   const Text('다다'),
                   const Text('다다'),
                 ]),

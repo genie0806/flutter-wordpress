@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:virtue_test/core/result.dart';
 import 'package:virtue_test/domain/model/user_me_model/user_me_model.dart';
@@ -7,11 +9,16 @@ import 'dart:convert' as convert;
 String baseUrl = dotenv.get('BASE_URL');
 
 class UserMeApi {
-  Future<Result<UserMeModel>> fetchUserMe(token) async {
+  Future<Result<UserMeModel>> fetchUserMe(String token) async {
+    // Map<String, String> _urlHeader = {'Authorization': token};
     try {
-      final response = await http.get(
-        Uri.parse("https://virtureart.shop/index.php/wp-json/wp/v2/users/me"),
-        headers: {'Authorization': '$token'},
+      var response = await http.post(
+        Uri.parse('https://virtureart.shop/index.php/wp-json/wp/v2/users/me'),
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
       );
       if (response.statusCode >= 200 && response.statusCode < 300) {
         return Result.success(

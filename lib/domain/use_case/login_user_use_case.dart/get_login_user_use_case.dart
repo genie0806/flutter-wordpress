@@ -14,7 +14,6 @@ class GetLoginUserUseCase {
 //성공이면 200 이니까
     return result.when(success: (responseModel) {
       //토큰저장
-      //responseModel.data.token;
       _appConfigRepository.setAutoLogin(true);
       _appConfigRepository.setToken(responseModel.data?.token);
       _appConfigRepository.setUsername(username);
