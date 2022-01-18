@@ -35,11 +35,14 @@ class _CommentPageState extends State<CommentPage> {
           return '오류입니다';
         }, registerErrorToast: (String message) {
           Fluttertoast.showToast(
-              msg: "댓글 등록 성공",
-              gravity: ToastGravity.BOTTOM,
-              backgroundColor: const Color(0xff6E6E6E),
-              fontSize: 20,
-              toastLength: Toast.LENGTH_SHORT);
+                  msg: "댓글 등록 성공",
+                  gravity: ToastGravity.BOTTOM,
+                  backgroundColor: const Color(0xff6E6E6E),
+                  fontSize: 20,
+                  toastLength: Toast.LENGTH_SHORT)
+              .whenComplete(() {
+            return viewModel.refreshList(widget.postId);
+          });
         }, registerSuccessToast: (String message) {
           Fluttertoast.showToast(
               msg: "댓글 등록 실패",

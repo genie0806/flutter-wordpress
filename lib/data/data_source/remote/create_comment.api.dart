@@ -17,13 +17,6 @@ class CreateCommentApi {
         Uri.parse(baseUrl +
             '/comments?post=$post&content=$content&author_name=$author&author_email=$email'),
         headers: requestHeaders,
-        //body: //jsonEncode(comment.toJson())
-        //    {
-        //  "post": comment.post,
-        //  "content": comment.content,
-        //  "author_name": comment.author,
-        //  "author_email": comment.email,
-        //},
       );
       if (response.statusCode == 200) {
         return Result.success(
