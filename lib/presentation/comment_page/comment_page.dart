@@ -6,6 +6,7 @@ import 'package:virtue_test/domain/model/comment_model/comment_get_model.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_event.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/comment_page/components/comment_form_filed.dart';
+import 'package:virtue_test/presentation/comment_page/components/comment_page_app_bar.dart';
 import 'package:virtue_test/presentation/comment_page/components/comment_text_form_field.dart';
 import 'package:virtue_test/presentation/user_me_data/user_me_view_model.dart';
 
@@ -27,7 +28,7 @@ class _CommentPageState extends State<CommentPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
+    Future(() {
       final viewModel = context.read<CommentPageViewModel>();
       context.read<CommentPageViewModel>().fetchCommentPage(widget.postId);
       streamSubscription = viewModel.eventStream.listen((event) {
@@ -40,8 +41,8 @@ class _CommentPageState extends State<CommentPage> {
                   backgroundColor: const Color(0xff6E6E6E),
                   fontSize: 20,
                   toastLength: Toast.LENGTH_SHORT)
-              .whenComplete(() {
-            return viewModel.refreshList(widget.postId);
+              .whenComplete(() async {
+            return await viewModel.refreshList(widget.postId);
           });
         }, registerSuccessToast: (String message) {
           Fluttertoast.showToast(
@@ -77,8 +78,6 @@ class _CommentPageState extends State<CommentPage> {
       }
     }
 
-    CommentGetModel commentModel = CommentGetModel();
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -90,41 +89,7 @@ class _CommentPageState extends State<CommentPage> {
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
           elevation: 0.7,
-          title: Row(
-            children: [
-              IconButton(
-                  padding: const EdgeInsets.only(top: 5),
-                  onPressed: () async {
-                    Navigator.pop(
-                      context,
-                    );
-                  },
-                  icon: Image.asset(
-                    'assets/noun-arrow-left-1476218.png',
-                    width: 26,
-                    height: 26,
-                    color: const Color(0xff7d7d7d),
-                  )),
-              IconButton(
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(minWidth: 37),
-                  onPressed: () {},
-                  icon: Image.asset(
-                    'assets/icons8-home-100.png',
-                    width: 30,
-                    height: 30,
-                    color: const Color(0xff7d7d7d),
-                  )),
-              Padding(
-                padding: const EdgeInsets.only(left: 98),
-                child: Text(
-                  '댓글 ' + model.length.toString(),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.black, fontSize: 18),
-                ),
-              )
-            ],
-          ),
+          title: commentPageAppBar(context, model),
         ),
         body: Stack(children: [
           Column(
@@ -159,6 +124,7 @@ class _CommentPageState extends State<CommentPage> {
                   endIndent: 0,
                 ),
               ),
+              //댓글입력창
               Padding(
                 padding: const EdgeInsets.only(bottom: 15),
                 child: Container(
@@ -182,12 +148,6 @@ class _CommentPageState extends State<CommentPage> {
                             },
                             onChanged: (val) {
                               viewModel.onEvent(StoreContent(val));
-                              viewModel.onEvent(StoreEmail(
-                                  profileViewModel.state.model?.email ?? ''));
-                              viewModel.onEvent(StorePostId(widget.postId));
-                              viewModel.onEvent(StoreNickname(
-                                  profileViewModel.state.model?.nickname ??
-                                      ""));
                             },
                             onSaved: (value) {
                               viewModel.onEvent(StoreContent(value!));
