@@ -9,8 +9,8 @@ String baseUrl = dotenv.get('BASE_URL');
 class CommentGetApi {
   Future<Result<List<CommentGetModel>>> fetchComments(int id) async {
     try {
-      final response =
-          await http.get(Uri.parse(baseUrl + 'comments?post=' + id.toString()));
+      final response = await http.get(Uri.parse(
+          baseUrl + 'comments?post=' + id.toString() + "&per_page=100"));
       Iterable jsonResponse = convert.jsonDecode(response.body);
       List<CommentGetModel> commentGetApiList =
           jsonResponse.map((e) => CommentGetModel.fromJson(e)).toList();

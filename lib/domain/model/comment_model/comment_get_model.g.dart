@@ -14,7 +14,7 @@ _$_CommentGetmodel _$$_CommentGetmodelFromJson(Map<String, dynamic> json) =>
       content: json["content"]["rendered"] as String?,
       date: json['date'] as String?,
       post: json['post'] as int?,
-      email: json['email'] as String?,
+      email: json['author_email'] as String?,
     );
 
 Map<String, dynamic> _$$_CommentGetmodelToJson(_$_CommentGetmodel instance) =>

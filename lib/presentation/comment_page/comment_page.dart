@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/src/provider.dart';
+import 'package:virtue_test/domain/model/comment_model/comment_get_model.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_event.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/comment_page/components/comment_form_filed.dart';
@@ -60,6 +61,7 @@ class _CommentPageState extends State<CommentPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<CommentPageViewModel>();
+    final state = viewModel.state;
     final model = viewModel.state.model;
     final profileViewModel = context.watch<UserMeViewModel>();
     bool validateAndSave() {
@@ -71,6 +73,8 @@ class _CommentPageState extends State<CommentPage> {
         return false;
       }
     }
+
+    CommentGetModel commentModel = CommentGetModel();
 
     return GestureDetector(
       onTap: () {
@@ -178,6 +182,14 @@ class _CommentPageState extends State<CommentPage> {
                             viewModel.onEvent(StoreNickname(
                                 profileViewModel.state.model?.nickname ?? ""));
                           },
+                          onSaved: (value) {
+                            viewModel.onEvent(StoreContent(value!));
+                            viewModel.onEvent(StoreEmail(
+                                profileViewModel.state.model?.email ?? ''));
+                            viewModel.onEvent(StorePostId(widget.postId));
+                            viewModel.onEvent(StoreNickname(
+                                profileViewModel.state.model?.nickname ?? ""));
+                          },
                           cursorColor: const Color(0xff405376),
                           style: const TextStyle(
                             fontSize: 16,
@@ -208,7 +220,11 @@ class _CommentPageState extends State<CommentPage> {
                                   FocusScope.of(context)
                                       .requestFocus(FocusNode());
                                   if (validateAndSave()) {
-                                    viewModel.onEvent(const RegisterComment());
+                                    viewModel.onEvent(RegisterComment(
+                                        state.commentModel.post!,
+                                        state.commentModel.content!,
+                                        state.commentModel.author!,
+                                        state.commentModel.email!));
                                   }
                                 },
                               )),

@@ -5,26 +5,27 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 String baseUrl = dotenv.get('BASE_URL');
-Map<String, String> _urlHeader = {
-  'Authorization': '',
-};
 
 class CreateCommentApi {
-  Future<Result<CommentGetModel>> createComment(CommentGetModel comment) async {
+  Future<Result<CommentGetModel>> createComment(
+      int post, String content, String author, String email) async {
     try {
-      final response =
-          await http.post(Uri.parse(baseUrl + 'comments'), headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json',
-      }, body: {
-        "post": comment.post,
-        "content": comment.content,
-        "author_email": comment.email,
-        "author_name": comment.author
-      }
-              //comment.toJson(),
-              );
-      if (response.statusCode >= 200 && response.statusCode < 300) {
+      Map<String, String> requestHeaders = {
+        'content-type': 'application/x-www-form-urlencoded',
+      };
+      final response = await http.post(
+        Uri.parse(
+            'https://virtureart.shop/index.php/wp-json/wp/v2/comments?post=$post&content=$content&author_name=$author&author_email=$email'),
+        headers: requestHeaders,
+        body: //jsonEncode(comment.toJson())
+            {
+          "post": post,
+          "content": content,
+          "author_name": author,
+          "author_email": email,
+        },
+      );
+      if (response.statusCode == 200) {
         return Result.success(
             CommentGetModel.fromJson(convert.jsonDecode(response.body)));
       } else {

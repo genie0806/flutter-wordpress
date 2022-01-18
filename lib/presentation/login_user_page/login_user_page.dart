@@ -76,8 +76,6 @@ class _LoginUserPageState extends State<LoginUserPage> {
 
     final viewModel = context.watch<LoginUserViewModel>();
     final state = viewModel.state;
-    final profileViewModel = context.watch<UserMeViewModel>();
-    final profileState = profileViewModel.state;
     return Container(
       color: Colors.transparent,
       child: SafeArea(
@@ -141,13 +139,10 @@ class _LoginUserPageState extends State<LoginUserPage> {
                           },
                           onChanged: (val) {
                             viewModel.onEvent(StoreUsername(val));
-                            profileViewModel.onEvent(StoreProfileUser(val));
                           },
                           onSaved: (value) {
                             viewModel.onEvent(
                                 StoreUsername(value.toString().trim()));
-                            profileViewModel.onEvent(
-                                StoreProfileUser(value.toString().trim()));
                           },
                           cursorColor: const Color(0xff405376),
                           style: const TextStyle(
@@ -173,13 +168,10 @@ class _LoginUserPageState extends State<LoginUserPage> {
                           },
                           onChanged: (val) {
                             viewModel.onEvent(StorePassword(val));
-                            profileViewModel.onEvent(StoreProfilePassword(val));
                           },
                           onSaved: (value) {
                             viewModel.onEvent(
                                 StorePassword(value.toString().trim()));
-                            profileViewModel.onEvent(
-                                StoreProfilePassword(value.toString().trim()));
                           },
                           cursorColor: const Color(0xff405376),
                           style: const TextStyle(
