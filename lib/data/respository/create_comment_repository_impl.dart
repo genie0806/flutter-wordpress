@@ -11,8 +11,7 @@ class CreateCommentRepositoryImpl implements CreateCommentRepository {
   );
 
   @override
-  Future<Result<CommentGetModel>> postComment(
-      int post, String content, String author, String email) async {
-    return createCommentApi.createComment(post, content, author, email);
+  Future<Result<CommentGetModel>> postComment(CommentGetModel comment) async {
+    return createCommentApi.createComment(comment);
   }
 }

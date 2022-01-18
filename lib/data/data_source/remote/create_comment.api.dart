@@ -7,22 +7,20 @@ import 'dart:convert' as convert;
 String baseUrl = dotenv.get('BASE_URL');
 
 class CreateCommentApi {
-  Future<Result<CommentGetModel>> createComment(
-      int post, String content, String author, String email) async {
+  Future<Result<CommentGetModel>> createComment(CommentGetModel comment) async {
     try {
       Map<String, String> requestHeaders = {
         'content-type': 'application/x-www-form-urlencoded',
       };
       final response = await http.post(
-        Uri.parse(
-            'https://virtureart.shop/index.php/wp-json/wp/v2/comments?post=$post&content=$content&author_name=$author&author_email=$email'),
+        Uri.parse('https://virtureart.shop/index.php/wp-json/wp/v2/comments'),
         headers: requestHeaders,
         body: //jsonEncode(comment.toJson())
             {
-          "post": post,
-          "content": content,
-          "author_name": author,
-          "author_email": email,
+          "post": comment.post,
+          "content": comment.content,
+          "author_name": comment.author,
+          "author_email": comment.email,
         },
       );
       if (response.statusCode == 200) {

@@ -162,72 +162,75 @@ class _CommentPageState extends State<CommentPage> {
                   alignment: Alignment.bottomCenter,
                   child:
                       Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: TextFormField(
-                          initialValue: "",
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (onValidateVal) {
-                            if (onValidateVal!.trim().isEmpty) {
-                              return '댓글을 입력해주세요';
-                            }
-                            return null;
-                          },
-                          onChanged: (val) {
-                            viewModel.onEvent(StoreContent(val));
-                            viewModel.onEvent(StoreEmail(
-                                profileViewModel.state.model?.email ?? ''));
-                            viewModel.onEvent(StorePostId(widget.postId));
-                            viewModel.onEvent(StoreNickname(
-                                profileViewModel.state.model?.nickname ?? ""));
-                          },
-                          onSaved: (value) {
-                            viewModel.onEvent(StoreContent(value!));
-                            viewModel.onEvent(StoreEmail(
-                                profileViewModel.state.model?.email ?? ''));
-                            viewModel.onEvent(StorePostId(widget.postId));
-                            viewModel.onEvent(StoreNickname(
-                                profileViewModel.state.model?.nickname ?? ""));
-                          },
-                          cursorColor: const Color(0xff405376),
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
+                    Form(
+                      key: globalKey,
+                      child: Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: TextFormField(
+                            initialValue: "",
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (onValidateVal) {
+                              if (onValidateVal!.trim().isEmpty) {
+                                return '댓글을 입력해주세요';
+                              }
+                              return null;
+                            },
+                            onChanged: (val) {
+                              viewModel.onEvent(StoreContent(val));
+                              viewModel.onEvent(StoreEmail(
+                                  profileViewModel.state.model?.email ?? ''));
+                              viewModel.onEvent(StorePostId(widget.postId));
+                              viewModel.onEvent(StoreNickname(
+                                  profileViewModel.state.model?.nickname ??
+                                      ""));
+                            },
+                            onSaved: (value) {
+                              viewModel.onEvent(StoreContent(value!));
+                              viewModel.onEvent(StoreEmail(
+                                  profileViewModel.state.model?.email ?? ''));
+                              viewModel.onEvent(StorePostId(widget.postId));
+                              viewModel.onEvent(StoreNickname(
+                                  profileViewModel.state.model?.nickname ??
+                                      ""));
+                            },
+                            cursorColor: const Color(0xff405376),
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                            ),
+                            decoration: InputDecoration(
+                                isDense: true,
+                                contentPadding:
+                                    const EdgeInsets.fromLTRB(15, 29, 0, 0),
+                                hintText: '댓글을 입력해주세요',
+                                hintStyle: TextStyle(
+                                    fontSize: 16, color: Colors.grey.shade400),
+                                enabledBorder: activeInputBorder(),
+                                focusedBorder: activeInputBorder(),
+                                errorBorder: errorInputBorder(),
+                                focusedErrorBorder: errorInputBorder(),
+                                errorStyle: const TextStyle(
+                                    color: Colors.redAccent, fontSize: 13),
+                                suffixIcon: TextButton(
+                                  child: const Text(
+                                    '등록',
+                                    style: TextStyle(
+                                        color: Color(0xff405479),
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  onPressed: () {
+                                    FocusScope.of(context)
+                                        .requestFocus(FocusNode());
+                                    if (validateAndSave()) {
+                                      viewModel.onEvent(
+                                          RegisterComment(state.commentModel));
+                                    }
+                                  },
+                                )),
                           ),
-                          decoration: InputDecoration(
-                              isDense: true,
-                              contentPadding:
-                                  const EdgeInsets.fromLTRB(15, 29, 0, 0),
-                              hintText: '댓글을 입력해주세요',
-                              hintStyle: TextStyle(
-                                  fontSize: 16, color: Colors.grey.shade400),
-                              enabledBorder: activeInputBorder(),
-                              focusedBorder: activeInputBorder(),
-                              errorBorder: errorInputBorder(),
-                              focusedErrorBorder: errorInputBorder(),
-                              errorStyle: const TextStyle(
-                                  color: Colors.redAccent, fontSize: 13),
-                              suffixIcon: TextButton(
-                                child: const Text(
-                                  '등록',
-                                  style: TextStyle(
-                                      color: Color(0xff405479),
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                onPressed: () {
-                                  FocusScope.of(context)
-                                      .requestFocus(FocusNode());
-                                  if (validateAndSave()) {
-                                    viewModel.onEvent(RegisterComment(
-                                        state.commentModel.post!,
-                                        state.commentModel.content!,
-                                        state.commentModel.author!,
-                                        state.commentModel.email!));
-                                  }
-                                },
-                              )),
                         ),
                       ),
                     ),

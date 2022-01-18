@@ -33,9 +33,8 @@ class CommentPageViewModel with ChangeNotifier {
     }, storePostId: (postId) {
       _state = state.copyWith(
           commentModel: state.commentModel.copyWith(post: postId));
-    }, registerComment: (post, content, author, email) async {
-      final result =
-          await useCases.createCommentUseCase(post, content, author, email);
+    }, registerComment: (CommentGetModel comment) async {
+      final result = await useCases.createCommentUseCase(comment);
       result.when(success: (message) {
         _uiEventController.add(RegisterSuccessToast(message));
       }, error: (message) {

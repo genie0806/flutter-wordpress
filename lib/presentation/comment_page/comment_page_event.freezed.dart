@@ -41,13 +41,9 @@ class _$CommentPageEventTearOff {
     );
   }
 
-  RegisterComment registerComment(
-      int post, String content, String author, String email) {
+  RegisterComment registerComment(CommentGetModel comment) {
     return RegisterComment(
-      post,
-      content,
-      author,
-      email,
+      comment,
     );
   }
 }
@@ -63,9 +59,7 @@ mixin _$CommentPageEvent {
     required TResult Function(String email) storeEmail,
     required TResult Function(int postId) storePostId,
     required TResult Function(String nickname) storeNickname,
-    required TResult Function(
-            int post, String content, String author, String email)
-        registerComment,
+    required TResult Function(CommentGetModel comment) registerComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,8 +68,7 @@ mixin _$CommentPageEvent {
     TResult Function(String email)? storeEmail,
     TResult Function(int postId)? storePostId,
     TResult Function(String nickname)? storeNickname,
-    TResult Function(int post, String content, String author, String email)?
-        registerComment,
+    TResult Function(CommentGetModel comment)? registerComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,8 +77,7 @@ mixin _$CommentPageEvent {
     TResult Function(String email)? storeEmail,
     TResult Function(int postId)? storePostId,
     TResult Function(String nickname)? storeNickname,
-    TResult Function(int post, String content, String author, String email)?
-        registerComment,
+    TResult Function(CommentGetModel comment)? registerComment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -205,9 +197,7 @@ class _$StoreContent implements StoreContent {
     required TResult Function(String email) storeEmail,
     required TResult Function(int postId) storePostId,
     required TResult Function(String nickname) storeNickname,
-    required TResult Function(
-            int post, String content, String author, String email)
-        registerComment,
+    required TResult Function(CommentGetModel comment) registerComment,
   }) {
     return storeContent(content);
   }
@@ -219,8 +209,7 @@ class _$StoreContent implements StoreContent {
     TResult Function(String email)? storeEmail,
     TResult Function(int postId)? storePostId,
     TResult Function(String nickname)? storeNickname,
-    TResult Function(int post, String content, String author, String email)?
-        registerComment,
+    TResult Function(CommentGetModel comment)? registerComment,
   }) {
     return storeContent?.call(content);
   }
@@ -232,8 +221,7 @@ class _$StoreContent implements StoreContent {
     TResult Function(String email)? storeEmail,
     TResult Function(int postId)? storePostId,
     TResult Function(String nickname)? storeNickname,
-    TResult Function(int post, String content, String author, String email)?
-        registerComment,
+    TResult Function(CommentGetModel comment)? registerComment,
     required TResult orElse(),
   }) {
     if (storeContent != null) {
@@ -360,9 +348,7 @@ class _$StoreEmail implements StoreEmail {
     required TResult Function(String email) storeEmail,
     required TResult Function(int postId) storePostId,
     required TResult Function(String nickname) storeNickname,
-    required TResult Function(
-            int post, String content, String author, String email)
-        registerComment,
+    required TResult Function(CommentGetModel comment) registerComment,
   }) {
     return storeEmail(email);
   }
@@ -374,8 +360,7 @@ class _$StoreEmail implements StoreEmail {
     TResult Function(String email)? storeEmail,
     TResult Function(int postId)? storePostId,
     TResult Function(String nickname)? storeNickname,
-    TResult Function(int post, String content, String author, String email)?
-        registerComment,
+    TResult Function(CommentGetModel comment)? registerComment,
   }) {
     return storeEmail?.call(email);
   }
@@ -387,8 +372,7 @@ class _$StoreEmail implements StoreEmail {
     TResult Function(String email)? storeEmail,
     TResult Function(int postId)? storePostId,
     TResult Function(String nickname)? storeNickname,
-    TResult Function(int post, String content, String author, String email)?
-        registerComment,
+    TResult Function(CommentGetModel comment)? registerComment,
     required TResult orElse(),
   }) {
     if (storeEmail != null) {
@@ -516,9 +500,7 @@ class _$StorePostId implements StorePostId {
     required TResult Function(String email) storeEmail,
     required TResult Function(int postId) storePostId,
     required TResult Function(String nickname) storeNickname,
-    required TResult Function(
-            int post, String content, String author, String email)
-        registerComment,
+    required TResult Function(CommentGetModel comment) registerComment,
   }) {
     return storePostId(postId);
   }
@@ -530,8 +512,7 @@ class _$StorePostId implements StorePostId {
     TResult Function(String email)? storeEmail,
     TResult Function(int postId)? storePostId,
     TResult Function(String nickname)? storeNickname,
-    TResult Function(int post, String content, String author, String email)?
-        registerComment,
+    TResult Function(CommentGetModel comment)? registerComment,
   }) {
     return storePostId?.call(postId);
   }
@@ -543,8 +524,7 @@ class _$StorePostId implements StorePostId {
     TResult Function(String email)? storeEmail,
     TResult Function(int postId)? storePostId,
     TResult Function(String nickname)? storeNickname,
-    TResult Function(int post, String content, String author, String email)?
-        registerComment,
+    TResult Function(CommentGetModel comment)? registerComment,
     required TResult orElse(),
   }) {
     if (storePostId != null) {
@@ -672,9 +652,7 @@ class _$StoreNickname implements StoreNickname {
     required TResult Function(String email) storeEmail,
     required TResult Function(int postId) storePostId,
     required TResult Function(String nickname) storeNickname,
-    required TResult Function(
-            int post, String content, String author, String email)
-        registerComment,
+    required TResult Function(CommentGetModel comment) registerComment,
   }) {
     return storeNickname(nickname);
   }
@@ -686,8 +664,7 @@ class _$StoreNickname implements StoreNickname {
     TResult Function(String email)? storeEmail,
     TResult Function(int postId)? storePostId,
     TResult Function(String nickname)? storeNickname,
-    TResult Function(int post, String content, String author, String email)?
-        registerComment,
+    TResult Function(CommentGetModel comment)? registerComment,
   }) {
     return storeNickname?.call(nickname);
   }
@@ -699,8 +676,7 @@ class _$StoreNickname implements StoreNickname {
     TResult Function(String email)? storeEmail,
     TResult Function(int postId)? storePostId,
     TResult Function(String nickname)? storeNickname,
-    TResult Function(int post, String content, String author, String email)?
-        registerComment,
+    TResult Function(CommentGetModel comment)? registerComment,
     required TResult orElse(),
   }) {
     if (storeNickname != null) {
@@ -764,7 +740,9 @@ abstract class $RegisterCommentCopyWith<$Res> {
   factory $RegisterCommentCopyWith(
           RegisterComment value, $Res Function(RegisterComment) then) =
       _$RegisterCommentCopyWithImpl<$Res>;
-  $Res call({int post, String content, String author, String email});
+  $Res call({CommentGetModel comment});
+
+  $CommentGetModelCopyWith<$Res> get comment;
 }
 
 /// @nodoc
@@ -780,49 +758,35 @@ class _$RegisterCommentCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? post = freezed,
-    Object? content = freezed,
-    Object? author = freezed,
-    Object? email = freezed,
+    Object? comment = freezed,
   }) {
     return _then(RegisterComment(
-      post == freezed
-          ? _value.post
-          : post // ignore: cast_nullable_to_non_nullable
-              as int,
-      content == freezed
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      author == freezed
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
-              as String,
-      email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
+      comment == freezed
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as CommentGetModel,
     ));
+  }
+
+  @override
+  $CommentGetModelCopyWith<$Res> get comment {
+    return $CommentGetModelCopyWith<$Res>(_value.comment, (value) {
+      return _then(_value.copyWith(comment: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$RegisterComment implements RegisterComment {
-  const _$RegisterComment(this.post, this.content, this.author, this.email);
+  const _$RegisterComment(this.comment);
 
   @override
-  final int post;
-  @override
-  final String content;
-  @override
-  final String author;
-  @override
-  final String email;
+  final CommentGetModel comment;
 
   @override
   String toString() {
-    return 'CommentPageEvent.registerComment(post: $post, content: $content, author: $author, email: $email)';
+    return 'CommentPageEvent.registerComment(comment: $comment)';
   }
 
   @override
@@ -830,19 +794,12 @@ class _$RegisterComment implements RegisterComment {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is RegisterComment &&
-            const DeepCollectionEquality().equals(other.post, post) &&
-            const DeepCollectionEquality().equals(other.content, content) &&
-            const DeepCollectionEquality().equals(other.author, author) &&
-            const DeepCollectionEquality().equals(other.email, email));
+            const DeepCollectionEquality().equals(other.comment, comment));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(post),
-      const DeepCollectionEquality().hash(content),
-      const DeepCollectionEquality().hash(author),
-      const DeepCollectionEquality().hash(email));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(comment));
 
   @JsonKey(ignore: true)
   @override
@@ -856,11 +813,9 @@ class _$RegisterComment implements RegisterComment {
     required TResult Function(String email) storeEmail,
     required TResult Function(int postId) storePostId,
     required TResult Function(String nickname) storeNickname,
-    required TResult Function(
-            int post, String content, String author, String email)
-        registerComment,
+    required TResult Function(CommentGetModel comment) registerComment,
   }) {
-    return registerComment(post, content, author, email);
+    return registerComment(comment);
   }
 
   @override
@@ -870,10 +825,9 @@ class _$RegisterComment implements RegisterComment {
     TResult Function(String email)? storeEmail,
     TResult Function(int postId)? storePostId,
     TResult Function(String nickname)? storeNickname,
-    TResult Function(int post, String content, String author, String email)?
-        registerComment,
+    TResult Function(CommentGetModel comment)? registerComment,
   }) {
-    return registerComment?.call(post, content, author, email);
+    return registerComment?.call(comment);
   }
 
   @override
@@ -883,12 +837,11 @@ class _$RegisterComment implements RegisterComment {
     TResult Function(String email)? storeEmail,
     TResult Function(int postId)? storePostId,
     TResult Function(String nickname)? storeNickname,
-    TResult Function(int post, String content, String author, String email)?
-        registerComment,
+    TResult Function(CommentGetModel comment)? registerComment,
     required TResult orElse(),
   }) {
     if (registerComment != null) {
-      return registerComment(post, content, author, email);
+      return registerComment(comment);
     }
     return orElse();
   }
@@ -935,14 +888,9 @@ class _$RegisterComment implements RegisterComment {
 }
 
 abstract class RegisterComment implements CommentPageEvent {
-  const factory RegisterComment(
-          int post, String content, String author, String email) =
-      _$RegisterComment;
+  const factory RegisterComment(CommentGetModel comment) = _$RegisterComment;
 
-  int get post;
-  String get content;
-  String get author;
-  String get email;
+  CommentGetModel get comment;
   @JsonKey(ignore: true)
   $RegisterCommentCopyWith<RegisterComment> get copyWith =>
       throw _privateConstructorUsedError;
