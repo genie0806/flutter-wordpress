@@ -45,7 +45,6 @@ class _PostPageState extends State<PostPage> {
             },
             reloadPage: () {});
       });
-      final commentViewModel = context.read<CommentPageViewModel>();
       context.read<CommentPageViewModel>().fetchCommentPage(widget.id);
     });
   }
