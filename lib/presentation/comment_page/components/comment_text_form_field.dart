@@ -8,8 +8,8 @@ InputDecoration textInputDeco(String hint) {
       hintStyle: TextStyle(fontSize: 16, color: Colors.grey.shade400),
       enabledBorder: activeInputBorder(),
       focusedBorder: activeInputBorder(),
-      errorBorder: errorInputBorder(),
-      focusedErrorBorder: errorInputBorder(),
+      //errorBorder: errorInputBorder(),
+      //focusedErrorBorder: errorInputBorder(),
       errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 13),
       suffixIcon: TextButton(
         child: const Text(
