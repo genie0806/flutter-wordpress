@@ -13,7 +13,8 @@ class CreateCommentApi {
         'content-type': 'application/x-www-form-urlencoded',
       };
       final response = await http.post(
-        Uri.parse('https://virtureart.shop/index.php/wp-json/wp/v2/comments'),
+        Uri.parse(baseUrl +
+            'comments?post=${comment.post}&content=${comment.content}3&author_name=${comment.author}&author_email=${comment.email}'),
         headers: requestHeaders,
         body: //jsonEncode(comment.toJson())
             {
