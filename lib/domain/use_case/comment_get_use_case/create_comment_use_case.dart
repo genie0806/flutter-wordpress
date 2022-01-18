@@ -9,8 +9,9 @@ class CreateCommentUseCase {
     this.repository,
   );
 
-  Future<Result<String>> call(CommentGetModel comment) async {
-    final result = await repository.postComment(comment);
+  Future<Result<String>> call(
+      int post, String content, String author, String email) async {
+    final result = await repository.postComment(post, content, author, email);
     return result.when(success: (message) {
       return const Result.success('댓글이 등록됩니다.');
     }, error: (message) {

@@ -225,8 +225,11 @@ class _CommentPageState extends State<CommentPage> {
                                     FocusScope.of(context)
                                         .requestFocus(FocusNode());
                                     if (validateAndSave()) {
-                                      viewModel.onEvent(
-                                          RegisterComment(state.commentModel));
+                                      viewModel.onEvent(RegisterComment(
+                                          state.commentModel.post!,
+                                          state.commentModel.content!,
+                                          state.commentModel.author!,
+                                          state.commentModel.email!));
                                     }
                                   },
                                 )),

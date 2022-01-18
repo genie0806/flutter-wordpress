@@ -9,6 +9,6 @@ abstract class CommentPageEvent with _$CommentPageEvent {
   const factory CommentPageEvent.storeEmail(String email) = StoreEmail;
   const factory CommentPageEvent.storePostId(int postId) = StorePostId;
   const factory CommentPageEvent.storeNickname(String nickname) = StoreNickname;
-  const factory CommentPageEvent.registerComment(CommentGetModel comment) =
-      RegisterComment;
+  const factory CommentPageEvent.registerComment(
+      int post, String content, String author, String email) = RegisterComment;
 }

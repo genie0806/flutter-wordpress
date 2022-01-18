@@ -7,22 +7,23 @@ import 'dart:convert' as convert;
 String baseUrl = dotenv.get('BASE_URL');
 
 class CreateCommentApi {
-  Future<Result<CommentGetModel>> createComment(CommentGetModel comment) async {
+  Future<Result<CommentGetModel>> createComment(
+      int post, String content, String author, String email) async {
     try {
       Map<String, String> requestHeaders = {
         'content-type': 'application/x-www-form-urlencoded',
       };
       final response = await http.post(
         Uri.parse(baseUrl +
-            'comments?post=${comment.post}&content=${comment.content}3&author_name=${comment.author}&author_email=${comment.email}'),
+            '/comments?post=$post&content=$content&author_name=$author&author_email=$email'),
         headers: requestHeaders,
-        body: //jsonEncode(comment.toJson())
-            {
-          "post": comment.post,
-          "content": comment.content,
-          "author_name": comment.author,
-          "author_email": comment.email,
-        },
+        //body: //jsonEncode(comment.toJson())
+        //    {
+        //  "post": comment.post,
+        //  "content": comment.content,
+        //  "author_name": comment.author,
+        //  "author_email": comment.email,
+        //},
       );
       if (response.statusCode == 200) {
         return Result.success(
