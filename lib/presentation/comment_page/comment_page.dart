@@ -23,6 +23,7 @@ class CommentPage extends StatefulWidget {
 class _CommentPageState extends State<CommentPage> {
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   StreamSubscription? streamSubscription;
+  final TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
@@ -58,6 +59,7 @@ class _CommentPageState extends State<CommentPage> {
   @override
   void dispose() {
     streamSubscription?.cancel();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -183,7 +185,8 @@ class _CommentPageState extends State<CommentPage> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 16),
                                 child: TextFormField(
-                                  initialValue: "",
+                                  controller: _controller,
+                                  //initialValue: "",
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   validator: (onValidateVal) {
@@ -249,11 +252,13 @@ class _CommentPageState extends State<CommentPage> {
                                               .requestFocus(FocusNode());
                                           if (validateAndSave()) {
                                             viewModel.onEvent(RegisterComment(
-                                                state.commentModel.post!,
-                                                state.commentModel.content!,
-                                                state.commentModel.author!,
-                                                state.commentModel.email!));
+                                              state.commentModel.post!,
+                                              state.commentModel.content!,
+                                              state.commentModel.author!,
+                                              state.commentModel.email!,
+                                            ));
                                           }
+                                          _controller.clear();
                                         },
                                       )),
                                 ),
