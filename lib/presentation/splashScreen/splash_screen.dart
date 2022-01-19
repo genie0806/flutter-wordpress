@@ -11,8 +11,10 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(
         Duration(seconds: 5),
-        () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => const SocialLoginPage())));
+        () => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (BuildContext context) {
+              return const SocialLoginPage();
+            })));
 
     return WillPopScope(
       onWillPop: () async => false,

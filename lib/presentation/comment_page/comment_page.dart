@@ -128,21 +128,28 @@ class _CommentPageState extends State<CommentPage> {
             children: [
               Expanded(
                 child: ListView(children: [
-                  if (model.isEmpty) ...{
+                  if (model.length <= 0) ...{
                     const Padding(
                       padding: EdgeInsets.only(top: 20),
                     ),
                     const Center(
-                        child: Text(
-                      '첫번째 댓글을 남겨주세요',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ))
-                  } else ...{
+                      child: Text(
+                        '첫번째 댓글을 남겨주세요',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  } else if (model.isNotEmpty) ...{
                     ...model.map(
                       (e) => CommentFormField(
                         model: e,
                       ),
+                    )
+                  } else ...{
+                    const SizedBox(
+                      height: 10,
+                      width: 10,
+                      child: Center(child: CircularProgressIndicator()),
                     )
                   },
                 ]),

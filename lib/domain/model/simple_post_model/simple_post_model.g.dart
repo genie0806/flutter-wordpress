@@ -24,7 +24,7 @@ _$_SimplePostModel _$$_SimplePostModelFromJson(Map<String, dynamic> json) =>
       largeUrl: json['largeUrl'] as String?,
       profile: json['profile'] as String?,
       profileUrl: json['profileUrl'] as String?,
-      viewCount: json['viewCount'] as int?,
+      comment: json['comment'] as String?,
     );
 
 Map<String, dynamic> _$$_SimplePostModelToJson(_$_SimplePostModel instance) =>
@@ -45,5 +45,5 @@ Map<String, dynamic> _$$_SimplePostModelToJson(_$_SimplePostModel instance) =>
       'largeUrl': instance.largeUrl,
       'profile': instance.profile,
       'profileUrl': instance.profileUrl,
-      'viewCount': instance.viewCount,
+      'comment': instance.comment,
     };

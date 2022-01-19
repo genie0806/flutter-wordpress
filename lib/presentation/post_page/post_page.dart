@@ -60,8 +60,6 @@ class _PostPageState extends State<PostPage> {
     final viewModel = context.watch<PostListPageViewModel>();
     final model =
         viewModel.postsListState.postList.where((e) => e.id == widget.id).first;
-    final commentViewModel = context.watch<CommentPageViewModel>();
-
     return ColorfulSafeArea(
       color: Colors.black,
       bottom: false,
@@ -181,12 +179,12 @@ class _PostPageState extends State<PostPage> {
                                     ? const Icon(
                                         Icons.favorite_border_outlined,
                                         color: Colors.black,
-                                        size: 30,
+                                        size: 28,
                                       )
                                     : Icon(
                                         Icons.favorite,
                                         color: Colors.indigo.shade700,
-                                        size: 30,
+                                        size: 28,
                                       ),
                                 label: likesPressed
                                     ? const Text(
@@ -196,7 +194,7 @@ class _PostPageState extends State<PostPage> {
                                     : const Text(
                                         '1',
                                         style: TextStyle(
-                                            color: Colors.black, fontSize: 16),
+                                            color: Colors.black, fontSize: 14),
                                       )),
                             Padding(
                               padding: const EdgeInsets.only(left: 10),
@@ -204,11 +202,11 @@ class _PostPageState extends State<PostPage> {
                                   onPressed: () {},
                                   icon: const Icon(
                                     Ionicons.share_social_outline,
-                                    size: 28,
+                                    size: 26,
                                   )),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 190),
+                              padding: const EdgeInsets.only(left: 200),
                               child: TextButton.icon(
                                   style: TextButton.styleFrom(
                                       primary: Colors.white, elevation: 0),
@@ -236,13 +234,12 @@ class _PostPageState extends State<PostPage> {
                                   icon: const Icon(
                                     Ionicons.chatbubble_outline,
                                     color: Colors.black,
-                                    size: 28,
+                                    size: 26,
                                   ),
                                   label: Text(
-                                    commentViewModel.state.model.length
-                                        .toString(),
+                                    model.comment.toString(),
                                     style: const TextStyle(
-                                        color: Colors.black, fontSize: 16),
+                                        color: Colors.black, fontSize: 14),
                                   )),
                             ),
                           ],

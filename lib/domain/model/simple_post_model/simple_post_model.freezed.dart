@@ -38,7 +38,7 @@ class _$SimplePostModelTearOff {
       String? largeUrl,
       String? profile,
       String? profileUrl,
-      int? viewCount}) {
+      String? comment}) {
     return _SimplePostModel(
       id: id,
       postDate: postDate,
@@ -56,7 +56,7 @@ class _$SimplePostModelTearOff {
       largeUrl: largeUrl,
       profile: profile,
       profileUrl: profileUrl,
-      viewCount: viewCount,
+      comment: comment,
     );
   }
 
@@ -86,7 +86,7 @@ mixin _$SimplePostModel {
   String? get largeUrl => throw _privateConstructorUsedError;
   String? get profile => throw _privateConstructorUsedError;
   String? get profileUrl => throw _privateConstructorUsedError;
-  int? get viewCount => throw _privateConstructorUsedError;
+  String? get comment => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -116,7 +116,7 @@ abstract class $SimplePostModelCopyWith<$Res> {
       String? largeUrl,
       String? profile,
       String? profileUrl,
-      int? viewCount});
+      String? comment});
 }
 
 /// @nodoc
@@ -146,7 +146,7 @@ class _$SimplePostModelCopyWithImpl<$Res>
     Object? largeUrl = freezed,
     Object? profile = freezed,
     Object? profileUrl = freezed,
-    Object? viewCount = freezed,
+    Object? comment = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -213,10 +213,10 @@ class _$SimplePostModelCopyWithImpl<$Res>
           ? _value.profileUrl
           : profileUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      viewCount: viewCount == freezed
-          ? _value.viewCount
-          : viewCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+      comment: comment == freezed
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -245,7 +245,7 @@ abstract class _$SimplePostModelCopyWith<$Res>
       String? largeUrl,
       String? profile,
       String? profileUrl,
-      int? viewCount});
+      String? comment});
 }
 
 /// @nodoc
@@ -277,7 +277,7 @@ class __$SimplePostModelCopyWithImpl<$Res>
     Object? largeUrl = freezed,
     Object? profile = freezed,
     Object? profileUrl = freezed,
-    Object? viewCount = freezed,
+    Object? comment = freezed,
   }) {
     return _then(_SimplePostModel(
       id: id == freezed
@@ -344,10 +344,10 @@ class __$SimplePostModelCopyWithImpl<$Res>
           ? _value.profileUrl
           : profileUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      viewCount: viewCount == freezed
-          ? _value.viewCount
-          : viewCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+      comment: comment == freezed
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -372,7 +372,7 @@ class _$_SimplePostModel implements _SimplePostModel {
       this.largeUrl,
       this.profile,
       this.profileUrl,
-      this.viewCount});
+      this.comment});
 
   factory _$_SimplePostModel.fromJson(Map<String, dynamic> json) =>
       _$$_SimplePostModelFromJson(json);
@@ -410,11 +410,11 @@ class _$_SimplePostModel implements _SimplePostModel {
   @override
   final String? profileUrl;
   @override
-  final int? viewCount;
+  final String? comment;
 
   @override
   String toString() {
-    return 'SimplePostModel(id: $id, postDate: $postDate, title: $title, categoryName: $categoryName, imageUrl: $imageUrl, postContent: $postContent, displayform: $displayform, space: $space, author: $author, style: $style, location: $location, thumsnailUrl: $thumsnailUrl, mediumUrl: $mediumUrl, largeUrl: $largeUrl, profile: $profile, profileUrl: $profileUrl, viewCount: $viewCount)';
+    return 'SimplePostModel(id: $id, postDate: $postDate, title: $title, categoryName: $categoryName, imageUrl: $imageUrl, postContent: $postContent, displayform: $displayform, space: $space, author: $author, style: $style, location: $location, thumsnailUrl: $thumsnailUrl, mediumUrl: $mediumUrl, largeUrl: $largeUrl, profile: $profile, profileUrl: $profileUrl, comment: $comment)';
   }
 
   @override
@@ -443,7 +443,7 @@ class _$_SimplePostModel implements _SimplePostModel {
             const DeepCollectionEquality().equals(other.profile, profile) &&
             const DeepCollectionEquality()
                 .equals(other.profileUrl, profileUrl) &&
-            const DeepCollectionEquality().equals(other.viewCount, viewCount));
+            const DeepCollectionEquality().equals(other.comment, comment));
   }
 
   @override
@@ -465,7 +465,7 @@ class _$_SimplePostModel implements _SimplePostModel {
       const DeepCollectionEquality().hash(largeUrl),
       const DeepCollectionEquality().hash(profile),
       const DeepCollectionEquality().hash(profileUrl),
-      const DeepCollectionEquality().hash(viewCount));
+      const DeepCollectionEquality().hash(comment));
 
   @JsonKey(ignore: true)
   @override
@@ -496,7 +496,7 @@ abstract class _SimplePostModel implements SimplePostModel {
       String? largeUrl,
       String? profile,
       String? profileUrl,
-      int? viewCount}) = _$_SimplePostModel;
+      String? comment}) = _$_SimplePostModel;
 
   factory _SimplePostModel.fromJson(Map<String, dynamic> json) =
       _$_SimplePostModel.fromJson;
@@ -534,7 +534,7 @@ abstract class _SimplePostModel implements SimplePostModel {
   @override
   String? get profileUrl;
   @override
-  int? get viewCount;
+  String? get comment;
   @override
   @JsonKey(ignore: true)
   _$SimplePostModelCopyWith<_SimplePostModel> get copyWith =>
