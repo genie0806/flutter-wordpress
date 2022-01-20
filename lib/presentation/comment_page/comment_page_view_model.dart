@@ -42,7 +42,10 @@ class CommentPageViewModel with ChangeNotifier {
       }, error: (message) {
         _uiEventController.add(RegisterErrorToast(message));
       });
+    }, loadingUiEvent: () {
+      _state = _state.copyWith(loading: !state.loading);
     });
+
     notifyListeners();
   }
 
@@ -51,7 +54,7 @@ class CommentPageViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchCommentPage(int id) async {
+  Future<List<CommentGetModel>?> fetchCommentPage(int id) async {
     final result = await useCases.getCommentUseCase(id);
     result.when(
       success: (resultComment) {

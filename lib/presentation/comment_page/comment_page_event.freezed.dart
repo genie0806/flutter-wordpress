@@ -50,6 +50,10 @@ class _$CommentPageEventTearOff {
       email,
     );
   }
+
+  LoadingUiEvent loadingUiEvent() {
+    return const LoadingUiEvent();
+  }
 }
 
 /// @nodoc
@@ -66,6 +70,7 @@ mixin _$CommentPageEvent {
     required TResult Function(
             int post, String content, String author, String email)
         registerComment,
+    required TResult Function() loadingUiEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +81,7 @@ mixin _$CommentPageEvent {
     TResult Function(String nickname)? storeNickname,
     TResult Function(int post, String content, String author, String email)?
         registerComment,
+    TResult Function()? loadingUiEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -86,6 +92,7 @@ mixin _$CommentPageEvent {
     TResult Function(String nickname)? storeNickname,
     TResult Function(int post, String content, String author, String email)?
         registerComment,
+    TResult Function()? loadingUiEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -96,6 +103,7 @@ mixin _$CommentPageEvent {
     required TResult Function(StorePostId value) storePostId,
     required TResult Function(StoreNickname value) storeNickname,
     required TResult Function(RegisterComment value) registerComment,
+    required TResult Function(LoadingUiEvent value) loadingUiEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -105,6 +113,7 @@ mixin _$CommentPageEvent {
     TResult Function(StorePostId value)? storePostId,
     TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
+    TResult Function(LoadingUiEvent value)? loadingUiEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -114,6 +123,7 @@ mixin _$CommentPageEvent {
     TResult Function(StorePostId value)? storePostId,
     TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
+    TResult Function(LoadingUiEvent value)? loadingUiEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -208,6 +218,7 @@ class _$StoreContent implements StoreContent {
     required TResult Function(
             int post, String content, String author, String email)
         registerComment,
+    required TResult Function() loadingUiEvent,
   }) {
     return storeContent(content);
   }
@@ -221,6 +232,7 @@ class _$StoreContent implements StoreContent {
     TResult Function(String nickname)? storeNickname,
     TResult Function(int post, String content, String author, String email)?
         registerComment,
+    TResult Function()? loadingUiEvent,
   }) {
     return storeContent?.call(content);
   }
@@ -234,6 +246,7 @@ class _$StoreContent implements StoreContent {
     TResult Function(String nickname)? storeNickname,
     TResult Function(int post, String content, String author, String email)?
         registerComment,
+    TResult Function()? loadingUiEvent,
     required TResult orElse(),
   }) {
     if (storeContent != null) {
@@ -250,6 +263,7 @@ class _$StoreContent implements StoreContent {
     required TResult Function(StorePostId value) storePostId,
     required TResult Function(StoreNickname value) storeNickname,
     required TResult Function(RegisterComment value) registerComment,
+    required TResult Function(LoadingUiEvent value) loadingUiEvent,
   }) {
     return storeContent(this);
   }
@@ -262,6 +276,7 @@ class _$StoreContent implements StoreContent {
     TResult Function(StorePostId value)? storePostId,
     TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
+    TResult Function(LoadingUiEvent value)? loadingUiEvent,
   }) {
     return storeContent?.call(this);
   }
@@ -274,6 +289,7 @@ class _$StoreContent implements StoreContent {
     TResult Function(StorePostId value)? storePostId,
     TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
+    TResult Function(LoadingUiEvent value)? loadingUiEvent,
     required TResult orElse(),
   }) {
     if (storeContent != null) {
@@ -363,6 +379,7 @@ class _$StoreEmail implements StoreEmail {
     required TResult Function(
             int post, String content, String author, String email)
         registerComment,
+    required TResult Function() loadingUiEvent,
   }) {
     return storeEmail(email);
   }
@@ -376,6 +393,7 @@ class _$StoreEmail implements StoreEmail {
     TResult Function(String nickname)? storeNickname,
     TResult Function(int post, String content, String author, String email)?
         registerComment,
+    TResult Function()? loadingUiEvent,
   }) {
     return storeEmail?.call(email);
   }
@@ -389,6 +407,7 @@ class _$StoreEmail implements StoreEmail {
     TResult Function(String nickname)? storeNickname,
     TResult Function(int post, String content, String author, String email)?
         registerComment,
+    TResult Function()? loadingUiEvent,
     required TResult orElse(),
   }) {
     if (storeEmail != null) {
@@ -405,6 +424,7 @@ class _$StoreEmail implements StoreEmail {
     required TResult Function(StorePostId value) storePostId,
     required TResult Function(StoreNickname value) storeNickname,
     required TResult Function(RegisterComment value) registerComment,
+    required TResult Function(LoadingUiEvent value) loadingUiEvent,
   }) {
     return storeEmail(this);
   }
@@ -417,6 +437,7 @@ class _$StoreEmail implements StoreEmail {
     TResult Function(StorePostId value)? storePostId,
     TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
+    TResult Function(LoadingUiEvent value)? loadingUiEvent,
   }) {
     return storeEmail?.call(this);
   }
@@ -429,6 +450,7 @@ class _$StoreEmail implements StoreEmail {
     TResult Function(StorePostId value)? storePostId,
     TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
+    TResult Function(LoadingUiEvent value)? loadingUiEvent,
     required TResult orElse(),
   }) {
     if (storeEmail != null) {
@@ -519,6 +541,7 @@ class _$StorePostId implements StorePostId {
     required TResult Function(
             int post, String content, String author, String email)
         registerComment,
+    required TResult Function() loadingUiEvent,
   }) {
     return storePostId(postId);
   }
@@ -532,6 +555,7 @@ class _$StorePostId implements StorePostId {
     TResult Function(String nickname)? storeNickname,
     TResult Function(int post, String content, String author, String email)?
         registerComment,
+    TResult Function()? loadingUiEvent,
   }) {
     return storePostId?.call(postId);
   }
@@ -545,6 +569,7 @@ class _$StorePostId implements StorePostId {
     TResult Function(String nickname)? storeNickname,
     TResult Function(int post, String content, String author, String email)?
         registerComment,
+    TResult Function()? loadingUiEvent,
     required TResult orElse(),
   }) {
     if (storePostId != null) {
@@ -561,6 +586,7 @@ class _$StorePostId implements StorePostId {
     required TResult Function(StorePostId value) storePostId,
     required TResult Function(StoreNickname value) storeNickname,
     required TResult Function(RegisterComment value) registerComment,
+    required TResult Function(LoadingUiEvent value) loadingUiEvent,
   }) {
     return storePostId(this);
   }
@@ -573,6 +599,7 @@ class _$StorePostId implements StorePostId {
     TResult Function(StorePostId value)? storePostId,
     TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
+    TResult Function(LoadingUiEvent value)? loadingUiEvent,
   }) {
     return storePostId?.call(this);
   }
@@ -585,6 +612,7 @@ class _$StorePostId implements StorePostId {
     TResult Function(StorePostId value)? storePostId,
     TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
+    TResult Function(LoadingUiEvent value)? loadingUiEvent,
     required TResult orElse(),
   }) {
     if (storePostId != null) {
@@ -675,6 +703,7 @@ class _$StoreNickname implements StoreNickname {
     required TResult Function(
             int post, String content, String author, String email)
         registerComment,
+    required TResult Function() loadingUiEvent,
   }) {
     return storeNickname(nickname);
   }
@@ -688,6 +717,7 @@ class _$StoreNickname implements StoreNickname {
     TResult Function(String nickname)? storeNickname,
     TResult Function(int post, String content, String author, String email)?
         registerComment,
+    TResult Function()? loadingUiEvent,
   }) {
     return storeNickname?.call(nickname);
   }
@@ -701,6 +731,7 @@ class _$StoreNickname implements StoreNickname {
     TResult Function(String nickname)? storeNickname,
     TResult Function(int post, String content, String author, String email)?
         registerComment,
+    TResult Function()? loadingUiEvent,
     required TResult orElse(),
   }) {
     if (storeNickname != null) {
@@ -717,6 +748,7 @@ class _$StoreNickname implements StoreNickname {
     required TResult Function(StorePostId value) storePostId,
     required TResult Function(StoreNickname value) storeNickname,
     required TResult Function(RegisterComment value) registerComment,
+    required TResult Function(LoadingUiEvent value) loadingUiEvent,
   }) {
     return storeNickname(this);
   }
@@ -729,6 +761,7 @@ class _$StoreNickname implements StoreNickname {
     TResult Function(StorePostId value)? storePostId,
     TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
+    TResult Function(LoadingUiEvent value)? loadingUiEvent,
   }) {
     return storeNickname?.call(this);
   }
@@ -741,6 +774,7 @@ class _$StoreNickname implements StoreNickname {
     TResult Function(StorePostId value)? storePostId,
     TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
+    TResult Function(LoadingUiEvent value)? loadingUiEvent,
     required TResult orElse(),
   }) {
     if (storeNickname != null) {
@@ -859,6 +893,7 @@ class _$RegisterComment implements RegisterComment {
     required TResult Function(
             int post, String content, String author, String email)
         registerComment,
+    required TResult Function() loadingUiEvent,
   }) {
     return registerComment(post, content, author, email);
   }
@@ -872,6 +907,7 @@ class _$RegisterComment implements RegisterComment {
     TResult Function(String nickname)? storeNickname,
     TResult Function(int post, String content, String author, String email)?
         registerComment,
+    TResult Function()? loadingUiEvent,
   }) {
     return registerComment?.call(post, content, author, email);
   }
@@ -885,6 +921,7 @@ class _$RegisterComment implements RegisterComment {
     TResult Function(String nickname)? storeNickname,
     TResult Function(int post, String content, String author, String email)?
         registerComment,
+    TResult Function()? loadingUiEvent,
     required TResult orElse(),
   }) {
     if (registerComment != null) {
@@ -901,6 +938,7 @@ class _$RegisterComment implements RegisterComment {
     required TResult Function(StorePostId value) storePostId,
     required TResult Function(StoreNickname value) storeNickname,
     required TResult Function(RegisterComment value) registerComment,
+    required TResult Function(LoadingUiEvent value) loadingUiEvent,
   }) {
     return registerComment(this);
   }
@@ -913,6 +951,7 @@ class _$RegisterComment implements RegisterComment {
     TResult Function(StorePostId value)? storePostId,
     TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
+    TResult Function(LoadingUiEvent value)? loadingUiEvent,
   }) {
     return registerComment?.call(this);
   }
@@ -925,6 +964,7 @@ class _$RegisterComment implements RegisterComment {
     TResult Function(StorePostId value)? storePostId,
     TResult Function(StoreNickname value)? storeNickname,
     TResult Function(RegisterComment value)? registerComment,
+    TResult Function(LoadingUiEvent value)? loadingUiEvent,
     required TResult orElse(),
   }) {
     if (registerComment != null) {
@@ -946,4 +986,137 @@ abstract class RegisterComment implements CommentPageEvent {
   @JsonKey(ignore: true)
   $RegisterCommentCopyWith<RegisterComment> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LoadingUiEventCopyWith<$Res> {
+  factory $LoadingUiEventCopyWith(
+          LoadingUiEvent value, $Res Function(LoadingUiEvent) then) =
+      _$LoadingUiEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LoadingUiEventCopyWithImpl<$Res>
+    extends _$CommentPageEventCopyWithImpl<$Res>
+    implements $LoadingUiEventCopyWith<$Res> {
+  _$LoadingUiEventCopyWithImpl(
+      LoadingUiEvent _value, $Res Function(LoadingUiEvent) _then)
+      : super(_value, (v) => _then(v as LoadingUiEvent));
+
+  @override
+  LoadingUiEvent get _value => super._value as LoadingUiEvent;
+}
+
+/// @nodoc
+
+class _$LoadingUiEvent implements LoadingUiEvent {
+  const _$LoadingUiEvent();
+
+  @override
+  String toString() {
+    return 'CommentPageEvent.loadingUiEvent()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is LoadingUiEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String content) storeContent,
+    required TResult Function(String email) storeEmail,
+    required TResult Function(int postId) storePostId,
+    required TResult Function(String nickname) storeNickname,
+    required TResult Function(
+            int post, String content, String author, String email)
+        registerComment,
+    required TResult Function() loadingUiEvent,
+  }) {
+    return loadingUiEvent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String content)? storeContent,
+    TResult Function(String email)? storeEmail,
+    TResult Function(int postId)? storePostId,
+    TResult Function(String nickname)? storeNickname,
+    TResult Function(int post, String content, String author, String email)?
+        registerComment,
+    TResult Function()? loadingUiEvent,
+  }) {
+    return loadingUiEvent?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String content)? storeContent,
+    TResult Function(String email)? storeEmail,
+    TResult Function(int postId)? storePostId,
+    TResult Function(String nickname)? storeNickname,
+    TResult Function(int post, String content, String author, String email)?
+        registerComment,
+    TResult Function()? loadingUiEvent,
+    required TResult orElse(),
+  }) {
+    if (loadingUiEvent != null) {
+      return loadingUiEvent();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StoreContent value) storeContent,
+    required TResult Function(StoreEmail value) storeEmail,
+    required TResult Function(StorePostId value) storePostId,
+    required TResult Function(StoreNickname value) storeNickname,
+    required TResult Function(RegisterComment value) registerComment,
+    required TResult Function(LoadingUiEvent value) loadingUiEvent,
+  }) {
+    return loadingUiEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(StoreContent value)? storeContent,
+    TResult Function(StoreEmail value)? storeEmail,
+    TResult Function(StorePostId value)? storePostId,
+    TResult Function(StoreNickname value)? storeNickname,
+    TResult Function(RegisterComment value)? registerComment,
+    TResult Function(LoadingUiEvent value)? loadingUiEvent,
+  }) {
+    return loadingUiEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StoreContent value)? storeContent,
+    TResult Function(StoreEmail value)? storeEmail,
+    TResult Function(StorePostId value)? storePostId,
+    TResult Function(StoreNickname value)? storeNickname,
+    TResult Function(RegisterComment value)? registerComment,
+    TResult Function(LoadingUiEvent value)? loadingUiEvent,
+    required TResult orElse(),
+  }) {
+    if (loadingUiEvent != null) {
+      return loadingUiEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadingUiEvent implements CommentPageEvent {
+  const factory LoadingUiEvent() = _$LoadingUiEvent;
 }

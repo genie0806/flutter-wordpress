@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/src/provider.dart';
+import 'package:virtue_test/core/result.dart';
+import 'package:virtue_test/domain/model/comment_model/comment_get_model.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_event.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/comment_page/components/comment_form_filed.dart';
@@ -135,32 +137,34 @@ class _CommentPageState extends State<CommentPage> {
             Column(
               children: [
                 Expanded(
-                  child: ListView(children: [
-                    if (model.length <= 0) ...{
-                      const Padding(
-                        padding: EdgeInsets.only(top: 20),
-                      ),
-                      const Center(
-                        child: Text(
-                          '첫번째 댓글을 남겨주세요',
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
+                  child: ListView(
+                    children: [
+                      if (model.length <= 0) ...{
+                        const Padding(
+                          padding: EdgeInsets.only(top: 20),
                         ),
-                      )
-                    } else if (model.isNotEmpty) ...{
-                      ...model.map(
-                        (e) => CommentFormField(
-                          model: e,
-                        ),
-                      )
-                    } else ...{
-                      const SizedBox(
-                        height: 10,
-                        width: 10,
-                        child: Center(child: CircularProgressIndicator()),
-                      )
-                    },
-                  ]),
+                        const Center(
+                          child: Text(
+                            '첫번째 댓글을 남겨주세요',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      } else if (model.isNotEmpty) ...{
+                        ...model.map(
+                          (e) => CommentFormField(
+                            model: e,
+                          ),
+                        )
+                      } else ...{
+                        const SizedBox(
+                          height: 10,
+                          width: 10,
+                          child: Center(child: CircularProgressIndicator()),
+                        )
+                      },
+                    ],
+                  ),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(bottom: 10),

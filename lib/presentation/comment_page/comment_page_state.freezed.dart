@@ -19,10 +19,12 @@ class _$CommentPageStateTearOff {
 
   _CommentPageState call(
       {List<CommentGetModel> model = const [],
-      required CommentGetModel commentModel}) {
+      required CommentGetModel commentModel,
+      bool loading = true}) {
     return _CommentPageState(
       model: model,
       commentModel: commentModel,
+      loading: loading,
     );
   }
 }
@@ -34,6 +36,7 @@ const $CommentPageState = _$CommentPageStateTearOff();
 mixin _$CommentPageState {
   List<CommentGetModel> get model => throw _privateConstructorUsedError;
   CommentGetModel get commentModel => throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CommentPageStateCopyWith<CommentPageState> get copyWith =>
@@ -45,7 +48,10 @@ abstract class $CommentPageStateCopyWith<$Res> {
   factory $CommentPageStateCopyWith(
           CommentPageState value, $Res Function(CommentPageState) then) =
       _$CommentPageStateCopyWithImpl<$Res>;
-  $Res call({List<CommentGetModel> model, CommentGetModel commentModel});
+  $Res call(
+      {List<CommentGetModel> model,
+      CommentGetModel commentModel,
+      bool loading});
 
   $CommentGetModelCopyWith<$Res> get commentModel;
 }
@@ -63,6 +69,7 @@ class _$CommentPageStateCopyWithImpl<$Res>
   $Res call({
     Object? model = freezed,
     Object? commentModel = freezed,
+    Object? loading = freezed,
   }) {
     return _then(_value.copyWith(
       model: model == freezed
@@ -73,6 +80,10 @@ class _$CommentPageStateCopyWithImpl<$Res>
           ? _value.commentModel
           : commentModel // ignore: cast_nullable_to_non_nullable
               as CommentGetModel,
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -91,7 +102,10 @@ abstract class _$CommentPageStateCopyWith<$Res>
           _CommentPageState value, $Res Function(_CommentPageState) then) =
       __$CommentPageStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<CommentGetModel> model, CommentGetModel commentModel});
+  $Res call(
+      {List<CommentGetModel> model,
+      CommentGetModel commentModel,
+      bool loading});
 
   @override
   $CommentGetModelCopyWith<$Res> get commentModel;
@@ -112,6 +126,7 @@ class __$CommentPageStateCopyWithImpl<$Res>
   $Res call({
     Object? model = freezed,
     Object? commentModel = freezed,
+    Object? loading = freezed,
   }) {
     return _then(_CommentPageState(
       model: model == freezed
@@ -122,6 +137,10 @@ class __$CommentPageStateCopyWithImpl<$Res>
           ? _value.commentModel
           : commentModel // ignore: cast_nullable_to_non_nullable
               as CommentGetModel,
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -129,17 +148,21 @@ class __$CommentPageStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CommentPageState implements _CommentPageState {
-  _$_CommentPageState({this.model = const [], required this.commentModel});
+  _$_CommentPageState(
+      {this.model = const [], required this.commentModel, this.loading = true});
 
   @JsonKey()
   @override
   final List<CommentGetModel> model;
   @override
   final CommentGetModel commentModel;
+  @JsonKey()
+  @override
+  final bool loading;
 
   @override
   String toString() {
-    return 'CommentPageState(model: $model, commentModel: $commentModel)';
+    return 'CommentPageState(model: $model, commentModel: $commentModel, loading: $loading)';
   }
 
   @override
@@ -149,14 +172,16 @@ class _$_CommentPageState implements _CommentPageState {
             other is _CommentPageState &&
             const DeepCollectionEquality().equals(other.model, model) &&
             const DeepCollectionEquality()
-                .equals(other.commentModel, commentModel));
+                .equals(other.commentModel, commentModel) &&
+            const DeepCollectionEquality().equals(other.loading, loading));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(model),
-      const DeepCollectionEquality().hash(commentModel));
+      const DeepCollectionEquality().hash(commentModel),
+      const DeepCollectionEquality().hash(loading));
 
   @JsonKey(ignore: true)
   @override
@@ -167,12 +192,15 @@ class _$_CommentPageState implements _CommentPageState {
 abstract class _CommentPageState implements CommentPageState {
   factory _CommentPageState(
       {List<CommentGetModel> model,
-      required CommentGetModel commentModel}) = _$_CommentPageState;
+      required CommentGetModel commentModel,
+      bool loading}) = _$_CommentPageState;
 
   @override
   List<CommentGetModel> get model;
   @override
   CommentGetModel get commentModel;
+  @override
+  bool get loading;
   @override
   @JsonKey(ignore: true)
   _$CommentPageStateCopyWith<_CommentPageState> get copyWith =>

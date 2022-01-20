@@ -11,4 +11,5 @@ abstract class CommentPageEvent with _$CommentPageEvent {
   const factory CommentPageEvent.storeNickname(String nickname) = StoreNickname;
   const factory CommentPageEvent.registerComment(
       int post, String content, String author, String email) = RegisterComment;
+  const factory CommentPageEvent.loadingUiEvent() = LoadingUiEvent;
 }
