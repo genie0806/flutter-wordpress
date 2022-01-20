@@ -5,6 +5,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_page.dart';
 import 'package:virtue_test/presentation/login_user_page/login_user_page.dart';
+import 'package:virtue_test/presentation/main_page/main_page.dart';
 import 'package:virtue_test/presentation/social_login_page/social_login_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
 
@@ -24,7 +25,7 @@ class _SocialLoginPageState extends State<SocialLoginPage> {
       viewModel.isLogined().then((isLogined) {
         if (isLogined) {
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const PostListPage()));
+              MaterialPageRoute(builder: (context) => const MainPage()));
         }
       });
     });
@@ -57,7 +58,7 @@ class _SocialLoginPageState extends State<SocialLoginPage> {
                           fontSize: 20,
                           toastLength: Toast.LENGTH_SHORT);
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const PostListPage()));
+                          builder: (context) => const MainPage()));
                     } else {
                       Fluttertoast.showToast(
                           msg: "구글 계정으로 로그인에 실패하였습니다..",

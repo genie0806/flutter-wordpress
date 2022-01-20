@@ -7,6 +7,7 @@ import 'package:virtue_test/domain/model/login_user_model/login_response_model.d
 import 'package:virtue_test/presentation/login_user_page/components/text_field_item.dart';
 import 'package:virtue_test/presentation/login_user_page/login_user_event.dart';
 import 'package:virtue_test/presentation/login_user_page/login_user_view_model.dart';
+import 'package:virtue_test/presentation/main_page/main_page.dart';
 import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
 import 'package:virtue_test/presentation/user_me_data/user_me_event.dart';
 import 'package:virtue_test/presentation/user_me_data/user_me_view_model.dart';
@@ -40,7 +41,7 @@ class _LoginUserPageState extends State<LoginUserPage> {
                   toastLength: Toast.LENGTH_SHORT)
               .whenComplete(() {
             Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => const PostListPage()),
+                MaterialPageRoute(builder: (context) => const MainPage()),
                 (route) => false);
           });
         }, loginErrorToast: (String message) {

@@ -2,8 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/src/provider.dart';
-import 'package:virtue_test/core/result.dart';
-import 'package:virtue_test/domain/model/comment_model/comment_get_model.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_event.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/comment_page/components/comment_form_filed.dart';
