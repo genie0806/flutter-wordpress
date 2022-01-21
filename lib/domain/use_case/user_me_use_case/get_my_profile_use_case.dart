@@ -7,20 +7,20 @@ import 'package:virtue_test/domain/repository/user_me_repository.dart';
 class GetMyProfileUseCase {
   final LoginUserRepository loginUserRepository;
   final UserMeRepository userMeRepository;
-  final AppConfigRepository _appConfigRepository;
+  final AppConfigRepository appConfigRepository;
 
   GetMyProfileUseCase(
     this.loginUserRepository,
     this.userMeRepository,
-    this._appConfigRepository,
+    this.appConfigRepository,
   );
 
   Future<Result<UserMeModel>> call() async {
     try {
-      String? token = await _appConfigRepository.getToken();
+      String? token = await appConfigRepository.getToken();
       if (token == null) {
-        final username = await _appConfigRepository.getUsername();
-        final password = await _appConfigRepository.getPassword();
+        final username = await appConfigRepository.getUsername();
+        final password = await appConfigRepository.getPassword();
 
         if (username != null && password != null) {
           final loginResponseModelResult =

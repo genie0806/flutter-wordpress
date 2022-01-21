@@ -137,7 +137,7 @@ class _CommentPageState extends State<CommentPage> {
                 Expanded(
                   child: ListView(
                     children: [
-                      if (model.length <= 0) ...{
+                      if (model.isEmpty) ...{
                         const Padding(
                           padding: EdgeInsets.only(top: 20),
                         ),
@@ -154,10 +154,10 @@ class _CommentPageState extends State<CommentPage> {
                             model: e,
                           ),
                         )
-                      } else ...{
+                      } else if (model.isEmpty && model.length <= 1) ...{
                         const SizedBox(
-                          height: 10,
-                          width: 10,
+                          height: 50,
+                          width: 50,
                           child: Center(child: CircularProgressIndicator()),
                         )
                       },

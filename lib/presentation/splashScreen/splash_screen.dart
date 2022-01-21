@@ -2,20 +2,42 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/src/provider.dart';
+import 'package:virtue_test/presentation/main_page/main_page.dart';
 import 'package:virtue_test/presentation/social_login_page/social_login_page.dart';
+import 'package:virtue_test/presentation/user_me_data/user_me_view_model.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() async {
+      final viewModel = context.read<UserMeViewModel>();
+      await Future.delayed(const Duration(seconds: 3));
+      String? token = await viewModel
+          .useCases.getMyProfileUseCase.appConfigRepository
+          .getToken();
+      if (token != null) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const MainPage()));
+      } else {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const SocialLoginPage()));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(
-        Duration(seconds: 5),
-        () => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (BuildContext context) {
-              return const SocialLoginPage();
-            })));
-
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -37,7 +59,7 @@ class SplashScreen extends StatelessWidget {
                 ),
               ),
               const Padding(
-                padding: const EdgeInsets.only(top: 390),
+                padding: EdgeInsets.only(top: 390),
                 child: Text(
                   '@ Copyright 2022, 버체 (Virtue)',
                   style: TextStyle(

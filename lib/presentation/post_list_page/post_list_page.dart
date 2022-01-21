@@ -1,12 +1,8 @@
 import 'dart:async';
-import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:virtue_test/domain/use_case/comment_get_use_case/comment_use_cases.dart';
-import 'package:virtue_test/domain/util/system_navigator_double.dart';
 import 'package:virtue_test/presentation/comment_page/comment_page_view_model.dart';
 import 'package:virtue_test/presentation/post_list_page/components/card_view_item.dart';
 import 'package:virtue_test/presentation/post_list_page/components/skeleton_post_list.dart';
@@ -62,50 +58,49 @@ class _PostListPageState extends State<PostListPage> {
     final userViewModel = context.watch<UserMeViewModel>();
     return Scaffold(
       body: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18),
-                    child: RefreshIndicator(
-                      onRefresh: viewModel.refreshList,
-                      child: ListView(
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: [
-                          if (viewModel.postsListState.postList.isNotEmpty) ...{
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                              child: Text(
-                                '전체 ' +
-                                    viewModel.postsListState.postList.length
-                                        .toString(),
-                                style: const TextStyle(fontSize: 15),
-                              ),
-                            ),
-                            ...viewModel.postsListState.postList
-                                .map((e) => CardViewItem(
-                                      model: e,
-                                      onTap: () async {
-                                        bool? result = await Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              child: ChangeNotifierProvider(
-                                                create: (context) {
-                                                  final useCases = context.read<CommentGetUseCases>()
-                                                  return CommentPageViewModel(useCases)
-                                                  }
-                                                child: PostPage(id: e.id!,),
-                                                 ),
-                                              type: PageTransitionType
-                                                  .rightToLeftWithFade,
-                                            ));
-
-                                        if (result != null && result == true) {
-                                          viewModel.refreshList();
-                                        }
-                                      },
-                                    ))
-                                .toList()
-                          } else ...{
-                            const SkeletonPostList()
-                          }
-                        ],
+        padding: const EdgeInsets.symmetric(horizontal: 18),
+        child: RefreshIndicator(
+          onRefresh: viewModel.refreshList,
+          child: ListView(
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              if (viewModel.postsListState.postList.isNotEmpty) ...{
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  child: Text(
+                    '전체 ' +
+                        viewModel.postsListState.postList.length
+                            .toString(),
+                    style: const TextStyle(fontSize: 15),
+                  ),
+                   ),
+                ...viewModel.postsListState.postList
+                    .map((e) => CardViewItem(
+                          model: e,
+                          onTap: () async {
+                            bool? result = await Navigator.push(
+                                context,
+                                PageTransition(
+                                  child: ChangeNotifierProvider(
+                                    create: (context) {
+                                      final useCases = context.read<CommentGetUseCases>()
+                                      return CommentPageViewModel(useCases)
+                                      }
+                                    child: PostPage(id: e.id!,),
+                                     ),
+                                  type: PageTransitionType
+                                      .rightToLeftWithFade,
+                                ));
+                            if (result != null && result == true) {
+                              viewModel.refreshList();
+                            }
+                          },
+                        ))
+                    .toList()
+                 } else ...{
+                   const SkeletonPostList()
+                 }
+               ],
                       ),
                     ),
                   ),

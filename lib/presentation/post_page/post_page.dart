@@ -154,7 +154,6 @@ class _PostPageState extends State<PostPage> {
                 ),
                 Positioned(
                   left: 0,
-                  top: 790,
                   right: 0,
                   bottom: 0,
                   child: Opacity(
@@ -202,46 +201,44 @@ class _PostPageState extends State<PostPage> {
                                   onPressed: () {},
                                   icon: const Icon(
                                     Ionicons.share_social_outline,
-                                    size: 26,
+                                    size: 24,
                                   )),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 200),
-                              child: TextButton.icon(
-                                  style: TextButton.styleFrom(
-                                      primary: Colors.white, elevation: 0),
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          child: ChangeNotifierProvider(
-                                            create: (context) {
-                                              final useCases = context
-                                                  .read<CommentGetUseCases>();
-                                              return CommentPageViewModel(
-                                                  useCases);
-                                            },
-                                            child: CommentPage(
-                                              postId: widget.id,
-                                            ),
+                            Expanded(child: SizedBox()),
+                            TextButton.icon(
+                                style: TextButton.styleFrom(
+                                    primary: Colors.white, elevation: 0),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        child: ChangeNotifierProvider(
+                                          create: (context) {
+                                            final useCases = context
+                                                .read<CommentGetUseCases>();
+                                            return CommentPageViewModel(
+                                                useCases);
+                                          },
+                                          child: CommentPage(
+                                            postId: widget.id,
                                           ),
-                                          type: PageTransitionType
-                                              .rightToLeftWithFade,
-                                        ));
+                                        ),
+                                        type: PageTransitionType
+                                            .rightToLeftWithFade,
+                                      ));
 
-                                    //navigator로 Comment 창으로 이동
-                                  },
-                                  icon: const Icon(
-                                    Ionicons.chatbubble_outline,
-                                    color: Colors.black,
-                                    size: 26,
-                                  ),
-                                  label: Text(
-                                    model.comment.toString(),
-                                    style: const TextStyle(
-                                        color: Colors.black, fontSize: 14),
-                                  )),
-                            ),
+                                  //navigator로 Comment 창으로 이동
+                                },
+                                icon: const Icon(
+                                  Ionicons.chatbubble_outline,
+                                  color: Colors.black,
+                                  size: 26,
+                                ),
+                                label: Text(
+                                  model.comment.toString(),
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 14),
+                                )),
                           ],
                         ),
                       ),
