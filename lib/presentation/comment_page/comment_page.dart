@@ -137,7 +137,16 @@ class _CommentPageState extends State<CommentPage> {
                 Expanded(
                   child: ListView(
                     children: [
-                      if (model.isEmpty) ...{
+                      if (state.loading) ...{
+                        const Padding(
+                          padding: EdgeInsets.only(top: 15),
+                        ),
+                        const SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: Center(child: CircularProgressIndicator()),
+                        ),
+                      } else if (model.isEmpty) ...{
                         const Padding(
                           padding: EdgeInsets.only(top: 20),
                         ),
@@ -148,19 +157,13 @@ class _CommentPageState extends State<CommentPage> {
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                         )
-                      } else if (model.isNotEmpty) ...{
+                      } else ...{
                         ...model.map(
                           (e) => CommentFormField(
                             model: e,
                           ),
                         )
-                      } else if (model.isEmpty && model.length <= 1) ...{
-                        const SizedBox(
-                          height: 50,
-                          width: 50,
-                          child: Center(child: CircularProgressIndicator()),
-                        )
-                      },
+                      }
                     ],
                   ),
                 ),
