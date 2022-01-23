@@ -46,25 +46,31 @@ class CommentFormField extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 5),
-                            child: Html(
-                                data: model.content,
-                                shrinkWrap: true,
-                                style: {
-                                  "p": Style(
-                                      height: 20,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: FontSize.em(1),
-                                      margin: EdgeInsets.zero,
-                                      padding: EdgeInsets.zero,
-                                      maxLines: 2,
-                                      textOverflow: TextOverflow.ellipsis),
-                                  "body": Style(
-                                      margin: EdgeInsets.zero,
-                                      padding: EdgeInsets.zero,
-                                      maxLines: 2,
-                                      textOverflow: TextOverflow.ellipsis)
-                                }),
+                            child: Column(
+                              children: [
+                                Html(
+                                    data: model.content,
+                                    shrinkWrap: false,
+                                    style: {
+                                      "p": Style(
+                                          height: 40,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: FontSize.em(1),
+                                          margin: EdgeInsets.zero,
+                                          padding: EdgeInsets.zero,
+                                          maxLines: 10,
+                                          display: Display.INLINE),
+                                      "body": Style(
+                                        margin: EdgeInsets.zero,
+                                        padding: EdgeInsets.zero,
+
+                                        //maxLines: 2,
+                                        //textOverflow: TextOverflow.ellipsis
+                                      )
+                                    })
+                              ],
+                            ),
 //
                             //Text(
                             //model.content ?? "",
@@ -88,17 +94,17 @@ class CommentFormField extends StatelessWidget {
   }
 }
 
-//String getTimeDifferenceFromNow(DateTime dateTime) {
-//  Duration difference = DateTime.now().difference(dateTime);
-//  if (difference.inSeconds < 5) {
-//    return "Just now";
-//  } else if (difference.inMinutes < 1) {
-//    return "${difference.inSeconds}s ago";
-//  } else if (difference.inHours < 1) {
-//    return "${difference.inMinutes}m ago";
-//  } else if (difference.inHours < 24) {
-//    return "${difference.inHours}h ago";
-//  } else {
-//    return "${difference.inDays}d ago";
-//  }
-//  }
+String getTimeDifferenceFromNow(DateTime dateTime) {
+  Duration difference = DateTime.now().difference(dateTime);
+  if (difference.inSeconds < 5) {
+    return "Just now";
+  } else if (difference.inMinutes < 1) {
+    return "${difference.inSeconds}s ago";
+  } else if (difference.inHours < 1) {
+    return "${difference.inMinutes}m ago";
+  } else if (difference.inHours < 24) {
+    return "${difference.inHours}h ago";
+  } else {
+    return "${difference.inDays}d ago";
+  }
+}

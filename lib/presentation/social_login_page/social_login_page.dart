@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,18 +19,38 @@ class SocialLoginPage extends StatefulWidget {
 }
 
 class _SocialLoginPageState extends State<SocialLoginPage> {
+  StreamSubscription? streamSubscription;
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
+    Future.microtask(() async {
       final viewModel = context.read<SocialLoginViewModel>();
-      viewModel.isLogined().then((isLogined) {
-        if (isLogined) {
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const MainPage()));
-        }
+      final isLogined = await viewModel.isLogined();
+      if (isLogined) {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const MainPage()));
+      }
+      streamSubscription = viewModel.eventStream.listen((event) {
+        Fluttertoast.showToast(
+            msg: event.message,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: const Color(0xff6E6E6E),
+            fontSize: 20,
+            toastLength: Toast.LENGTH_SHORT);
+        event.when(
+            loginSuccessToast: (message) {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => const MainPage()));
+            },
+            loginErrorToast: (message) {});
       });
     });
+  }
+
+  @override
+  void dispose() {
+    streamSubscription?.cancel();
+    super.dispose();
   }
 
   @override
@@ -49,25 +71,7 @@ class _SocialLoginPageState extends State<SocialLoginPage> {
               padding: const EdgeInsets.only(top: 30),
               child: ElevatedButton.icon(
                 onPressed: () async {
-                  viewModel.googleLogin().then((isLogin) {
-                    if (isLogin) {
-                      Fluttertoast.showToast(
-                          msg: "구글 계정으로 로그인 하였습니다.",
-                          gravity: ToastGravity.BOTTOM,
-                          backgroundColor: const Color(0xff6E6E6E),
-                          fontSize: 20,
-                          toastLength: Toast.LENGTH_SHORT);
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const MainPage()));
-                    } else {
-                      Fluttertoast.showToast(
-                          msg: "구글 계정으로 로그인에 실패하였습니다..",
-                          gravity: ToastGravity.BOTTOM,
-                          backgroundColor: const Color(0xff6E6E6E),
-                          fontSize: 20,
-                          toastLength: Toast.LENGTH_SHORT);
-                    }
-                  });
+                  viewModel.googleLogin();
                 },
                 icon: SizedBox(
                   height: 25,
