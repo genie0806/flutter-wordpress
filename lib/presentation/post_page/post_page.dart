@@ -139,7 +139,6 @@ class _PostPageState extends State<PostPage> {
                           ProfileBoard(
                             simplePostModel: model,
                           ),
-
                           //회색 포스트 보드
                           Infoboard(
                             simplePostModel: model,
@@ -204,7 +203,7 @@ class _PostPageState extends State<PostPage> {
                                     size: 24,
                                   )),
                             ),
-                            Expanded(child: SizedBox()),
+                            const Expanded(child: SizedBox()),
                             TextButton.icon(
                                 style: TextButton.styleFrom(
                                     primary: Colors.white, elevation: 0),
