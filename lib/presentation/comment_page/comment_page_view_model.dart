@@ -55,17 +55,20 @@ class CommentPageViewModel with ChangeNotifier {
   }
 
   Future<List<CommentGetModel>?> fetchCommentPage(int id) async {
+    _state = _state.copyWith(loading: true);
+    notifyListeners();
     final result = await useCases.getCommentUseCase(id);
     result.when(
       success: (resultComment) {
-        _state = _state.copyWith(model: resultComment);
-        notifyListeners();
+        _state = _state.copyWith(model: resultComment, loading: false);
       },
       error: (e) {
         print((result as Error).message.toString());
+        _state = _state.copyWith(loading: false);
         _uiEventController
             .add(const CommentPageUiEvent.showToast('네트워크 에러 입니다'));
       },
     );
+    notifyListeners();
   }
 }

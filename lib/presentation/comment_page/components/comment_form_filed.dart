@@ -56,10 +56,14 @@ class CommentFormField extends StatelessWidget {
                                       fontWeight: FontWeight.w400,
                                       fontSize: FontSize.em(1),
                                       margin: EdgeInsets.zero,
-                                      padding: EdgeInsets.zero),
+                                      padding: EdgeInsets.zero,
+                                      maxLines: 2,
+                                      textOverflow: TextOverflow.ellipsis),
                                   "body": Style(
                                       margin: EdgeInsets.zero,
-                                      padding: EdgeInsets.zero)
+                                      padding: EdgeInsets.zero,
+                                      maxLines: 2,
+                                      textOverflow: TextOverflow.ellipsis)
                                 }),
 //
                             //Text(
