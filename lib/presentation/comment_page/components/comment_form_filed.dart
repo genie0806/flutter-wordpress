@@ -65,20 +65,10 @@ class CommentFormField extends StatelessWidget {
                                         margin: EdgeInsets.zero,
                                         padding: EdgeInsets.zero,
 
-                                        //maxLines: 2,
-                                        //textOverflow: TextOverflow.ellipsis
                                       )
                                     })
                               ],
                             ),
-//
-                            //Text(
-                            //model.content ?? "",
-                            //style: const TextStyle(
-                            //    color: Colors.black, fontSize: 14),
-                            //maxLines: 10,
-                            //softWrap: true,
-                            //),
                           ),
                         ],
                       ),
