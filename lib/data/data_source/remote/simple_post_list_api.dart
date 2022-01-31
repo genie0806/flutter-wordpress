@@ -8,13 +8,17 @@ String baseUrl = dotenv.get('BASE_URL');
 
 class SimplePostListApi {
   Future<Result<List<SimplePostModel>>> fetchListData() async {
-    final response = await http.get(Uri.parse(baseUrl + 'latest-posts'));
-    Iterable jsonResponse = convert.jsonDecode((response.body));
-    List<SimplePostModel> simplePostApiList =
-        jsonResponse.map((e) => SimplePostModel.fromJson(e)).toList();
-    if (simplePostApiList != null) {
-      return Result.success(simplePostApiList);
+    try {
+      final response = await http.get(Uri.parse(baseUrl + 'latest-posts'));
+      Iterable jsonResponse = convert.jsonDecode((response.body));
+      List<SimplePostModel> simplePostApiList =
+          jsonResponse.map((e) => SimplePostModel.fromJson(e)).toList();
+      if (simplePostApiList != null) {
+        return Result.success(simplePostApiList);
+      }
+      return const Result.error('잠시후 다시 시도해 주십시오');
+    } catch (e) {
+      return const Result.error('인터넷 연결이 되어있지않습니다.');
     }
-    return const Result.error('잠시후 다시 시도해 주십시오');
   }
 }

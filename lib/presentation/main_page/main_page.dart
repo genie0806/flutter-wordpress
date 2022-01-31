@@ -143,6 +143,7 @@ class _MainPageState extends State<MainPage> {
                   Text('다다'),
                   Text('다다'),
                   Text('다다'),
+                  //추후 로그아웃 버튼 추가, googleLogout, secure Storage 해제
                 ],
               ),
             ),
