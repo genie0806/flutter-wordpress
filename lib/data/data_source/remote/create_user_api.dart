@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:virtue_test/core/result.dart';
 import 'package:virtue_test/domain/model/create_user_model/create_user_model.dart';
 import 'package:virtue_test/domain/model/create_user_model/create_user_response_model.dart';
 

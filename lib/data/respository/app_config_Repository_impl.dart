@@ -36,6 +36,7 @@ class AppConfigRepositoryImpl implements AppConfigRepository {
   Future<String?> getUsername() {
     return dataSource.getValue('username');
   }
+  // user name을 추가한다..
 
   @override
   Future<String?> getPassword() {
@@ -46,6 +47,7 @@ class AppConfigRepositoryImpl implements AppConfigRepository {
   void setUsername(String username) {
     dataSource.setValue('username', username);
   }
+  // 저장해놓은 username 을 셋팅한다.
 
   @override
   void setPassword(String password) {
