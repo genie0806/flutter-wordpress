@@ -20,6 +20,7 @@ class PostPageViewModel with ChangeNotifier {
     notifyListeners();
     return Future.delayed(const Duration(microseconds: 100));
   }
+  //refresh duration 100에서 변경가능
 
   Future<void> fetchPostPage() async {
     final result = await useCases.getPostList();
