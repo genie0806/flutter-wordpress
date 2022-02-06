@@ -9,7 +9,6 @@ import 'package:virtue_test/presentation/create_user_page/create_user_page.dart'
 import 'package:virtue_test/presentation/login_user_page/login_user_page.dart';
 import 'package:virtue_test/presentation/main_page/main_page.dart';
 import 'package:virtue_test/presentation/social_login_page/social_login_view_model.dart';
-import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
 
 class SocialLoginPage extends StatefulWidget {
   const SocialLoginPage({Key? key}) : super(key: key);

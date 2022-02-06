@@ -55,7 +55,6 @@ class _PostListPageState extends State<PostListPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<PostListPageViewModel>();
-    final userViewModel = context.watch<UserMeViewModel>();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),

@@ -8,9 +8,6 @@ import 'package:virtue_test/presentation/login_user_page/components/text_field_i
 import 'package:virtue_test/presentation/login_user_page/login_user_event.dart';
 import 'package:virtue_test/presentation/login_user_page/login_user_view_model.dart';
 import 'package:virtue_test/presentation/main_page/main_page.dart';
-import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
-import 'package:virtue_test/presentation/user_me_data/user_me_event.dart';
-import 'package:virtue_test/presentation/user_me_data/user_me_view_model.dart';
 
 class LoginUserPage extends StatefulWidget {
   const LoginUserPage({Key? key}) : super(key: key);

@@ -8,7 +8,6 @@ import 'package:virtue_test/presentation/create_user_page/components/text_field_
 import 'package:virtue_test/presentation/create_user_page/create_user_event.dart';
 import 'package:virtue_test/presentation/create_user_page/create_user_page_view_model.dart';
 import 'package:virtue_test/presentation/main_page/main_page.dart';
-import 'package:virtue_test/presentation/post_list_page/post_list_page.dart';
 
 class CreateUserPage extends StatefulWidget {
   const CreateUserPage({Key? key}) : super(key: key);
