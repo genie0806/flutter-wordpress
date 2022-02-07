@@ -66,7 +66,7 @@ Future<List<SingleChildWidget>> getProviders() async {
     getSocialLogout: GoogleSocialLogoutUseCase(loginRepository),
   );
 //CreateUser 관련된 DI
-  final createUserData = CreateUserAPi();
+  final createUserData = CreateUserApi();
   final createUserRepository = CreateUserRepositoryImpl(createUserData);
   final createUserUseCases = CreateUserUseCases(
       postRegisterUserUseCase: PostRegisterUserUseCase(createUserRepository));

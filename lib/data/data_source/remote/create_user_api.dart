@@ -6,7 +6,7 @@ import 'package:virtue_test/domain/model/create_user_model/create_user_response_
 
 String baseUrl = dotenv.get('BASE_URL');
 
-class CreateUserAPi {
+class CreateUserApi {
   final client = http.Client();
 
   Future<CreateUserResponseModel> registerUser(CreateUserModel model) async {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virtue_test/di/provider_setup.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:virtue_test/presentation/social_login_page/social_login_page.dart';
 import 'package:virtue_test/presentation/splashScreen/splash_screen.dart';
 
 Future main() async {
