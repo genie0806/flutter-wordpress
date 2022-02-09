@@ -8,7 +8,6 @@ String baseUrl = dotenv.get('BASE_URL');
 
 class UserMeApi {
   Future<Result<UserMeModel>> fetchUserMe(String token) async {
-    // Map<String, String> _urlHeader = {'Authorization': token};
     try {
       var response = await http.post(
         Uri.parse('https://virtureart.shop/index.php/wp-json/wp/v2/users/me'),
