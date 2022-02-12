@@ -61,6 +61,7 @@ class _PostListPageState extends State<PostListPage> {
         child: RefreshIndicator(
           onRefresh: viewModel.refreshList,
           child: ListView(
+            key: const PageStorageKey<String>('key'),
             physics: const NeverScrollableScrollPhysics(),
             children: [
               if (viewModel.postsListState.postList.isNotEmpty) ...{

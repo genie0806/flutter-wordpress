@@ -1,4 +1,5 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
@@ -12,7 +13,8 @@ class MainPage extends StatefulWidget {
   _MainPageState createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
+  TabController? tabController;
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
@@ -137,10 +139,12 @@ class _MainPageState extends State<MainPage> {
                   )
                 ];
               },
-              body: const TabBarView(
+              body: TabBarView(
+                dragStartBehavior: DragStartBehavior.down,
+                physics: ClampingScrollPhysics(),
                 children: [
                   PostListPage(),
-                  Text('다다'),
+                  PostListPage(),
                   Text('다다'),
                   Text('다다'),
                   //추후 로그아웃 버튼 추가, googleLogout, secure Storage 해제
@@ -153,3 +157,19 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
+
+class ListViewCount extends StatelessWidget {
+  const ListViewCount({
+    required Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(itemBuilder: listviewBuilder, itemCount: 30);
+  }
+}
+
+Widget listviewBuilder(BuildContext context, int index) => Container(
+      color: Colors.accents[index % Colors.accents.length],
+      height: 100,
+    );
