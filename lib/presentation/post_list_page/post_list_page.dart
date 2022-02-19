@@ -61,7 +61,9 @@ class _PostListPageState extends State<PostListPage> {
         child: RefreshIndicator(
           onRefresh: viewModel.refreshList,
           child: ListView(
+            //지금 스크롤했던 Page의 스크롤을 저장해서 다른곳에서 넘어갔다 와도 해당 위치를 기억
             key: const PageStorageKey<String>('key'),
+            
             physics: const NeverScrollableScrollPhysics(),
             children: [
               if (viewModel.postsListState.postList.isNotEmpty) ...{
